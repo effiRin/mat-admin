@@ -1,3 +1,4 @@
+<!-- Topbar -->
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
   
   <!-- Sidebar Toggle (Topbar) -->
@@ -114,7 +115,7 @@
         </a>
         <a class="dropdown-item d-flex align-items-center" href="#">
           <div class="dropdown-list-image mr-3">
-            <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
+            <img class="rounded-circle" src="http://106.241.252.54:8085/img/undraw_profile_2.svg" alt="...">
             <div class="status-indicator"></div>
           </div>
           <div>
@@ -125,7 +126,7 @@
         </a>
         <a class="dropdown-item d-flex align-items-center" href="#">
           <div class="dropdown-list-image mr-3">
-            <img class="rounded-circle" src="img/undraw_profile_3.svg" alt="...">
+            <img class="rounded-circle" src="http://106.241.252.54:8085/img/undraw_profile_3.svg" alt="...">
             <div class="status-indicator bg-warning"></div>
           </div>
           <div>
@@ -155,7 +156,7 @@
     <li class="nav-item dropdown no-arrow">
       <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-        <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+        <img class="img-profile rounded-circle" src="http://106.241.252.54:8085/img/undraw_profile.svg">
       </a>
       <!-- Dropdown - User Information -->
       <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -182,3 +183,4 @@
   </ul>
 
 </nav>
+<!-- End of Topbar -->

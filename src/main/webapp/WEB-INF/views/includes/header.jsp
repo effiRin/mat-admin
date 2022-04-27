@@ -26,10 +26,15 @@
   <link href="http://106.241.252.54:8085/css/sb-admin-2.min.css" rel="stylesheet">
   
 </head>
-<body id="page-top" class="sidebar-toggled">
-<div class="wrapper">
-  <%@include file="/WEB-INF/views/includes/sidebar.jsp"%>
-  <div id="content-wrapper" class="d-flex flex-column">
-    <div id="content">
-      <%@include file="/WEB-INF/views/includes/topbar.jsp"%>
+<body id="page-top" cz-shortcut-listen="true">
+  <div id="wrapper">
+    <%@ include file="/WEB-INF/views/includes/sidebar.jsp"%>
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+      <!-- Main Content -->
+      <div id="content">
+        <%@ include file="/WEB-INF/views/includes/topbar.jsp"%>
+          <div class="container-fluid">
+            <!-- Page Heading -->
+            
 
