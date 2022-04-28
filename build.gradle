@@ -3,7 +3,7 @@ plugins {
     id 'war'
 }
 
-group 'com.matjo.pickafood'
+group 'com.matjo.pickafood.admin'
 version '1.0-SNAPSHOT'
 
 repositories {

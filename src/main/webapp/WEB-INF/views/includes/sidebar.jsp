@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!-- Sidebar -->
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
   
@@ -71,18 +72,18 @@
   <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
       <i class="fas fa-fw fa-folder"></i>
-      <span>Pages</span>
+      <span>문의/신고</span>
     </a>
     <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Login Screens:</h6>
-        <a class="collapse-item" href="login.html">Login</a>
-        <a class="collapse-item" href="register.html">Register</a>
-        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+        <h6 class="collapse-header">문의 관리:</h6>
+        <a class="collapse-item" href="/inquiry/list">미답변 문의</a>
+        <a class="collapse-item" href="/inquiry/list">전체 문의글</a>
         <div class="collapse-divider"></div>
-        <h6 class="collapse-header">Other Pages:</h6>
-        <a class="collapse-item" href="404.html">404 Page</a>
-        <a class="collapse-item" href="blank.html">Blank Page</a>
+        <h6 class="collapse-header">신고 관리:</h6>
+        <a class="collapse-item" href="/inquiry/list">회원 신고 사항</a>
+        <a class="collapse-item" href="/inquiry/list">급식 오류 수정</a>
+        <a class="collapse-item" href="/inquiry/list">상품 알레르기 오류 수정</a>
       </div>
     </div>
   </li>
