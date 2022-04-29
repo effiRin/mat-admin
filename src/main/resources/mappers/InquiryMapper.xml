@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE mapper
+                PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.matjo.pickafood.admin.inquiry.mapper.InquiryMapper">
+
+    <select id="selectList" resultType="com.matjo.pickafood.admin.inquiry.InquiryVO">
+        select *
+        from inquiry where delFlag=0
+        order by inquiry_seq desc
+        limit #{skip},#{size}
+    </select>
+
+    <select id="getTotal" resultType="int">
+        select count(inquiry_seq) from inquiry
+    </select>
+
+</mapper>
