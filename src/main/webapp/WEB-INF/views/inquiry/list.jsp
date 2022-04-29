@@ -27,7 +27,17 @@
           <td class="dateType"><c:out value="${inquiry.inquiryDate}"/></td>
           <td style="text-align: left; background-color:#f2f7f4;"><c:out value="${inquiry.title}"/></td>
           <td><c:out value="${inquiry.id}"/></td>
-          <td class="dateType"><c:out value="${inquiry.answerDate}"/></td>
+          <td class="dateType">
+              <c:choose>
+                <c:when test="${inquiry.answerId eq null}">
+                  <c:out value="답변대기"/>
+                </c:when>
+                <c:otherwise>
+                  <c:out value="${inquiry.answerDate}"/>
+                </c:otherwise>
+            </c:choose>
+
+          </td>
           <td><c:out value="${inquiry.answerId}"/></td>
         </tr>
         </c:forEach>
