@@ -7,7 +7,7 @@
 <footer class="sticky-footer bg-white">
   <div class="container my-auto">
     <div class="copyright text-center my-auto">
-      <span>Copyright © Your Website 2021</span>
+      <span>MatJo © Pick A Food 2022</span>
     </div>
   </div>
 </footer>

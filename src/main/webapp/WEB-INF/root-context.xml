@@ -4,10 +4,12 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns:context="http://www.springframework.org/schema/context"
         xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
-        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
+        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
   
-  <context:component-scan base-package="com.matjo.pickafood.admin"></context:component-scan>
-
+  <context:component-scan base-package="com.matjo.pickafood.admin.common"></context:component-scan>
+  <context:component-scan base-package="com.matjo.pickafood.admin.config"></context:component-scan>
+  <context:component-scan base-package="com.matjo.pickafood.admin.exception"></context:component-scan>
+  <context:component-scan base-package="com.matjo.pickafood.admin.inquiry"></context:component-scan>
 
   <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
     <property name="driverClassName"
@@ -29,5 +31,5 @@
     <property name="mapperLocations" value="classpath:/mappers/**/*.xml"></property>
   </bean>
 
-<!--  <mybatis-spring:scan base-package="org.zerock.sp1.mapper"></mybatis-spring:scan>-->
+  <mybatis-spring:scan base-package="com.matjo.pickafood.admin.*.mapper"/>
 </beans>
