@@ -1,7 +1,6 @@
 .table td, .table th {
     text-align: center;
-    padding-left: 3vw;
-    padding-right: 3vw;
+    padding-left: 2vw;
 }
 
 .pagingArea {

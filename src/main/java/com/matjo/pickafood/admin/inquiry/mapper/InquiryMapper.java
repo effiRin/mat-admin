@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface InquiryMapper extends GenericMapper<InquiryVO, Integer> {
 
+    void answerContent(InquiryVO inquiryVO);
 }

@@ -16,4 +16,14 @@
         select count(inquiry_seq) from inquiry
     </select>
 
+    <select id="selectOne" resultType="com.matjo.pickafood.admin.inquiry.InquiryVO">
+        select * from inquiry where inquiry_seq = #{inquiry_seq}
+    </select>
+
+    <update id="answerContent">
+        update inquiry
+        set answerContent=#{answerContent} , answerDate = now(), answerFlag = 1, answerId='yiseul'
+        where inquiry_seq=#{inquiry_seq}
+    </update>
+
 </mapper>
