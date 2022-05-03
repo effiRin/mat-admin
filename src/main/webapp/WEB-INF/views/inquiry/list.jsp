@@ -2,7 +2,7 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
 <%@ include file="/WEB-INF/views/includes/header.jsp"%>
-<link href="/resources/css/inquiry.css" rel="stylesheet" type="text/css">
+<link href="/resources/css/table.css" rel="stylesheet" type="text/css">
 
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">전체 문의글</h1>
@@ -46,7 +46,9 @@
     <div class="pagingArea">
         <nav aria-label="Page navigation example">
           <ul class="pagination">
+            <c:if test="${pageMaker.start > 1}">
             <li class="page-item"><a class="page-link" href="${pageMaker.start-1}">이전</a></li>
+            </c:if>
             <c:forEach begin="${pageMaker.start}" end ="${pageMaker.end}" var="num">
 
               <c:choose>
@@ -59,7 +61,10 @@
               </c:choose>
 
             </c:forEach>
+
+            <c:if test="${pageMaker.end < total/listDTO.size}">
             <li class="page-item"><a class="page-link" href="${pageMaker.end+1}">다음</a></li>
+            </c:if>
           </ul>
         </nav>
     </div>

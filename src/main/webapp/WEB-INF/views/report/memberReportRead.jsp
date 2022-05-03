@@ -11,13 +11,13 @@
 <div class="row">
     <div class="col-lg-9">
         <!-- Post content-->
-        <article clss="inquiryOne">
+        <article clss="memberReportOne">
             <!-- Post header-->
             <header class="mb-4">
                 <!-- Post title-->
-                <h4 class="fw-bolder mb-2" style="padding-bottom: 10px"><span style="color: #3c9a9a; font-size:25px">제&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp목 || </span> <c:out value="${dto.title}"></c:out></h4>
+                <h4 class="fw-bolder mb-2" style="padding-bottom: 10px"><span style="color: #3c9a9a; font-size:25px">제&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp목 || </span> <c:out value="${dto.reportCategory}"></c:out></h4>
                 <!-- Post meta content-->
-                <div class="text-muted fst-italic mb-2" style="font-size:20px"><span style="color: #3c9a9a; font-size:23.3px">문의 회원 || </span><c:out value="${dto.id}"></c:out></div>
+                <div class="text-muted fst-italic mb-2" style="font-size:20px"><span style="color: #3c9a9a; font-size:23.3px">신고 회원 || </span><c:out value="${dto.id}"></c:out></div>
                 <!-- Post categories-->
                 <div align="right">
                     <a class="badge bg-secondary text-decoration-none link-light" style="color: black"><button style="text-decoration: none; border-style: none; background-color:transparent">목록</button></a>
@@ -25,9 +25,9 @@
             </header>
 
             <section class="mb-5">
-               <div style="font-size:15px"><c:out value="${dto.content}"></c:out></div>
+                <div style="font-size:15px"><c:out value="${dto.content}"></c:out></div>
             </section>
-            <div class="text-muted fst-italic mb-2" style="font-size:20px"><span style="color: #3c9a9a; font-size:23.3px">문의 날짜 || </span><span class="dateType"><c:out value="${dto.inquiryDate}"></c:out></span></div>
+            <div class="text-muted fst-italic mb-2" style="font-size:20px"><span style="color: #3c9a9a; font-size:23.3px">신고 날짜 || </span><span class="dateType"><c:out value="${dto.regDate}"></c:out></span></div>
 
         </article>
         <!-- Comments section-->
@@ -51,10 +51,10 @@
                             <input type="hidden" name="inquiry_seq" value="${dto.inquiry_seq}">
                             <textarea class="form-control" rows="2" placeholder="답변 달기" name="answerContent"></textarea>
                             <div align="right" style="padding-top: 5px">
-                            <a class="badge bg-secondary text-decoration-none link-light">
-                                <button style="text-decoration: none; border-style:none; color: white; background-color:transparent">등록</button>
-                            </a>
-                        </div></form>
+                                <a class="badge bg-secondary text-decoration-none link-light">
+                                    <button style="text-decoration: none; border-style:none; color: white; background-color:transparent">등록</button>
+                                </a>
+                            </div></form>
                     </c:if>
 
                 </div>

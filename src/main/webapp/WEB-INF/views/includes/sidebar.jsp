@@ -77,13 +77,13 @@
     <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">문의 관리:</h6>
-        <a class="collapse-item" href="/inquiry/list">미답변 문의</a>
+        <a class="collapse-item" href="/inquiry/list?type=n">미답변 문의</a>
         <a class="collapse-item" href="/inquiry/list">전체 문의글</a>
         <div class="collapse-divider"></div>
         <h6 class="collapse-header">신고 관리:</h6>
-        <a class="collapse-item" href="/inquiry/list">회원 신고 사항</a>
-        <a class="collapse-item" href="/inquiry/list">급식 오류 수정</a>
-        <a class="collapse-item" href="/inquiry/list">상품 알레르기 오류 수정</a>
+        <a class="collapse-item" href="/report/memberReport">회원 신고 사항</a>
+        <a class="collapse-item" href="/report/schoolReport">급식 오류 수정</a>
+        <a class="collapse-item" href="/report/allergyReport">상품 알레르기 오류 수정</a>
       </div>
     </div>
   </li>
