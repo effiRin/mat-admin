@@ -8,6 +8,8 @@ import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,5 +35,26 @@ public class InquiryServiceImpl implements InquiryService {
                 .dtoList(dtoList)
                 .total(inquiryMapper.getTotal(listDTO))
                 .build();
+    }
+
+    //문의 상세 페이지
+    @Override
+    public InquiryDTO getOne(Integer bno) {
+        InquiryVO inquiryVO = inquiryMapper.selectOne(bno);
+        InquiryDTO inquiryDTO = modelMapper.map(inquiryVO, InquiryDTO.class);
+
+
+        return inquiryDTO;
+    }
+
+    //답변 달기
+    @Override
+    public void answerContent(InquiryDTO inquiryDTO) {
+        InquiryVO inquiryVO = InquiryVO.builder()
+                .inquiry_seq(inquiryDTO.getInquiry_seq())
+                .answerContent(inquiryDTO.getAnswerContent())
+                .build();
+
+        inquiryMapper.answerContent(inquiryVO);
     }
 }

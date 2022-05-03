@@ -25,15 +25,15 @@
         <tr>
           <th scope="row">${inquiry.inquiry_seq}</th>
           <td class="dateType"><c:out value="${inquiry.inquiryDate}"/></td>
-          <td style="text-align: left; background-color:#f2f7f4;"><c:out value="${inquiry.title}"/></td>
+          <td style="text-align: left;"><span><a href='/inquiry/read/${inquiry.inquiry_seq}' class="dtoLink"><c:out value="${inquiry.title}"/></a></span></td>
           <td><c:out value="${inquiry.id}"/></td>
           <td class="dateType">
               <c:choose>
                 <c:when test="${inquiry.answerId eq null}">
-                  <c:out value="답변대기"/>
+                  <span style="color:blue">답변대기</span>
                 </c:when>
                 <c:otherwise>
-                  <c:out value="${inquiry.answerDate}"/>
+                  <span style="color:cadetblue">${inquiry.answerDate}</span>
                 </c:otherwise>
             </c:choose>
 
@@ -65,7 +65,7 @@
     </div>
   </div>
 
-<form class="actionForm" action="/board/list" method="get">
+<form class="actionForm" action="/inquiry/list" method="get">
   <input type="hidden" name="page" value="${listDTO.page}">
   <input type="hidden" name="size" value="${listDTO.size}">
   <input type="hidden" name="type" value="${listDTO.type == null ? '':listDTO.type}">
