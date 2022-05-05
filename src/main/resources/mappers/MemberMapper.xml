@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.matjo.pickafood.admin.member.mapper.MemberMapper">
+
+  <sql id="search">
+    <where>
+      <if test="keyword != ''">
+        <foreach item="item" index="index" collection="types" separator=" or " open="(" close=")">
+          <if test='item == "i"'>
+            id like concat('%', #{keyword}, '%')
+          </if>
+          <if test='item == "p"'>
+            pw like concat('%', #{keyword}, '%')
+          </if>
+          <if test='item == "n"'>
+            nickName like concat('%', #{keyword}, '%')
+          </if>
+        </foreach>
+      </if>
+    </where>
+  </sql>
+
+  <select id="selectMembers" resultType="com.matjo.pickafood.admin.member.domain.MemberVO">
+    select * from tbl_member
+    <include refid="search"/>
+    order by regDate limit #{skip}, #{size}
+  </select>
+
+  <select id="selectMembersCount" resultType="int">
+    select * from tbl_member
+  </select>
+</mapper>
