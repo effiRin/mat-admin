@@ -1,4 +1,4 @@
-package com.matjo.pickafood.admin.inquiry;
+package com.matjo.pickafood.admin.inquiry.dto;
 
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;

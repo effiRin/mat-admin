@@ -5,15 +5,51 @@
 
 <mapper namespace="com.matjo.pickafood.admin.inquiry.mapper.InquiryMapper">
 
-    <select id="selectList" resultType="com.matjo.pickafood.admin.inquiry.InquiryVO">
+    <!-- 검색 조건 -->
+    <sql id ="search">
+        <if test='type == "n"'>
+            and answerFlag=0
+        </if>
+        <if test="keyword != null">
+            <foreach collection="types" item="item" separator="or" open="(" close=")">
+                <if test='item == "t"'>
+                    title like concat('%', #{keyword}, '%')
+                </if>
+
+                <if test='item == "c"'>
+                    content like concat('%', #{keyword}, '%')
+                </if>
+                <if test='
+                    item == "w"'>
+                    writer like concat('%', #{keyword}, '%')
+                </if>
+            </foreach>
+        </if>
+    </sql>
+
+
+    <select id="selectList" resultType="com.matjo.pickafood.admin.inquiry.domain.InquiryVO">
         select *
         from inquiry where delFlag=0
+            <include refid="search"></include>
         order by inquiry_seq desc
         limit #{skip},#{size}
     </select>
 
     <select id="getTotal" resultType="int">
-        select count(inquiry_seq) from inquiry
+        select count(inquiry_seq)
+            from inquiry where delFlag=0
+            <include refid="search"></include>
     </select>
+
+    <select id="selectOne" resultType="com.matjo.pickafood.admin.inquiry.domain.InquiryVO">
+        select * from inquiry where inquiry_seq = #{inquiry_seq}
+    </select>
+
+    <update id="answerContent">
+        update inquiry
+        set answerContent=#{answerContent} , answerDate = now(), answerFlag = 1, answerId='yiseul'
+        where inquiry_seq=#{inquiry_seq}
+    </update>
 
 </mapper>

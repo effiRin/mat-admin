@@ -1,121 +1,97 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<aside class="main-sidebar sidebar-light-primary elevation-4">
   
-  <!-- Sidebar - Brand -->
-  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-    <div class="sidebar-brand-icon rotate-n-15">
-      <i class="fas fa-laugh-wink"></i>
-    </div>
-    <div class="sidebar-brand-text mx-3">Pick <sup>A</sup> Food</div>
+  <a href="index3.html" class="brand-link logo-switch">
+    <img src="http://106.241.252.54:8085/img/icon/icon_thumbnail.png" alt="AdminLTE Logo" class="brand-image-xl" style="left:12px">
+    <span class="brand-text font-weight-light">Pick <sup>A</sup> Food</span>
   </a>
   
-  <!-- Divider -->
-  <hr class="sidebar-divider my-0">
+  <div class="sidebar">
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-user"></i>
+            <p> 회원 관리
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="pages/forms/general.html" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>회원 정보</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="/board/list" class="nav-link">
+            <i class="nav-icon fas fa-clipboard-list"></i>
+            <p> 게시글 관리
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="/board/list" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>자유 게시판</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="/inquiry/list" class="nav-link">
+            <i class="nav-icon fas fa-comments"></i>
+            <p> 문의/신고
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="/inquiry/list" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>전체 문의글</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/inquiry/list?type=n" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>미답변 문의</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/report/memberReport" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>회원 신고 사항</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/inquiry/list" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>급식 오류 수정</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/inquiry/list" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>상품 알레르기 오류 수정</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
   
-  <!-- Nav Item - Dashboard -->
-  <li class="nav-item active">
-    <a class="nav-link" href="index.html">
-      <i class="fas fa-fw fa-tachometer-alt"></i>
-      <span>Dashboard</span></a>
-  </li>
-  
-  <!-- Divider -->
-  <hr class="sidebar-divider">
-  
-  <!-- Heading -->
-  <div class="sidebar-heading">
-    Interface
-  </div>
-  
-  <!-- Nav Item - Pages Collapse Menu -->
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-      <i class="fas fa-fw fa-cog"></i>
-      <span>Components</span>
-    </a>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Custom Components:</h6>
-        <a class="collapse-item" href="buttons.html">Buttons</a>
-        <a class="collapse-item" href="cards.html">Cards</a>
-      </div>
-    </div>
-  </li>
-  
-  <!-- Nav Item - Utilities Collapse Menu -->
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-      <i class="fas fa-fw fa-wrench"></i>
-      <span>Utilities</span>
-    </a>
-    <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Custom Utilities:</h6>
-        <a class="collapse-item" href="utilities-color.html">Colors</a>
-        <a class="collapse-item" href="utilities-border.html">Borders</a>
-        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-        <a class="collapse-item" href="utilities-other.html">Other</a>
-      </div>
-    </div>
-  </li>
-  
-  <!-- Divider -->
-  <hr class="sidebar-divider">
-  
-  <!-- Heading -->
-  <div class="sidebar-heading">
-    Addons
-  </div>
-  
-  <!-- Nav Item - Pages Collapse Menu -->
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-      <i class="fas fa-fw fa-folder"></i>
-      <span>문의/신고</span>
-    </a>
-    <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">문의 관리:</h6>
-        <a class="collapse-item" href="/inquiry/list">미답변 문의</a>
-        <a class="collapse-item" href="/inquiry/list">전체 문의글</a>
-        <div class="collapse-divider"></div>
-        <h6 class="collapse-header">신고 관리:</h6>
-        <a class="collapse-item" href="/inquiry/list">회원 신고 사항</a>
-        <a class="collapse-item" href="/inquiry/list">급식 오류 수정</a>
-        <a class="collapse-item" href="/inquiry/list">상품 알레르기 오류 수정</a>
-      </div>
-    </div>
-  </li>
-  
-  <!-- Nav Item - Charts -->
-  <li class="nav-item">
-    <a class="nav-link" href="charts.html">
-      <i class="fas fa-fw fa-chart-area"></i>
-      <span>Charts</span></a>
-  </li>
-  
-  <!-- Nav Item - Tables -->
-  <li class="nav-item">
-    <a class="nav-link" href="tables.html">
-      <i class="fas fa-fw fa-table"></i>
-      <span>Tables</span></a>
-  </li>
-  
-  <!-- Divider -->
-  <hr class="sidebar-divider d-none d-md-block">
-  
-  <!-- Sidebar Toggler (Sidebar) -->
-  <div class="text-center d-none d-md-inline">
-    <button class="rounded-circle border-0" id="sidebarToggle"></button>
-  </div>
-  
-  <!-- Sidebar Message -->
-  <div class="sidebar-card d-none d-lg-flex">
-    <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
-    <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
-    <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
   </div>
 
-</ul>
+</aside>
 <!-- End of Sidebar -->
+<style>
+  .logo_images {
+    width : 100%
+  }
+</style>
