@@ -25,7 +25,7 @@
             </header>
 
             <section class="mb-5">
-               <div style="font-size:15px"><c:out value="${dto.content}"></c:out></div>
+                <div style="font-size:15px"><c:out value="${dto.content}"></c:out></div>
             </section>
             <div class="text-muted fst-italic mb-2" style="font-size:20px"><span style="color: #3c9a9a; font-size:23.3px">문의 날짜 || </span><span class="dateType"><c:out value="${dto.inquiryDate}"></c:out></span></div>
 
@@ -51,10 +51,10 @@
                             <input type="hidden" name="inquiry_seq" value="${dto.inquiry_seq}">
                             <textarea class="form-control" rows="2" placeholder="답변 달기" name="answerContent"></textarea>
                             <div align="right" style="padding-top: 5px">
-                            <a class="badge bg-secondary text-decoration-none link-light">
-                                <button style="text-decoration: none; border-style:none; color: white; background-color:transparent">등록</button>
-                            </a>
-                        </div></form>
+                                <a class="badge bg-secondary text-decoration-none link-light">
+                                    <button style="text-decoration: none; border-style:none; color: white; background-color:transparent">등록</button>
+                                </a>
+                            </div></form>
                     </c:if>
 
                 </div>
