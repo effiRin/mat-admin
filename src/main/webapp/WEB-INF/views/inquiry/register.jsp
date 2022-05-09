@@ -8,65 +8,74 @@
     <h1 class="h3 mb-0 text-gray-800"></h1>
     <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
 </div>
-<div class="row">
-    <div class="col-lg-9">
-        <!-- Post content-->
-        <article clss="inquiryOne">
-            <!-- Post header-->
-            <header class="mb-4">
-                <!-- Post title-->
-                <h4 class="fw-bolder mb-2" style="padding-bottom: 10px"><span style="color: #3c9a9a; font-size:25px">제&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp목 || </span> <c:out value="${dto.title}"></c:out></h4>
-                <!-- Post meta content-->
-                <div class="text-muted fst-italic mb-2" style="font-size:20px"><span style="color: #3c9a9a; font-size:23.3px">문의 회원 || </span><c:out value="${dto.id}"></c:out></div>
-                <!-- Post categories-->
-                <div align="right">
-                    <a class="badge bg-secondary text-decoration-none link-light" style="color: black"><button style="text-decoration: none; border-style: none; background-color:transparent">목록</button></a>
+
+<div class="content-wrapper">
+
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>등록</h1>
                 </div>
-            </header>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">등록</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <section class="mb-5">
-                <div style="font-size:15px"><c:out value="${dto.content}"></c:out></div>
-            </section>
-            <div class="text-muted fst-italic mb-2" style="font-size:20px"><span style="color: #3c9a9a; font-size:23.3px">문의 날짜 || </span><span class="dateType"><c:out value="${dto.inquiryDate}"></c:out></span></div>
-
-        </article>
-        <!-- Comments section-->
-        <section class="mb-5">
-            <div class="card bg-light">
-                <div class="card-body" id="replyArea">
-                    <!-- Comment form-->
-                    <c:if test="${dto.answerFlag == 1}">
-                        <div class="d-flex">
-                            <div class="ms-3">
-                                <div class="flex-shrink-0">${dto.answerId}</div>
-                                <div class="fw-bold">${dto.answerDate}</div>
-                                <hr>
-                                <ul class="answerContent" style="padding-left:1px">${dto.answerContent}</ul>
-                            </div>
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary card-outline">
+                    <div class="card-body" style="display: block;">
+                        <div class="form-group" style="display: flex">
+                            <label for="inputName" style="width: 7vw; ">제 목</label>
+                            <input type="text" id="inputName" class="form-control inputName" style="margin-right: 5vw">
+                            <label for="inputName" style="width: 10vw;">아이디</label>
+                            <input type="text" class="form-control inputId">
                         </div>
-                    </c:if>
-                    <c:if test="${dto.answerFlag == 0}">
-                        <form action="/inquiry/read/${dto.inquiry_seq}" method="post" >
+                        <div class="form-group">
+                            <label for="inputDescription">내용</label>
+                            <textarea id="inputDescription" class="form-control inputContent" rows="5"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">첨부파일</h3>
+                    </div>
+                    <div class="card-body" style="display: block;">
+                        <div>
+                            <ul class="file-list">
+                                <li >
+                                    <input type="file"/>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="form-group">
 
-                            <input type="hidden" name="inquiry_seq" value="${dto.inquiry_seq}">
-                            <textarea class="form-control" rows="2" placeholder="답변 달기" name="answerContent"></textarea>
-                            <div align="right" style="padding-top: 5px">
-                                <a class="badge bg-secondary text-decoration-none link-light">
-                                    <button style="text-decoration: none; border-style:none; color: white; background-color:transparent">등록</button>
-                                </a>
-                            </div></form>
-                    </c:if>
+                            <button class="btn bg-gradient-info float-right file-add"><i class="fa-file-image-o"></i>파일 추가</button>
+                        </div>
+                    </div>
 
                 </div>
             </div>
-        </section>
-    </div>
-
-
-
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <a href="#" class="btn btn-secondary">취소</a>
+                <button class="btn btn-success float-right"><i class="fa fa-plus"></i>저장</button>
+            </div>
+        </div>
+    </section>
 
 </div>
-
 
 
 <%-- Axios --%>
