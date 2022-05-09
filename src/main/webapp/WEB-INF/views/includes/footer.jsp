@@ -1,56 +1,53 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-  </div>
-<!-- /.container-fluid -->
-
 </div>
-<!-- Footer -->
-<footer class="sticky-footer bg-white">
-  <div class="container my-auto">
-    <div class="copyright text-center my-auto">
-      <span>MatJo © Pick A Food 2022</span>
-    </div>
+
+<footer class="main-footer">
+  <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+  All rights reserved.
+  <div class="float-right d-none d-sm-inline-block">
+    <b>Version</b> 3.2.0
   </div>
 </footer>
-  <!-- End of Footer -->
+
+<aside class="control-sidebar control-sidebar-dark">
+
+</aside>
 
 </div>
-<!-- End of Content Wrapper -->
 
-</div>
-<a class="scroll-to-top rounded" href="#page-top">
-  <i class="fas fa-angle-up"></i>
-</a>
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">×</span>
-        </button>
-      </div>
-      <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-      <div class="modal-footer">
-        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-        <a class="btn btn-primary" href="login.html">Logout</a>
-      </div>
-    </div>
-  </div>
-</div>
-  <!-- Bootstrap core JavaScript-->
-  <script src="http://106.241.252.54:8085/vendor/jquery/jquery.min.js"></script>
-  <script src="http://106.241.252.54:8085/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  
-  <!-- Core plugin JavaScript-->
-  <script src="http://106.241.252.54:8085/vendor/jquery-easing/jquery.easing.min.js"></script>
-  
-  <!-- Custom scripts for all pages-->
-  <script src="http://106.241.252.54:8085/js/sb-admin-2.min.js"></script>
-  
-  <!-- Page level plugins -->
-  <script src="http://106.241.252.54:8085/vendor/chart.js/Chart.min.js"></script>
-  <!-- Page level custom scripts -->
-  <script src="http://106.241.252.54:8085/js/demo/chart-area-demo.js"></script>
-  <script src="http://106.241.252.54:8085/js/demo/chart-pie-demo.js"></script>
-  </body>
+
+<script src="http://106.241.252.54:8085/vendor/jquery/jquery.min.js"></script>
+
+<script src="http://106.241.252.54:8085/vendor/jquery/jquery-ui.min.js"></script>
+
+<script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script>
+
+<script src="http://106.241.252.54:8085/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script src="http://106.241.252.54:8085/vendor/chart.js/Chart.min.js"></script>
+<script src="http://106.241.252.54:8085/d3/dist/d3.min.js"></script>
+<script src="https://adminlte.io/themes/v3/plugins/sparklines/sparkline.js"></script>
+
+<script src="https://adminlte.io/themes/v3/plugins/jqvmap/jquery.vmap.min.js"></script>
+<script src="https://adminlte.io/themes/v3/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+
+<script src="https://adminlte.io/themes/v3/plugins/jquery-knob/jquery.knob.min.js"></script>
+
+<script src="https://adminlte.io/themes/v3/plugins/moment/moment.min.js"></script>
+<script src="https://adminlte.io/themes/v3/plugins/daterangepicker/daterangepicker.js"></script>
+
+<script src="https://adminlte.io/themes/v3/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+
+<script src="https://adminlte.io/themes/v3/plugins/summernote/summernote-bs4.min.js"></script>
+
+<script src="https://adminlte.io/themes/v3/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+
+<script src="https://adminlte.io/themes/v3/dist/js/adminlte.js?v=3.2.0"></script>
+
+<script src="https://adminlte.io/themes/v3/dist/js/demo.js"></script>
+
+<script src="https://adminlte.io/themes/v3/dist/js/pages/dashboard.js"></script>
+</body>
 </html>

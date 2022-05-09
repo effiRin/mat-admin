@@ -64,7 +64,9 @@
   <aside class="main-sidebar sidebar-light-primary elevation-4">
     
     <a href="index3.html" class="brand-link logo-switch">
-      <img src="http://106.241.252.54:8085/img/icon/icon_thumbnail.png" alt="AdminLTE Logo" class="brand-image-xl" style="left:12px">
+      <img src="http://106.241.252.54:8085/img/icon/icon_thumbnail.png" class="pick-thumbanil" alt="Cinque Terre">
+<%--      <img src="http://106.241.252.54:8085/img/icon/icon_thumbnail.png" class="rounded mx-auto d-block" alt="...">--%>
+<%--      <img src="http://106.241.252.54:8085/img/icon/icon_thumbnail.png" alt="AdminLTE Logo" class="brand-image-xl" style="left:12px">--%>
       <span class="brand-text font-weight-light">Pick <sup>A</sup> Food</span>
     </a>
     
@@ -229,6 +231,7 @@
     //
     fileInput.innerHTML += "<li><input type='file'></li>";
   },false);
+  
 </script>
 
 <script src="https://adminlte.io/themes/v3/plugins/jquery/jquery.min.js"></script>
