@@ -1,10 +1,7 @@
 package com.matjo.pickafood.admin.inquiry.mapper;
 
 import com.matjo.pickafood.admin.common.GenericMapper;
-import com.matjo.pickafood.admin.common.ListDTO;
-import com.matjo.pickafood.admin.inquiry.InquiryVO;
-
-import java.util.List;
+import com.matjo.pickafood.admin.inquiry.domain.InquiryVO;
 
 public interface InquiryMapper extends GenericMapper<InquiryVO, Integer> {
 
