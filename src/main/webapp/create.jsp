@@ -153,71 +153,7 @@
   
   </aside>
   
-  <div class="content-wrapper">
-    
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>등록</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">등록</li>
-            </ol>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <section class="content">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card card-primary card-outline">
-            <div class="card-body" style="display: block;">
-              <div class="form-group">
-                <label for="inputName">제목</label>
-                <input type="text" id="inputName" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="inputDescription">내용</label>
-                <textarea id="inputDescription" class="form-control" rows="4"></textarea>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-12">
-          <div class="card card-primary card-outline">
-            <div class="card-header">
-              <h3 class="card-title">첨부파일</h3>
-            </div>
-            <div class="card-body" style="display: block;">
-              <div>
-                <ul class="file-list">
-                  <li >
-                    <input type="file"/>
-                  </li>
-                </ul>
-              </div>
-              <div class="form-group">
-               
-                <button class="btn bg-gradient-info float-right file-add"><i class="fa-file-image-o"></i>파일 추가</button>
-              </div>
-            </div>
-  
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <a href="#" class="btn btn-secondary">취소</a>
-          <button class="btn btn-success float-right"><i class="fa fa-plus"></i>저장</button>
-        </div>
-      </div>
-    </section>
-  
-  </div>
+
 </div>
 <style>
   .file-list {

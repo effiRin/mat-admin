@@ -5,7 +5,7 @@
 
 <mapper namespace="com.matjo.pickafood.admin.report.mapper.ReportMapper">
 
-    <select id="selectList" resultType="com.matjo.pickafood.admin.report.ReportVO">
+    <select id="selectList" resultType="com.matjo.pickafood.admin.report.domain.ReportVO">
         select report_seq,
                (select name from reportCategory where code = reportCategory) category,
                reportCategory, content, id, reportId, regDate, reportDate, answerId, report_yn from report
@@ -18,7 +18,7 @@
         from report
     </select>
 
-    <select id="selectOne" resultType="com.matjo.pickafood.admin.report.ReportVO">
+    <select id="selectOne" resultType="com.matjo.pickafood.admin.report.domain.ReportVO">
         select * from report where report_seq = #{report_seq}
     </select>
 

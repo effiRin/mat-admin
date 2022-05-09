@@ -28,7 +28,7 @@
     </sql>
 
 
-    <select id="selectList" resultType="com.matjo.pickafood.admin.inquiry.InquiryVO">
+    <select id="selectList" resultType="com.matjo.pickafood.admin.inquiry.domain.InquiryVO">
         select *
         from inquiry where delFlag=0
             <include refid="search"></include>
@@ -42,7 +42,7 @@
             <include refid="search"></include>
     </select>
 
-    <select id="selectOne" resultType="com.matjo.pickafood.admin.inquiry.InquiryVO">
+    <select id="selectOne" resultType="com.matjo.pickafood.admin.inquiry.domain.InquiryVO">
         select * from inquiry where inquiry_seq = #{inquiry_seq}
     </select>
 
