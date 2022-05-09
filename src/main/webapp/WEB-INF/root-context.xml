@@ -13,6 +13,7 @@
   <context:component-scan base-package="com.matjo.pickafood.admin.report"></context:component-scan>
   <context:component-scan base-package="com.matjo.pickafood.admin.member"></context:component-scan>
   <context:component-scan base-package="com.matjo.pickafood.admin.meal"></context:component-scan>
+  <context:component-scan base-package="com.matjo.pickafood.admin.notice"></context:component-scan>
 
 
   <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
