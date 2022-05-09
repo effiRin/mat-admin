@@ -44,7 +44,7 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a href="/inquiry/list" class="nav-link">
+          <a class="nav-link">
             <i class="nav-icon fas fa-comments"></i>
             <p> 문의/신고
               <i class="fas fa-angle-left right"></i>
