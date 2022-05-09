@@ -1,8 +1,10 @@
-package com.matjo.pickafood.admin.inquiry;
+package com.matjo.pickafood.admin.inquiry.controller;
 
 import com.matjo.pickafood.admin.common.ListDTO;
 import com.matjo.pickafood.admin.common.ListResponseDTO;
 import com.matjo.pickafood.admin.common.PageMaker;
+import com.matjo.pickafood.admin.inquiry.dto.InquiryDTO;
+import com.matjo.pickafood.admin.inquiry.service.InquiryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
@@ -11,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Log4j2
 @Controller
@@ -42,6 +43,16 @@ public class InquiryController {
 
     }
 
+    //등록
+    @GetMapping("/register")
+    public String register(){
+
+        return "/inquiry/register";
+    }
+
+    
+
+    //상세 조회
     @GetMapping("/read/{bno}")
     public String read(@PathVariable("bno") Integer bno, ListDTO listDTO, Model model){
         log.info("==========bno: "+bno);
@@ -52,6 +63,7 @@ public class InquiryController {
         return "/inquiry/read";
     }
 
+    //상세 조회 코멘트 달기
     @PostMapping("/read/{bno}")
     public String answerContentPost(InquiryDTO inquiryDTO){
 

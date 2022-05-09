@@ -1,9 +1,9 @@
-package com.matjo.pickafood.admin.report;
+package com.matjo.pickafood.admin.report.service;
 
 import com.matjo.pickafood.admin.common.ListDTO;
 import com.matjo.pickafood.admin.common.ListResponseDTO;
-import com.matjo.pickafood.admin.inquiry.InquiryDTO;
-import com.matjo.pickafood.admin.inquiry.InquiryVO;
+import com.matjo.pickafood.admin.report.domain.ReportVO;
+import com.matjo.pickafood.admin.report.dto.ReportDTO;
 import com.matjo.pickafood.admin.report.mapper.ReportMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;

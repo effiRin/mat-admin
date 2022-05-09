@@ -1,13 +1,16 @@
-package com.matjo.pickafood.admin.report;
+package com.matjo.pickafood.admin.report.domain;
 
-import lombok.Data;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
-@Data
-public class ReportDTO {
+@Getter
+@ToString
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class ReportVO {
     private Integer report_seq; //문의번호
     private int reportCategory; //카테고리
     private String category; //카테고리 이름

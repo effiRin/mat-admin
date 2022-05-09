@@ -1,4 +1,4 @@
-package com.matjo.pickafood.admin.inquiry;
+package com.matjo.pickafood.admin.inquiry.domain;
 
 import lombok.*;
 

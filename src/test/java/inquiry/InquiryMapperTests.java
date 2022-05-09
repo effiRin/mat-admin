@@ -2,7 +2,7 @@ package inquiry;
 
 import com.matjo.pickafood.admin.common.ListDTO;
 import com.matjo.pickafood.admin.inquiry.mapper.InquiryMapper;
-import com.matjo.pickafood.admin.inquiry.InquiryVO;
+import com.matjo.pickafood.admin.inquiry.domain.InquiryVO;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

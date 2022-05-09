@@ -1,7 +1,8 @@
-package com.matjo.pickafood.admin.inquiry;
+package com.matjo.pickafood.admin.inquiry.service;
 
 import com.matjo.pickafood.admin.common.ListDTO;
 import com.matjo.pickafood.admin.common.ListResponseDTO;
+import com.matjo.pickafood.admin.inquiry.dto.InquiryDTO;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional

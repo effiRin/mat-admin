@@ -1,146 +1,79 @@
-<!DOCTYPE HTML>
-<!--
-Future Imperfect by HTML5 UP
-html5up.net | @ajlkn
-Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-<head>
-    <title>Single - Future Imperfect by HTML5 UP</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="/assets/css/main.css" />
-</head>
-<body class="single is-preload">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
-<!-- Wrapper -->
-<div id="wrapper">
+<%@ include file="/WEB-INF/views/includes/header.jsp"%>
+<link href="/resources/css/table.css" rel="stylesheet" type="text/css">
 
-    <!-- Header -->
-    <header id="header">
-        <h1><a href="index.html">Future Imperfect</a></h1>
-        <nav class="links">
-            <ul>
-                <li><a href="#">Lorem</a></li>
-                <li><a href="#">Ipsum</a></li>
-                <li><a href="#">Feugiat</a></li>
-                <li><a href="#">Tempus</a></li>
-                <li><a href="#">Adipiscing</a></li>
-            </ul>
-        </nav>
-        <nav class="main">
-            <ul>
-                <li class="search">
-                    <a class="fa-search" href="#search">Search</a>
-                    <form id="search" method="get" action="#">
-                        <input type="text" name="query" placeholder="Search" />
-                    </form>
-                </li>
-                <li class="menu">
-                    <a class="fa-bars" href="#menu">Menu</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Menu -->
-    <section id="menu">
-
-        <!-- Search -->
-        <section>
-            <form class="search" method="get" action="#">
-                <input type="text" name="query" placeholder="Search" />
-            </form>
-        </section>
-
-        <!-- Links -->
-        <section>
-            <ul class="links">
-                <li>
-                    <a href="#">
-                        <h3>Lorem ipsum</h3>
-                        <p>Feugiat tempus veroeros dolor</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <h3>Dolor sit amet</h3>
-                        <p>Sed vitae justo condimentum</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <h3>Feugiat veroeros</h3>
-                        <p>Phasellus sed ultricies mi congue</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <h3>Etiam sed consequat</h3>
-                        <p>Porta lectus amet ultricies</p>
-                    </a>
-                </li>
-            </ul>
-        </section>
-
-        <!-- Actions -->
-        <section>
-            <ul class="actions stacked">
-                <li><a href="#" class="button large fit">Log In</a></li>
-            </ul>
-        </section>
-
-    </section>
-
-    <!-- Main -->
-    <div id="main">
-
-        <!-- Post -->
-        <article class="post">
-            <header>
-                <div class="title">
-                    <h2><a href="#">Magna sed adipiscing</a></h2>
-                    <p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p>
-                </div>
-                <div class="meta">
-                    <time class="published" datetime="2015-11-01">November 1, 2015</time>
-                    <a href="#" class="author"><span class="name">Jane Doe</span><img src="/images/avatar.jpg" alt="" /></a>
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800"></h1>
+    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+</div>
+<div class="row">
+    <div class="col-lg-9">
+        <!-- Post content-->
+        <article clss="inquiryOne">
+            <!-- Post header-->
+            <header class="mb-4">
+                <!-- Post title-->
+                <h4 class="fw-bolder mb-2" style="padding-bottom: 10px"><span style="color: #3c9a9a; font-size:25px">제&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp목 || </span> <c:out value="${dto.title}"></c:out></h4>
+                <!-- Post meta content-->
+                <div class="text-muted fst-italic mb-2" style="font-size:20px"><span style="color: #3c9a9a; font-size:23.3px">문의 회원 || </span><c:out value="${dto.id}"></c:out></div>
+                <!-- Post categories-->
+                <div align="right">
+                    <a class="badge bg-secondary text-decoration-none link-light" style="color: black"><button style="text-decoration: none; border-style: none; background-color:transparent">목록</button></a>
                 </div>
             </header>
-            <span class="image featured"><img src="/images/pic01.jpg" alt="" /></span>
-            <p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
-            <p>Nunc quis dui scelerisque, scelerisque urna ut, dapibus orci. Sed vitae condimentum lectus, ut imperdiet quam. Maecenas in justo ut nulla aliquam sodales vel at ligula. Sed blandit diam odio, sed fringilla lectus molestie sit amet. Praesent eu tortor viverra lorem mattis pulvinar feugiat in turpis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce ullamcorper tellus sit amet mattis dignissim. Phasellus ut metus ligula. Curabitur nec leo turpis. Ut gravida purus quis erat pretium, sed pellentesque massa elementum. Fusce vestibulum porta augue, at mattis justo. Integer sed sapien fringilla, dapibus risus id, faucibus ante. Pellentesque mattis nunc sit amet tortor pellentesque, non placerat neque viverra. </p>
-            <footer>
-                <ul class="stats">
-                    <li><a href="#">General</a></li>
-                    <li><a href="#" class="icon solid fa-heart">28</a></li>
-                    <li><a href="#" class="icon solid fa-comment">128</a></li>
-                </ul>
-            </footer>
-        </article>
 
+            <section class="mb-5">
+                <div style="font-size:15px"><c:out value="${dto.content}"></c:out></div>
+            </section>
+            <div class="text-muted fst-italic mb-2" style="font-size:20px"><span style="color: #3c9a9a; font-size:23.3px">문의 날짜 || </span><span class="dateType"><c:out value="${dto.inquiryDate}"></c:out></span></div>
+
+        </article>
+        <!-- Comments section-->
+        <section class="mb-5">
+            <div class="card bg-light">
+                <div class="card-body" id="replyArea">
+                    <!-- Comment form-->
+                    <c:if test="${dto.answerFlag == 1}">
+                        <div class="d-flex">
+                            <div class="ms-3">
+                                <div class="flex-shrink-0">${dto.answerId}</div>
+                                <div class="fw-bold">${dto.answerDate}</div>
+                                <hr>
+                                <ul class="answerContent" style="padding-left:1px">${dto.answerContent}</ul>
+                            </div>
+                        </div>
+                    </c:if>
+                    <c:if test="${dto.answerFlag == 0}">
+                        <form action="/inquiry/read/${dto.inquiry_seq}" method="post" >
+
+                            <input type="hidden" name="inquiry_seq" value="${dto.inquiry_seq}">
+                            <textarea class="form-control" rows="2" placeholder="답변 달기" name="answerContent"></textarea>
+                            <div align="right" style="padding-top: 5px">
+                                <a class="badge bg-secondary text-decoration-none link-light">
+                                    <button style="text-decoration: none; border-style:none; color: white; background-color:transparent">등록</button>
+                                </a>
+                            </div></form>
+                    </c:if>
+
+                </div>
+            </div>
+        </section>
     </div>
 
-    <!-- Footer -->
-    <section id="footer">
-        <ul class="icons">
-            <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-            <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-            <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-            <li><a href="#" class="icon solid fa-rss"><span class="label">RSS</span></a></li>
-            <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-        </ul>
-        <p class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>. Images: <a href="http://unsplash.com">Unsplash</a>.</p>
-    </section>
+
+
 
 </div>
 
-<!-- Scripts -->
-<script src="/assets/js/jquery.min.js"></script>
-<script src="/assets/js/browser.min.js"></script>
-<script src="/assets/js/breakpoints.min.js"></script>
-<script src="/assets/js/util.js"></script>
-<script src="/assets/js/main.js"></script>
 
-</body>
-</html>
+
+<%-- Axios --%>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+
+
+</script>
+
+<%@ include file="/WEB-INF/views/includes/footer.jsp"%>

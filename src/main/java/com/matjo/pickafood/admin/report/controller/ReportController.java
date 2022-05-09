@@ -1,8 +1,10 @@
-package com.matjo.pickafood.admin.report;
+package com.matjo.pickafood.admin.report.controller;
 
 import com.matjo.pickafood.admin.common.ListDTO;
 import com.matjo.pickafood.admin.common.ListResponseDTO;
 import com.matjo.pickafood.admin.common.PageMaker;
+import com.matjo.pickafood.admin.report.dto.ReportDTO;
+import com.matjo.pickafood.admin.report.service.ReportService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
