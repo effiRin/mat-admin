@@ -58,25 +58,25 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/forms/general.html" class="nav-link">
+              <a href="/inquiry/list?type=n" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>미답변 문의</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/forms/general.html" class="nav-link">
+              <a href="/report/memberReport" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>회원 신고 사항</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/forms/general.html" class="nav-link">
+              <a href="/inquiry/list" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>급식 오류 수정</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/forms/general.html" class="nav-link">
+              <a href="/inquiry/list" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>상품 알레르기 오류 수정</p>
               </a>
