@@ -13,6 +13,6 @@ public interface GenericMapper <E, K>{
     void update(E board);
     void insert(E board);
 
-    int getBoardTotal();
+    int getBoardTotal(ListDTO listDTO);
 
 }

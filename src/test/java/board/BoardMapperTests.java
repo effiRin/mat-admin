@@ -67,11 +67,12 @@ public class BoardMapperTests {
     @Test
     public void testGetBoardTotal() {
 
-        int total = boardMapper.getBoardTotal();
+        ListDTO listDTO = new ListDTO();
+        listDTO.setType("t");
+        listDTO.setKeyword("1");
+        int total = boardMapper.getBoardTotal(listDTO);
         log.info(total);
 
     }
-
-
 
     }

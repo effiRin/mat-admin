@@ -7,9 +7,8 @@
 <body>
 <h1> Board list 입니다 </h1>
 <h2>${listDTO}</h2>
-
 <hr>
-
+${dtoList}
 
 </body>
 </html>
