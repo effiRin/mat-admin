@@ -21,6 +21,7 @@
 </div>
 
   <div class="container-fluid">
+    <a href="/inquiry/list?type=n" class="nav-link">미답변 문의만 보기</a>
 
     <div class="row">
       <div class="col-12">
