@@ -44,7 +44,7 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a href="/inquiry/list" class="nav-link">
+          <a class="nav-link">
             <i class="nav-icon fas fa-comments"></i>
             <p> 문의/신고
               <i class="fas fa-angle-left right"></i>
@@ -52,33 +52,20 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="/inquiry/list" class="nav-link">
+              <a href="/notice/list" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>전체 문의글</p>
+                <p>공지사항</p>
               </a>
             </li>
-            <li class="nav-item">
-              <a href="/inquiry/list?type=n" class="nav-link">
+              <a href="/inquiry/list" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>미답변 문의</p>
+                <p>문의 사항</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="/report/memberReport" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>회원 신고 사항</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="/inquiry/list" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>급식 오류 수정</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="/inquiry/list" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>상품 알레르기 오류 수정</p>
               </a>
             </li>
           </ul>
