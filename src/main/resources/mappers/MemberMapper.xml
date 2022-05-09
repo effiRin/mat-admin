@@ -24,12 +24,12 @@
   </sql>
 
   <select id="selectMembers" resultType="com.matjo.pickafood.admin.member.domain.MemberVO">
-    select * from tbl_member
+    select * from member
     <include refid="search"/>
-    order by regDate limit #{skip}, #{size}
+    order by date limit #{skip}, #{size}
   </select>
 
-  <select id="selectMembersCount" resultType="int">
-    select * from tbl_member
+  <select id="selectMembersCount" resultType="Integer">
+    select * from member
   </select>
 </mapper>
