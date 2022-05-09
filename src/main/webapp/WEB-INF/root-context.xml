@@ -10,6 +10,7 @@
   <context:component-scan base-package="com.matjo.pickafood.admin.config"></context:component-scan>
   <context:component-scan base-package="com.matjo.pickafood.admin.exception"></context:component-scan>
   <context:component-scan base-package="com.matjo.pickafood.admin.inquiry"></context:component-scan>
+  <context:component-scan base-package="com.matjo.pickafood.admin."></context:component-scan>
 
   <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
     <property name="driverClassName"
