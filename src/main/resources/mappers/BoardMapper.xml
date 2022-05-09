@@ -24,40 +24,40 @@
     </sql>
 
     <select id = "selectList" resultType="com.matjo.pickafood.admin.board.BoardVO">
-        select bno, title, content, writer, regdate, updatedate, delYn, replyCount
-        from tbl_board
+        select board_seq, boardCategory, title, content, id, nickName, regdate, updatedate, replyCount, delFlag, loveFor, viewsCount
+        from board
         <include refid="search"></include>
-        order by bno desc
+        order by board_seq desc
         limit #{skip}, #{size}
     </select>
 
     <select id = "selectOne" resultType="com.matjo.pickafood.admin.board.BoardVO">
-        select * from tbl_board where bno = #{bno}
+        select * from board where board_seq = #{board_seq}
     </select>
 
     <select id="getBoardTotal" resultType="int">
-        select count(bno) from tbl_board
+        select count(board_seq) from board
         <include refid="search"></include>
     </select>
 
     <insert id="insert">
-        <selectKey resultType="int" keyProperty="bno" order="AFTER">
+        <selectKey resultType="int" keyProperty="board_seq" order="AFTER">
             select last_insert_id()
         </selectKey>
-        insert into tbl_board(title, content, writer)
-        values (#{title}, #{content}, #{writer})
+        insert into board(title, content, id, nickName)
+        values (#{title}, #{content},#{id}, #{nickName})
     </insert>
 
     <update id = "delete">
-        update tbl_board set delYn = 1 where bno = #{bno}
+        update board set delFlag = 1 where board_seq = #{board_seq}
     </update>
 
     <update id="update">
-        update tbl_board set title = #{title}, content= #{content}, updateDate = now() where bno = #{bno}
+        update board set title = #{title}, content= #{content}, updateDate = now() where board_seq = #{board_seq}
     </update>
 
     <update id="updateReplyCount">
-        update tbl_board set replyCount = replyCount + #{amount} where bno = #{bno}
+        update board set replyCount = replyCount + #{amount} where board_seq = #{board_seq}
     </update>
 
 </mapper>

@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Param;
 
 public interface BoardMapper extends GenericMapper<BoardVO, Integer> {
 
-    void updateReplyCount(@Param("bno") Integer bno, @Param("amount")  int amount);
+    void updateReplyCount(@Param("board_seq") Integer bno, @Param("amount")  int amount);
+
+    void insertSelectKey(BoardVO boardVO);
 
 }

@@ -46,8 +46,50 @@ public class BoardServiceTests {
         // listResponseDTO에 @Data가 있기 때문에 따로 만들지 않아도 get 메소드 getDtoList를 쓸 수 있음
         // forEach - boardDTO 변수
 
-        }
+    }
 
+    @Test
+    public void testRegister() {
 
+        BoardDTO boardDTO = new BoardDTO();
+        boardDTO.setTitle("등록한다");
+        boardDTO.setContent("등록한다~");
+        boardDTO.setId("kim");
+        boardDTO.setNickName("연느짱");
+
+//        BoardDTO boardDTO = BoardDTO.builder()
+//                .title("들어가라~23")
+//                .content("들어가자~23")
+//                .writer("드가자~23")
+//                .build();
+
+        boardService.register(boardDTO);
+        log.info(boardDTO.getBoard_seq());
 
     }
+
+    @Test
+    public void testGetOne(){
+        Integer board_seq = 1;
+        BoardDTO boardDTO = boardService.getOne(board_seq);
+        log.info(boardDTO);
+    }
+
+    @Test
+    public void testUpdate(){
+        Integer bno = 21;
+        BoardDTO boardDTO = boardService.getOne(bno);
+
+        if(boardDTO == null){return;}
+
+        boardDTO.setTitle("수정한다!!!!!!!!!!!!!");
+        boardService.update(boardDTO);
+        log.info(boardDTO);
+    }
+
+    @Test
+    public void testRemove(){
+        Integer board_seq = 20;
+        boardService.remove(board_seq);
+    }
+}

@@ -26,7 +26,8 @@ public class BoardMapperTests {
         BoardVO board = BoardVO.builder()
                 .title("테테테")
                 .content("스스스")
-                .writer("트트트user123")
+                .id("kim")
+                .nickName("연느짱")
                 .build();
 
         boardMapper.insert(board);
@@ -38,7 +39,7 @@ public class BoardMapperTests {
 
         ListDTO listDTO = new ListDTO();
         listDTO.setType("t");
-        listDTO.setKeyword("1");
+        listDTO.setKeyword("오이");
 
         List<BoardVO> boardList = boardMapper.selectList(listDTO);
 
@@ -49,18 +50,18 @@ public class BoardMapperTests {
     @Test
     public void testSelectOne() {
 
-        int bno = 32760;
+        int board_seq = 1;
 
-        BoardVO board = boardMapper.selectOne(bno);
+        BoardVO board = boardMapper.selectOne(board_seq);
 
         log.info(board);
     }
 
     @Test
-    public void testDelete(){  // delYn 업뎃 -> 1
-        int bno = 32760;
+    public void testDelete(){  //
+        int board_seq = 10;
 
-        boardMapper.delete(bno);
+        boardMapper.delete(board_seq);
 
     }
 
@@ -69,7 +70,7 @@ public class BoardMapperTests {
 
         ListDTO listDTO = new ListDTO();
         listDTO.setType("t");
-        listDTO.setKeyword("1");
+        listDTO.setKeyword("오이");
         int total = boardMapper.getBoardTotal(listDTO);
         log.info(total);
 
