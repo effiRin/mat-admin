@@ -5,7 +5,8 @@
   <!-- Sidebar - Brand -->
   <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
     <div class="sidebar-brand-icon rotate-n-15">
-      <i class="fas fa-laugh-wink"></i>
+<%--      <i class="fas fa-laugh-wink"></i>--%>
+      <img class="logo_images" src="http://106.241.252.54:8085/img/icon/icon_thumbnail.png">
     </div>
     <div class="sidebar-brand-text mx-3">Pick <sup>A</sup> Food</div>
   </a>
@@ -119,3 +120,8 @@
 
 </ul>
 <!-- End of Sidebar -->
+<style>
+  .logo_images {
+    width : 100%
+  }
+</style>
