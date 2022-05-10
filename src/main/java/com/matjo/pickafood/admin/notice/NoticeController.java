@@ -1,4 +1,4 @@
-package com.matjo.pickafood.admin.member.controller;
+package com.matjo.pickafood.admin.notice;
 
 import com.matjo.pickafood.admin.common.ListDTO;
 import com.matjo.pickafood.admin.member.dto.MemberDTO;
@@ -15,16 +15,13 @@ import java.util.List;
 @Log4j2
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/member/")
-public class MemberController {
+@RequestMapping("/notice/")
+public class NoticeController {
 
-  private final MemberService memberService;
 
-  @GetMapping("/list")
-  public void list(ListDTO listDTO, Model model) {
+    @GetMapping("/list")
+    public void list() {
 
-    List<MemberDTO> memberDTOList = memberService.getList(listDTO);
-    model.addAttribute("memberDTOList", memberDTOList);
 
-  }
+    }
 }
