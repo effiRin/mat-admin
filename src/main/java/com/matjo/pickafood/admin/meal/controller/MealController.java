@@ -13,4 +13,9 @@ public class MealController {
 
   }
 
+  @GetMapping("/update")
+  public void update() {
+
+  }
+
 }
