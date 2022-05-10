@@ -58,43 +58,27 @@
         <div class="card-body table-responsive p-0">
           <table class="table table-hover text-nowrap">
             <thead>
-            <tr> <%-- tr forEach로 감싸기 --%>
-              <th>ID</th>
-              <th>User</th>
-              <th>Date</th>
-              <th>Status</th>
-              <th>Reason</th>
+            <tr>
+              <th>Num</th>
+              <th>Category</th>
+              <th>Title</th>
+              <th>NickName</th>
+              <th>regDate</th>
+              <th>Views</th>
             </tr>
             </thead>
             <tbody> <%-- 내용 forEach로 감싸기 --%>
+
+            <c:forEach items="${dtoList}" var="board">
             <tr>
-              <td>183</td>
-              <td>John Doe</td>
-              <td>11-7-2014</td>
-              <td><span class="tag tag-success">Approved</span></td>
-              <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+              <td><c:out value="${board.board_seq}"/></td>
+              <td><c:out value="${board.boardCategory}"/></td>
+              <td><c:out value="${board.title}"/></td>
+              <td><c:out value="${board.nickName}"/></td>
+              <td><c:out value="${board.regDate}"/></td>
+              <td><c:out value="${board.viewsCount}"/></td>
             </tr>
-            <tr>
-              <td>219</td>
-              <td>Alexander Pierce</td>
-              <td>11-7-2014</td>
-              <td><span class="tag tag-warning">Pending</span></td>
-              <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-            </tr>
-            <tr>
-              <td>657</td>
-              <td>Bob Doe</td>
-              <td>11-7-2014</td>
-              <td><span class="tag tag-primary">Approved</span></td>
-              <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-            </tr>
-            <tr>
-              <td>175</td>
-              <td>Mike Doe</td>
-              <td>11-7-2014</td>
-              <td><span class="tag tag-danger">Denied</span></td>
-              <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-            </tr>
+            </c:forEach>
             </tbody>
           </table>
         </div>

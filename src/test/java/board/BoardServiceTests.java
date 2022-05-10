@@ -39,7 +39,7 @@ public class BoardServiceTests {
 
         ListDTO listDTO = new ListDTO();
         listDTO.setType("t");
-        listDTO.setKeyword("1");
+        listDTO.setKeyword("오이");
 
         ListResponseDTO<BoardDTO> listResponseDTO = boardService.getList(listDTO);
         listResponseDTO.getDtoList().forEach(boardDTO -> log.info(boardDTO));

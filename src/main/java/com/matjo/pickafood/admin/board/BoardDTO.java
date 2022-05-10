@@ -14,6 +14,8 @@ import java.time.LocalDateTime;
 public class BoardDTO {
 
     private Integer board_seq;
+    private Integer boardCategory;
+    private String mainImage;
     private String title;
     private String content;
     private String id;
@@ -22,7 +24,7 @@ public class BoardDTO {
     private LocalDateTime updateDate;
     private int delFlag;
     private int replyCount;
-    private int loveFor;
+    private int likeCount;
     private int viewsCount;
 
 }
