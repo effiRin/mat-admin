@@ -1,6 +1,6 @@
 package board;
 
-import com.matjo.pickafood.admin.board.BoardVO;
+import com.matjo.pickafood.admin.board.vo.BoardVO;
 import com.matjo.pickafood.admin.board.mapper.BoardMapper;
 import com.matjo.pickafood.admin.common.ListDTO;
 import lombok.extern.log4j.Log4j2;

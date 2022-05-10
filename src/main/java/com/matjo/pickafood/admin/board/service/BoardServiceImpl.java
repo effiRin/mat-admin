@@ -1,5 +1,9 @@
-package com.matjo.pickafood.admin.board;
+package com.matjo.pickafood.admin.board.service;
 
+import com.matjo.pickafood.admin.board.vo.AttachFile;
+import com.matjo.pickafood.admin.board.vo.BoardVO;
+import com.matjo.pickafood.admin.board.dto.BoardDTO;
+import com.matjo.pickafood.admin.board.dto.UploadResultDTO;
 import com.matjo.pickafood.admin.board.mapper.BoardMapper;
 import com.matjo.pickafood.admin.common.ListDTO;
 import com.matjo.pickafood.admin.common.ListResponseDTO;
@@ -66,5 +70,14 @@ public class BoardServiceImpl implements BoardService{
 
         boardMapper.delete(board_seq);
 
+    }
+
+    @Override
+    public List<UploadResultDTO> getFiles(Integer board_seq) {
+        List<AttachFile> attachFiles = boardMapper.selectFiles(board_seq);
+
+        return attachFiles.stream()
+                .map(attachFile -> modelMapper.map(attachFile, UploadResultDTO.class))
+                .collect(Collectors.toList());
     }
 }

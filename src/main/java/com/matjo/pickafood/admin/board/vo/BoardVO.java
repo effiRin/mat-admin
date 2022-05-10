@@ -1,17 +1,15 @@
-package com.matjo.pickafood.admin.board;
+package com.matjo.pickafood.admin.board.vo;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Data
+@Getter
+@ToString
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class BoardDTO {
+public class BoardVO {
 
     private Integer board_seq;
     private Integer boardCategory;

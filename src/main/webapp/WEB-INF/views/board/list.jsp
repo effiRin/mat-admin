@@ -60,11 +60,11 @@
             <thead>
             <tr>
               <th>Num</th>
-              <th>Category</th>
               <th>Title</th>
               <th>NickName</th>
               <th>regDate</th>
               <th>Views</th>
+              <th>Like</th>
             </tr>
             </thead>
             <tbody> <%-- 내용 forEach로 감싸기 --%>
@@ -72,11 +72,11 @@
             <c:forEach items="${dtoList}" var="board">
             <tr>
               <td><c:out value="${board.board_seq}"/></td>
-              <td><c:out value="${board.boardCategory}"/></td>
               <td><c:out value="${board.title}"/></td>
               <td><c:out value="${board.nickName}"/></td>
               <td><c:out value="${board.regDate}"/></td>
               <td><c:out value="${board.viewsCount}"/></td>
+              <td><c:out value="${board.likeCount}"/></td>
             </tr>
             </c:forEach>
             </tbody>

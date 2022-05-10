@@ -1,8 +1,7 @@
 package board;
 
-import com.matjo.pickafood.admin.board.BoardDTO;
-import com.matjo.pickafood.admin.board.BoardService;
-import com.matjo.pickafood.admin.board.BoardVO;
+import com.matjo.pickafood.admin.board.dto.BoardDTO;
+import com.matjo.pickafood.admin.board.service.BoardService;
 import com.matjo.pickafood.admin.common.ListDTO;
 import com.matjo.pickafood.admin.common.ListResponseDTO;
 import lombok.extern.log4j.Log4j2;
@@ -11,8 +10,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 

@@ -23,7 +23,7 @@
         </where>
     </sql>
 
-    <select id = "selectList" resultType="com.matjo.pickafood.admin.board.BoardVO">
+    <select id = "selectList" resultType="com.matjo.pickafood.admin.board.vo.BoardVO">
         select board_seq, boardCategory, mainImage, title, content, id, nickName, regdate, updatedate, replyCount, delFlag, likeCount, viewsCount
         from board
         <include refid="search"></include>
@@ -31,7 +31,7 @@
         limit #{skip}, #{size}
     </select>
 
-    <select id = "selectOne" resultType="com.matjo.pickafood.admin.board.BoardVO">
+    <select id = "selectOne" resultType="com.matjo.pickafood.admin.board.vo.BoardVO">
         select * from board where board_seq = #{board_seq}
     </select>
 
@@ -62,8 +62,8 @@
         update board set replyCount = replyCount + #{amount} where board_seq = #{board_seq}
     </update>
 
-<!--    <select id="selectFiles" resultType="org.zerock.sp1.domain.AttachFile">-->
-<!--        select * from tbl_attach where bno = #{bno}-->
-<!--    </select>-->
+    <select id="selectFiles" resultType="com.matjo.pickafood.admin.board.vo.BoardVO">
+        select * from tbl_attach where bno = #{bno}
+    </select>
 
 </mapper>
