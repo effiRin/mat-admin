@@ -5,6 +5,4 @@ import com.matjo.pickafood.admin.notice.domain.NoticeVO;
 
 public interface NoticeMapper extends GenericMapper<NoticeVO, Integer> {
 
-
-
 }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.matjo.pickafood.admin.meal.mapper.SchoolMapper">
+
+  <select id="insert" resultType="com.matjo.pickafood.admin.meal.domain.SchoolVO">
+    insert into school (
+                        schoolCode,
+                        regionCode,
+                        schoolName,
+                        regionName,
+                        address)
+    values (
+            #{SD_SCHUL_CODE},
+            #{ATPT_OFCDC_SC_CODE},
+            #{SCHUL_NM},
+            #{LCTN_SC_NM},
+            #{ORG_RDNMA}
+           )
+
+  </select>
+
+</mapper>

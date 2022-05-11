@@ -19,7 +19,7 @@
   <context:component-scan base-package="com.matjo.pickafood.admin.member"></context:component-scan>
   <context:component-scan base-package="com.matjo.pickafood.admin.notice"></context:component-scan>
   <context:component-scan base-package="com.matjo.pickafood.admin.file"></context:component-scan>
-
+  <context:component-scan base-package="com.matjo.pickafood.admin.meal"></context:component-scan>
 
   <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
     <property name="prefix" value="/WEB-INF/views/"/>
@@ -27,4 +27,5 @@
   </bean>
 
   <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>
+
 </beans>

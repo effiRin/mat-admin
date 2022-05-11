@@ -43,16 +43,11 @@ public class NoticeServiceImpl implements NoticeService {
         return null;
     }
 
-    
     //공지 등록
     @Override
     public void register(NoticeDTO noticeDTO) {
 
         NoticeVO noticeVO = modelMapper.map(noticeDTO, NoticeVO.class);
-
-
-
-
         noticeMapper.insert(noticeVO);
     }
 }

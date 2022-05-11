@@ -11,30 +11,23 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
 @RequiredArgsConstructor
-@RequestMapping("/meal")
+@RequestMapping("/school")
 @Log4j2
-public class MealController {
+@RestController
+public class SchoolController {
 
   private final SchoolService schoolService;
-  @GetMapping("/school")
-  public void school() {
+
+  //  @RequestMapping(value = "/update", method = RequestMethod.POST, consumes= MediaType.APPLICATION_JSON_VALUE)
+  @PostMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE)
+  public void updatePOST(@RequestBody String schoolDTO) {
+//    log.info(string);
+    log.info(schoolDTO);
+//    schoolService.insertAll(schoolUpdateDTO.getResult());
 
   }
-
-  @GetMapping("/update")
-  public void updateGET() {
-
-  }
-
-////  @RequestMapping(value = "/update", method = RequestMethod.POST, consumes= MediaType.APPLICATION_JSON_VALUE)
-//  @PostMapping("/update")
-//  public void updatePOST(@RequestBody SchoolDTO schoolDTO) {
-//    log.info(schoolDTO);
-////    schoolService.insertAll(schoolUpdateDTO.getResult());
-//
-//  }
 
 }
+
 
