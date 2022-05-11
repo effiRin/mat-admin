@@ -1,4 +1,4 @@
-package com.matjo.pickafood.admin.common;
+package com.matjo.pickafood.admin.common.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

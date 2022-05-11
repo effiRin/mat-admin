@@ -1,7 +1,7 @@
 package com.matjo.pickafood.admin.inquiry.service;
 
-import com.matjo.pickafood.admin.common.ListDTO;
-import com.matjo.pickafood.admin.common.ListResponseDTO;
+import com.matjo.pickafood.admin.common.dto.ListDTO;
+import com.matjo.pickafood.admin.common.dto.ListResponseDTO;
 import com.matjo.pickafood.admin.inquiry.domain.InquiryVO;
 import com.matjo.pickafood.admin.inquiry.dto.InquiryDTO;
 import com.matjo.pickafood.admin.inquiry.mapper.InquiryMapper;
@@ -50,10 +50,16 @@ public class InquiryServiceImpl implements InquiryService {
     //답변 달기
     @Override
     public void answerContent(InquiryDTO inquiryDTO) {
+        log.info("-------------dto--------------");
+        log.info(inquiryDTO.getAnswerContent());
+
         InquiryVO inquiryVO = InquiryVO.builder()
                 .inquiry_seq(inquiryDTO.getInquiry_seq())
                 .answerContent(inquiryDTO.getAnswerContent())
                 .build();
+
+        log.info("vo: "+inquiryVO.getAnswerContent());
+
 
         inquiryMapper.answerContent(inquiryVO);
     }

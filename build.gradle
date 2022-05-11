@@ -22,7 +22,12 @@ tasks.withType(JavaCompile) {
 }
 
 dependencies {
+
+
+    implementation 'junit:junit:4.13.1'
     compileOnly('javax.servlet:javax.servlet-api:4.0.1')
+    testCompileOnly('javax.servlet:javax.servlet-api:4.0.1')
+    implementation('javax.servlet:javax.servlet-api:4.0.1')
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
@@ -78,6 +83,16 @@ dependencies {
     implementation 'org.springframework:spring-webmvc:5.3.19'
     // https://mvnrepository.com/artifact/org.springframework/spring-tx
     implementation 'org.springframework:spring-tx:5.3.19'
+
+    // AspectJ RunTime / https://mvnrepository.com/artifact/org.aspectj/aspectjrt
+    implementation 'org.aspectj:aspectjrt:1.9.9.1'
+
+    // AspectJ Weaver / https://mvnrepository.com/artifact/org.aspectj/aspectjweaver
+    implementation 'org.aspectj:aspectjweaver:1.9.9.1'
+
+
+    // 썸네일 https://mvnrepository.com/artifact/net.coobird/thumbnailator
+    implementation 'net.coobird:thumbnailator:0.4.17'
 }
 
 test {
