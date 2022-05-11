@@ -12,5 +12,9 @@ public interface GenericMapper <E, K>{
     void delete(K bno);
     E selectOne(K bno);
     void update(E board);
+    void insert(E board);
+
+    int getBoardTotal(ListDTO listDTO);
+
     void insert(NoticeVO noticeVO);
 }
