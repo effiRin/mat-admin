@@ -28,8 +28,8 @@
 <script>
   async function getAllSchools() {
     const promises = [];
-    for (let i = 1; i <= 1; i++) {
-      const promise = await getSchools(i, 10);
+    for (let i = 1; i <= 13; i++) {
+      const promise = await getSchools(i, 1000);
       promises.push(promise);
     }
     const results = await Promise.all(promises);
@@ -38,16 +38,16 @@
       const arr = result["schoolInfo"][1]["row"];
       arr.forEach(school => {
         const newSchool = {
-          "ATPT_OFCDC_SC_CODE": school.ATPT_OFCDC_SC_CODE,
-          "SD_SCHUL_CODE": school.SD_SCHUL_CODE,
-          "ORG_RDNMA": school.ORG_RDNMA,
-          "SCHUL_NM": school.SCHUL_NM,
-          "LCTN_SC_NM": school.LCTN_SC_NM
+          "regionCode": school.ATPT_OFCDC_SC_CODE,
+          "schoolCode": school.SD_SCHUL_CODE,
+          "address": school.ORG_RDNMA,
+          "schoolName": school.SCHUL_NM,
+          "regionName": school.LCTN_SC_NM
         }
         schools.push(newSchool);
       });
     });
-    const result = {result :schools[0]};
+    const result = schools;
     // const result = {...schools};
     // const result = {
     //   "ATPT_OFCDC_SC_CODE": "aasdf",
@@ -68,12 +68,13 @@
       method: "POST",
       url: "/school/update",
       mode: "cors",
-       headers: {"Content-Type": "application/json"},
-      data: JSON.stringify(result)
-    }).then(response => console.log(response))
-        .catch(error => {
-    console.log(error.message);
-  });
+      headers: {"Content-Type": "application/json"},
+      data: JSON.stringify(result)})
+        .then(response => console.log(response))
+        .catch(error =>
+        {
+          console.log(error.message);
+        });
 
     console.log("??????")
   }

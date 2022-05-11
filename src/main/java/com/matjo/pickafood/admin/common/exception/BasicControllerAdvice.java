@@ -10,7 +10,7 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 
 import java.util.Arrays;
 
-//@ControllerAdvice
+@ControllerAdvice
 @Log4j2
 public class BasicControllerAdvice {
 

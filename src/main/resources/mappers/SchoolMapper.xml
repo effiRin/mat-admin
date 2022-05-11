@@ -13,11 +13,11 @@
                         regionName,
                         address)
     values (
-            #{SD_SCHUL_CODE},
-            #{ATPT_OFCDC_SC_CODE},
-            #{SCHUL_NM},
-            #{LCTN_SC_NM},
-            #{ORG_RDNMA}
+            #{schoolCode},
+            #{regionCode},
+            #{schoolName},
+            #{regionName},
+            #{address}
            )
 
   </select>

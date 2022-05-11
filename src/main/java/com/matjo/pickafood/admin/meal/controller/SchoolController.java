@@ -20,11 +20,11 @@ public class SchoolController {
   private final SchoolService schoolService;
 
   //  @RequestMapping(value = "/update", method = RequestMethod.POST, consumes= MediaType.APPLICATION_JSON_VALUE)
-  @PostMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE)
-  public void updatePOST(@RequestBody String schoolDTO) {
+  @PostMapping(value = "/update")
+  public void updatePOST(@RequestBody List<SchoolDTO> schoolDTOList) {
 //    log.info(string);
-    log.info(schoolDTO);
-//    schoolService.insertAll(schoolUpdateDTO.getResult());
+    log.info(schoolDTOList);
+    schoolService.insertAll(schoolDTOList);
 
   }
 

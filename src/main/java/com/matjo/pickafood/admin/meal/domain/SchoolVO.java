@@ -12,10 +12,10 @@ import lombok.ToString;
 @NoArgsConstructor
 public class SchoolVO {
 
-  private String ATPT_OFCDC_SC_CODE;   //regionCode
-  private String LCTN_SC_NM;          //regionName
-  private String ORG_RDNMA;         //address
-  private String SCHUL_NM;        //schoolName
-  private String SD_SCHUL_CODE;
+  private String regionCode;
+  private String regionName;
+  private String address;
+  private String schoolName;
+  private String schoolCode;
 
 }
