@@ -1,21 +1,21 @@
-async function getAllSchools() {
+async function getSchools(pIndex) {
   const OPEN_API_URL = "https://open.neis.go.kr/hub";
   const SCHOOL_API = "/schoolInfo";
-  const MEAL_API = "/mealServiceDietInfo";
+  // const MEAL_API = "/mealServiceDietInfo";
   const KEY = "2e191712000e470dac71cace19e334d9";
   const TYPE = "json";
+  const fixedParams = `KEY=${KEY}&TYPE=${TYPE}&pIndex=${pIndex}&pSize=1000`;
+  return axios.get(`${OPEN_API_URL}${SCHOOL_API}?${fixedParams}`);
+}
 
-  async function getSchools(pIndex) {
-    const fixedParams = `KEY=${KEY}&TYPE=${TYPE}&pIndex=${pIndex}&pSize=1000`;
-    return await axios.get(`${OPEN_API_URL}${SCHOOL_API}?${fixedParams}`);
-  }
-
+async function getAllSchools() {
   let i = 1;
   const resultArr = [];
   let data;
   await getSchools(i).then(result => {
     data = result.data;
     const pureDataArr = data.schoolInfo[1];
+    console.log(typeof pureDataArr);
     pureDataArr.forEach(data => {
       resultArr.push(data);
     })
