@@ -1,8 +1,8 @@
 package com.matjo.pickafood.admin.inquiry.controller;
 
-import com.matjo.pickafood.admin.common.ListDTO;
-import com.matjo.pickafood.admin.common.ListResponseDTO;
-import com.matjo.pickafood.admin.common.PageMaker;
+import com.matjo.pickafood.admin.common.dto.ListDTO;
+import com.matjo.pickafood.admin.common.dto.ListResponseDTO;
+import com.matjo.pickafood.admin.common.dto.PageMaker;
 import com.matjo.pickafood.admin.inquiry.dto.InquiryDTO;
 import com.matjo.pickafood.admin.inquiry.service.InquiryService;
 import lombok.RequiredArgsConstructor;
@@ -55,10 +55,12 @@ public class InquiryController {
     //상세 조회
     @GetMapping("/read/{bno}")
     public String read(@PathVariable("bno") Integer bno, ListDTO listDTO, Model model){
-        log.info("==========bno: "+bno);
-        log.info("======listDTO: "+listDTO);
+        //log.info("==========bno: "+bno);
+        //log.info("======listDTO: "+listDTO);
 
+        model.addAttribute("listDTO", listDTO);
         model.addAttribute("dto", inquiryService.getOne(bno));
+        //log.info(inquiryService.getOne(bno));
 
         return "/inquiry/read";
     }

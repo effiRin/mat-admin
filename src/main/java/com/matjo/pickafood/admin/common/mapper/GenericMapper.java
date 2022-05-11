@@ -1,4 +1,7 @@
-package com.matjo.pickafood.admin.common;
+package com.matjo.pickafood.admin.common.mapper;
+
+import com.matjo.pickafood.admin.common.dto.ListDTO;
+import com.matjo.pickafood.admin.notice.domain.NoticeVO;
 
 import java.util.List;
 
@@ -13,4 +16,5 @@ public interface GenericMapper <E, K>{
 
     int getBoardTotal(ListDTO listDTO);
 
+    void insert(NoticeVO noticeVO);
 }

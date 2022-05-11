@@ -14,7 +14,7 @@
 
 </div>
 
-<form class="actionForm" action="/inquiry/list" method="get">
+<form class="actionForm" action="/report/allergyReport" method="get">
     <input type="hidden" name="page" value="${listDTO.page}">
     <input type="hidden" name="size" value="${listDTO.size}">
     <input type="hidden" name="type" value="${listDTO.type == null ? '':listDTO.type}">
