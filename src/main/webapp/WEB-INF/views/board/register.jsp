@@ -23,26 +23,30 @@
       <div class="row">
         <div class="col-12">
           <div class="form-group">
-            <a href="#" class="btn btn-secondary">취소</a>
+            <a href="/board/list" class="btn btn-secondary">취소</a>
             <button class="btn btn-success float-right boardSend"><i class="fa fa-plus"></i>저장</button>
           </div>
         </div>
       </div>
-       
+
       <div class="row">
         <div class="col-md-12">
           <div class="card card-primary card-outline">
             <div class="card-body" style="display: block;">
+
+              <form class="board" action="/board/register" method="post">
               <div class="form-group" style="display: flex">
                 <label for="inputName" style="width: 7vw; ">제 목</label>
-                <input type="text" id="inputName" class="form-control inputName" style="margin-right: 5vw">
-                <label for="inputName" style="width: 10vw;">아이디</label>
-                <input type="text" class="form-control inputId">
+                <input type="text" id="inputName" name="title" class="for m-control" style="margin-right: 5vw">
+                <label for="inputName" style="width: 10vw;">닉네임</label>
+                <input type="text" value="연느짱" name="nickName" class="form-control">
               </div>
-              <div class="form-group">
+                <input type="hidden" value="kim" name="id">
+              <div class="form-group board">
                 <label for="inputDescription">내용</label>
-                <textarea id="inputDescription" class="form-control inputContent" rows="5"></textarea>
+                <textarea id="inputDescription" name="content" class="form-control" rows="5"></textarea>
               </div>
+              </form>
             </div>
           </div>
         </div>
@@ -54,7 +58,7 @@
             <div class="card-body" style="display: block;">
               <div>
                 <ul class="file-list">
-                  <li >
+                  <li>
                     <input type="file"/>
                   </li>
                 </ul>
@@ -130,12 +134,9 @@
       e.stopPropagation()
 
       const actionForm = document.querySelector(".board")
-//      actionForm.innerHTML += str
       actionForm.submit()
-
   },false)
 
-  
 </script>
 
 <%@ include file="/WEB-INF/views/includes/footer.jsp"%>

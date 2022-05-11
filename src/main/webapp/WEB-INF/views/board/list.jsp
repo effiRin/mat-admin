@@ -8,7 +8,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6" style="margin-top: 1vw">
-                <h1 class="m-0">회원 문의 게시판</h1>
+                <h1 class="m-0">자유 게시판</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -49,7 +49,7 @@
             </div>
           </div>
           <div class="row float-right">
-            <button type="button" class="btn btn-primary btn-block btn-sm">
+            <button type="button" class="btn btn-primary btn-block btn-sm" onclick="location.href='/board/register/';">
               <i class="fa fa-plus"></i>등록
             </button>
           </div>
