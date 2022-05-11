@@ -1,7 +1,7 @@
 package com.matjo.pickafood.admin.report.service;
 
-import com.matjo.pickafood.admin.common.ListDTO;
-import com.matjo.pickafood.admin.common.ListResponseDTO;
+import com.matjo.pickafood.admin.common.dto.ListDTO;
+import com.matjo.pickafood.admin.common.dto.ListResponseDTO;
 import com.matjo.pickafood.admin.report.domain.ReportVO;
 import com.matjo.pickafood.admin.report.dto.ReportDTO;
 import com.matjo.pickafood.admin.report.mapper.ReportMapper;

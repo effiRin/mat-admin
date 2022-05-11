@@ -1,6 +1,6 @@
 package com.matjo.pickafood.admin.member;
 
-import com.matjo.pickafood.admin.common.ListDTO;
+import com.matjo.pickafood.admin.common.dto.ListDTO;
 import com.matjo.pickafood.admin.member.domain.MemberVO;
 import com.matjo.pickafood.admin.member.mapper.MemberMapper;
 import lombok.extern.log4j.Log4j2;
