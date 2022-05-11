@@ -360,10 +360,10 @@ Kenneth M.
                 </div>
               </li>
               <li>
-<span class="handle">
-<i class="fas fa-ellipsis-v"></i>
-<i class="fas fa-ellipsis-v"></i>
-</span>
+              <span class="handle">
+              <i class="fas fa-ellipsis-v"></i>
+              <i class="fas fa-ellipsis-v"></i>
+              </span>
                 <div class="icheck-primary d-inline ml-2">
                   <input type="checkbox" value="" name="todo4" id="todoCheck4">
                   <label for="todoCheck4"></label>
@@ -376,10 +376,10 @@ Kenneth M.
                 </div>
               </li>
               <li>
-<span class="handle">
-<i class="fas fa-ellipsis-v"></i>
-<i class="fas fa-ellipsis-v"></i>
-</span>
+              <span class="handle">
+              <i class="fas fa-ellipsis-v"></i>
+              <i class="fas fa-ellipsis-v"></i>
+              </span>
                 <div class="icheck-primary d-inline ml-2">
                   <input type="checkbox" value="" name="todo5" id="todoCheck5">
                   <label for="todoCheck5"></label>
@@ -392,10 +392,10 @@ Kenneth M.
                 </div>
               </li>
               <li>
-<span class="handle">
-<i class="fas fa-ellipsis-v"></i>
-<i class="fas fa-ellipsis-v"></i>
-</span>
+              <span class="handle">
+              <i class="fas fa-ellipsis-v"></i>
+              <i class="fas fa-ellipsis-v"></i>
+              </span>
                 <div class="icheck-primary d-inline ml-2">
                   <input type="checkbox" value="" name="todo6" id="todoCheck6">
                   <label for="todoCheck6"></label>
@@ -499,55 +499,87 @@ Kenneth M.
                 <input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60" data-fgColor="#39CCCC">
                 <div class="text-white">In-Store</div>
               </div>
-            
             </div>
-          
           </div>
-        
         </div>
         
         
-        <div class="card bg-gradient-success">
-          <div class="card-header border-0">
-            <h3 class="card-title">
-              <i class="far fa-calendar-alt"></i>
-              Calendar
-            </h3>
-            
-            <div class="card-tools">
-              
-              <div class="btn-group">
-                <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown" data-offset="-52">
-                  <i class="fas fa-bars"></i>
-                </button>
-                <div class="dropdown-menu" role="menu">
-                  <a href="#" class="dropdown-item">Add new event</a>
-                  <a href="#" class="dropdown-item">Clear events</a>
-                  <div class="dropdown-divider"></div>
-                  <a href="#" class="dropdown-item">View calendar</a>
-                </div>
-              </div>
-              <button type="button" class="btn btn-success btn-sm" data-card-widget="collapse">
-                <i class="fas fa-minus"></i>
-              </button>
-              <button type="button" class="btn btn-success btn-sm" data-card-widget="remove">
-                <i class="fas fa-times"></i>
-              </button>
-            </div>
+        <div class="card bg-gradient-light">
           
-          </div>
-          
-          <div class="card-body pt-0">
-            
-            <div id="calendar" style="width: 100%"></div>
-          </div>
-        
-        </div>
-      
-      </section>
-    
-    </div>
   
+          <div id="my-chart">
+            <svg width="300"  height="200"></svg>
+          </div>
+          
+        </div>
+       
+      </section>
+    </div>
   </div>
 </section>
+<script src="http://106.241.252.54:8085/d3/dist/d3.min.js"></script>
+<%--<script type="text/javascript"  src="/resources/js/barChart.js"></script>--%>
+<script>
+  const data = [2, 4, 8, 10];
+  
+  //var svg = d3.select("#my-chart").append("svg"),
+  const svg = d3.select("svg")
+      width = svg.attr("width"),
+      height = svg.attr("height"),
+      radius = Math.min(width, height) / 2
+     g = svg.append("g").attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+  const color = d3.scaleOrdinal(['#4daf4a','#377eb8','#ff7f00','#984ea3','#e41a1c']);
+  
+  const pie = d3.pie();
+  
+  const arc = d3.arc()
+      .outerRadius(radius)
+      .innerRadius(radius - 60);
+  
+  const arcs = g.selectAll("arc")
+      .data(pie(data))
+      .enter()
+      .append("g")
+      .attr("class", "arc");
+
+  var label = d3.arc()
+      .outerRadius(radius)
+      .innerRadius(radius - 30);
+  
+  arcs.append("path")
+      .attr("d", arc)
+      .attr("fill", function(d, i) {
+        return color(i);
+      });
+  
+  arcs.append("text")
+      .attr("transform", function(d) {
+        return "translate(" + label.centroid(d) + ")";
+  })
+  .text(function(d){return d.data.browser;});
+
+
+  svg.append("g")
+      .attr("transform", "translate(" + (width / 2 - 120) + "," + 20 + ")")
+      .append("text")
+      .text("Browser use statistics - Jan 2017")
+      .attr("class", "title")
+  
+  // const dataFile = [5,10,15,20,25,30,35,50,56,60];
+  // const barColor = ['#4daf4a','#377eb8','#ff7f00','#984ea3','#e41a1c'];
+  // const returnData = {
+  //   width : 800,
+  //   height : 900,
+  //   color : barColor
+  // }
+  //
+  //
+  // const svg=  BarChart(dataFile,returnData);
+  // const test = d3.select("#my-chart")
+  //     .append("svg")
+  //     .data(dataFile);
+  
+</script>
+
 <%@ include file="/WEB-INF/views/includes/footer.jsp"%>

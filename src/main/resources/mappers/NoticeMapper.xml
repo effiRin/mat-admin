@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.matjo.pickafood.admin.notice.mapper.NoticeMapper">
+
+    <!-- 검색 조건 -->
+    <sql id ="search">
+        <if test="keyword != null">
+            and
+            <foreach collection="types" item="item" separator="or" open="(" close=")">
+                <if test='item == "t"'>
+                    title like concat('%', #{keyword}, '%')
+                </if>
+
+                <if test='item == "c"'>
+                    content like concat('%', #{keyword}, '%')
+                </if>
+                <if test='
+                    item == "w"'>
+                    writer like concat('%', #{keyword}, '%')
+                </if>
+            </foreach>
+        </if>
+    </sql>
+
+
+    <select id="selectList" resultType="com.matjo.pickafood.admin.notice.domain.NoticeVO">
+        select board_seq, boardCategory, title, content, id, nickName,
+        (TIMESTAMPDIFF(second , regDate, now())/60) date,
+        date_format(regDate, '%Y년 %m월 %d일') regDate, date_format(updateDate, '%Y년 %m월 %d일') updateDate, replyCount, delFlag, likeCount, viewsCount, mainImage
+        from board where delFlag=0
+        <include refid="search"></include>
+        order by board_seq desc
+        limit #{skip},#{size}
+    </select>
+
+    <select id="getTotal" resultType="int">
+        select count(board_seq)
+        from board where delFlag=0
+        <include refid="search"></include>
+    </select>
+
+    <!-- 등록 -->
+    <insert id="insert">
+    <selectKey resultType="int" keyProperty="board_seq" order="AFTER">
+        select last_insert_id()
+    </selectKey>
+    insert into board (boardCategory, title, content, id, nickName)
+    values (30000, #{title},#{content}, #{id}, #{nickName})
+</insert>
+
+</mapper>

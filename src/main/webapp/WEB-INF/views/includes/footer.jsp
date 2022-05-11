@@ -27,7 +27,7 @@
 <script src="http://106.241.252.54:8085/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <script src="http://106.241.252.54:8085/vendor/chart.js/Chart.min.js"></script>
-<script src="http://106.241.252.54:8085/d3/dist/d3.min.js"></script>
+
 <script src="https://adminlte.io/themes/v3/plugins/sparklines/sparkline.js"></script>
 
 <script src="https://adminlte.io/themes/v3/plugins/jqvmap/jquery.vmap.min.js"></script>

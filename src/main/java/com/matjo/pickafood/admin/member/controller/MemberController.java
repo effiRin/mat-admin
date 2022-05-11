@@ -1,6 +1,6 @@
 package com.matjo.pickafood.admin.member.controller;
 
-import com.matjo.pickafood.admin.common.ListDTO;
+import com.matjo.pickafood.admin.common.dto.ListDTO;
 import com.matjo.pickafood.admin.member.dto.MemberDTO;
 import com.matjo.pickafood.admin.member.service.MemberService;
 import lombok.RequiredArgsConstructor;

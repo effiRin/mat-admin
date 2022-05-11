@@ -1,8 +1,8 @@
 package com.matjo.pickafood.admin.report.controller;
 
-import com.matjo.pickafood.admin.common.ListDTO;
-import com.matjo.pickafood.admin.common.ListResponseDTO;
-import com.matjo.pickafood.admin.common.PageMaker;
+import com.matjo.pickafood.admin.common.dto.ListDTO;
+import com.matjo.pickafood.admin.common.dto.ListResponseDTO;
+import com.matjo.pickafood.admin.common.dto.PageMaker;
 import com.matjo.pickafood.admin.report.dto.ReportDTO;
 import com.matjo.pickafood.admin.report.service.ReportService;
 import lombok.RequiredArgsConstructor;
