@@ -26,59 +26,7 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="/resources/js/meal/updateSchool.js"></script>
 <script>
-  async function getAllSchools() {
-    const promises = [];
-    for (let i = 1; i <= 13; i++) {
-      const promise = await getSchools(i, 1000);
-      promises.push(promise);
-    }
-    const results = await Promise.all(promises);
-    const schools = [];
-    results.forEach(result => {
-      const arr = result["schoolInfo"][1]["row"];
-      arr.forEach(school => {
-        const newSchool = {
-          "regionCode": school.ATPT_OFCDC_SC_CODE,
-          "schoolCode": school.SD_SCHUL_CODE,
-          "address": school.ORG_RDNMA,
-          "schoolName": school.SCHUL_NM,
-          "regionName": school.LCTN_SC_NM
-        }
-        schools.push(newSchool);
-      });
-    });
-    const result = schools;
-    // const result = {...schools};
-    // const result = {
-    //   "ATPT_OFCDC_SC_CODE": "aasdf",
-    //   "SD_SCHUL_CODE": "1235",
-    //   "ORG_RDNMA": "서울",
-    //   "SCHUL_NM": "교동 토등학교",
-    //   "LCTN_SC_NM": "주우소"
-    // }
-    console.log(result);
-    // axios.post('/meal/update', result,
-    //     {headers: {'Content-Type': 'application/json'}}
-    // ).then((res) => {
-    //   console.log(res);
-    //   console.log("Over");
-    // });
-    console.log("?????")
-    await axios({
-      method: "POST",
-      url: "/school/update",
-      mode: "cors",
-      headers: {"Content-Type": "application/json"},
-      data: JSON.stringify(result)})
-        .then(response => console.log(response))
-        .catch(error =>
-        {
-          console.log(error.message);
-        });
-
-    console.log("??????")
-  }
-
-  getAllSchools();
+  // getAllSchools();
+  getAllMeals();
 </script>
 <%@ include file="/WEB-INF/views/includes/footer.jsp"%>
