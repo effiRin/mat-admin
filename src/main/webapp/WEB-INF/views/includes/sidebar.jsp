@@ -24,7 +24,7 @@
               <a href="/member/list" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>회원 정보</p>
-              </a>
+              </a> 
             </li>
           </ul>
         </li>

@@ -13,4 +13,7 @@ public interface GenericMapper <E, K>{
     E selectOne(K bno);
     void update(E board);
     void insert(E board);
+
+    int getBoardTotal(ListDTO listDTO);
+    
 }
