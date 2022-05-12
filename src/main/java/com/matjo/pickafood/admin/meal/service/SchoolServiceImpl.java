@@ -32,4 +32,20 @@ public class SchoolServiceImpl implements SchoolService{
             .collect(Collectors.toList());
     schoolList.forEach(school -> schoolMapper.insert(school));
   }
+
+  @Override
+  public List<SchoolDTO> selectAll() {
+    List<SchoolVO> schoolList = schoolMapper.selectAll();
+    return schoolList.stream()
+            .map(schoolVO -> modelMapper.map(schoolVO, SchoolDTO.class))
+            .collect(Collectors.toList());
+  }
+
+  @Override
+  public List<SchoolDTO> selectSchoolsOfRegion(String regionCode) {
+    List<SchoolVO> schoolList = schoolMapper.selectRegion(regionCode);
+    return schoolList.stream()
+            .map(schoolVO -> modelMapper.map(schoolVO, SchoolDTO.class))
+            .collect(Collectors.toList());
+  }
 }

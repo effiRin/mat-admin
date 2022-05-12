@@ -1,12 +1,10 @@
 package com.matjo.pickafood.admin.meal.controller;
 
 import com.matjo.pickafood.admin.meal.dto.SchoolDTO;
-import com.matjo.pickafood.admin.meal.dto.SchoolUpdateDTO;
 import com.matjo.pickafood.admin.meal.service.SchoolService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,6 +24,16 @@ public class SchoolController {
     log.info(schoolDTOList);
     schoolService.insertAll(schoolDTOList);
 
+  }
+
+  @GetMapping(value = "/list")
+  public @ResponseBody List<SchoolDTO> listAll() {
+    return schoolService.selectAll();
+  }
+
+  @GetMapping(value = "/list/{regionCode}", produces = MediaType.APPLICATION_JSON_VALUE)
+  public @ResponseBody List<SchoolDTO> listOfRegion(@PathVariable("regionCode") String regionCode) {
+    return schoolService.selectSchoolsOfRegion(regionCode);
   }
 
 }

@@ -12,4 +12,8 @@ public interface SchoolService {
 
   void insertAll(List<SchoolDTO> schoolDTOList);
 
+  List<SchoolDTO> selectAll();
+
+  List<SchoolDTO> selectSchoolsOfRegion(String regionCode);
+
 }

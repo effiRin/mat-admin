@@ -5,7 +5,7 @@
 
 <mapper namespace="com.matjo.pickafood.admin.meal.mapper.SchoolMapper">
 
-  <select id="insert" resultType="com.matjo.pickafood.admin.meal.domain.SchoolVO">
+  <insert id="insert">
     insert into school (
                         schoolCode,
                         regionCode,
@@ -20,6 +20,13 @@
             #{address}
            )
 
+  </insert>
+
+  <select id="selectAll" resultType="com.matjo.pickafood.admin.meal.domain.SchoolVO">
+    select * from school where school_seq > 0
   </select>
 
+  <select id="selectRegion" resultType="com.matjo.pickafood.admin.meal.domain.SchoolVO">
+    select * from school where regionCode = #{regionCode}
+  </select>
 </mapper>

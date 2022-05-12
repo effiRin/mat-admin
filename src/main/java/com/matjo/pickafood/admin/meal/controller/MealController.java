@@ -1,11 +1,8 @@
 package com.matjo.pickafood.admin.meal.controller;
 
-import com.matjo.pickafood.admin.meal.dto.SchoolDTO;
-import com.matjo.pickafood.admin.meal.dto.SchoolUpdateDTO;
 import com.matjo.pickafood.admin.meal.service.SchoolService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
