@@ -17,6 +17,9 @@
         <logger name="com.matjo" level="INFO" additivity="false">
             <appender-ref ref="console" />
         </logger>
+        <logger name="com.matjo.pickafood.admin" level="DEBUG" additivity="false">
+            <appender-ref ref="console" />
+        </logger>
 
         <logger name="com.matjo.pickafood.admin.inquiry" level="TRACE" additivity="false">
             <appender-ref ref="console" />

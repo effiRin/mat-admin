@@ -7,8 +7,7 @@
         xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
   
   <context:component-scan base-package="com.matjo.pickafood.admin.common"></context:component-scan>
-  <context:component-scan base-package="com.matjo.pickafood.admin.config"></context:component-scan>
-  <context:component-scan base-package="com.matjo.pickafood.admin.exception"></context:component-scan>
+  <context:component-scan base-package="com.matjo.pickafood.admin.reply"></context:component-scan>
   <context:component-scan base-package="com.matjo.pickafood.admin.inquiry"></context:component-scan>
   <context:component-scan base-package="com.matjo.pickafood.admin.report"></context:component-scan>
   <context:component-scan base-package="com.matjo.pickafood.admin.member"></context:component-scan>
@@ -35,6 +34,7 @@
   <bean id="sqlSessionFactory"  class="org.mybatis.spring.SqlSessionFactoryBean">
     <property name="dataSource" ref="dataSource"></property>
     <property name="mapperLocations" value="classpath:/mappers/**/*.xml"></property>
+    <property name="configLocation" value="/WEB-INF/config/mybatisConfig.xml"></property>
   </bean>
 
   <mybatis-spring:scan base-package="com.matjo.pickafood.admin.*.mapper"/>
