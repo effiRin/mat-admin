@@ -1,5 +1,6 @@
 package com.matjo.pickafood.admin.notice.dto;
 
+import com.matjo.pickafood.admin.file.domain.FileVO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,6 +12,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class NoticeDTO {
+
+    private String fileSeq ;
 
     private Integer board_seq;
     private Integer boardCategory;
