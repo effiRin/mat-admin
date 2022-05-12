@@ -83,7 +83,7 @@
                                         <td></td>
                                     </c:when>
                                     <c:otherwise>
-                                        <td><img src='${board.mainImage}'></td>
+                                        <td style="padding: 4px"><img src='${board.mainImage}' style="max-height: 40px;"></td>
                                     </c:otherwise>
                                 </c:choose>
 
@@ -91,11 +91,17 @@
                                 <td><c:out value="${board.nickName}"></c:out></td>
 
                                 <c:choose>
+                                    <c:when test="${board.date < 1}">
+                                        <td class="dateType">방금전</td>
+                                    </c:when>
                                     <c:when test="${board.date < 60}">
                                         <td class="dateType">${board.date}분전</td>
                                     </c:when>
                                     <c:when test="${board.date <= 60*24}">
-                                        <td class="dateType">${Math.floor((board.date/60))}시간 전</td>
+                                        <td class="dateType">${Integer.valueOf(Math.floor(board.date/60))}시간 전</td>
+                                    </c:when>
+                                    <c:when test="${board.date <= 60*24*7}">
+                                        <td class="dateType">${Integer.valueOf(Math.floor(board.date/420))}일 전</td>
                                     </c:when>
                                     <c:when test="${board.date > 60*24}">
                                         <td class="dateType">${board.regDate}</td>

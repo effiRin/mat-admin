@@ -93,7 +93,7 @@ public class FileController {
 
                 try {
                     Thumbnails.of(saveFile)
-                            .size(100, 100)
+                            .size(150, 150)
                             .toFile(thumbFile);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -106,11 +106,11 @@ public class FileController {
                     .img(img)
                     .savePath(saveFolder)
                     .build();
-
-            list.add(fileDTO);
-
             //독립적인 DB 등록시
             fileService.register(fileDTO); //파일매퍼 테이블에 upload 파일 정보 보내기
+
+            log.info("fileDTO :  {}", fileDTO);
+            list.add(fileDTO);
         }//end for
 
         return list;

@@ -8,6 +8,9 @@ import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Log4j2
@@ -22,8 +25,8 @@ public class FileServiceImpl implements FileService{
     }
 
     @Override
-    public void register(FileDTO fileDTO) {
-        FileVO fileVO = modelMapper.map(fileDTO, FileVO.class);
-        fileMapper.insert(fileVO);
+    public FileDTO register(FileDTO fileDTO) {
+        fileMapper.insert(fileDTO);
+        return fileDTO;
     }
 }
