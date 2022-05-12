@@ -24,10 +24,20 @@
         <div class="col-12">
           <div class="form-group">
             <a href="/board/list" class="btn btn-secondary">취소</a>
-            <button class="btn btn-success float-right sendBtn"><i class="fa fa-plus"></i>저장</button>
+            <button data-toggle="modal"  data-target="#modal-testNew" class="btn btn-success float-right sendBtn">
+              <i class="fa fa-plus"></i>저장
+            </button>
+          </div>
+          <div id="modal-testNew" class="modal" tabindex="-1" role="dialog" aria-labelledby="테스트정보 등록" aria-describedby="테스트 모달">
+            <div class="modal-dialog">
+              <div class="modal-content">
+              
+              </div>
+            </div>
           </div>
         </div>
       </div>
+      
 
       <div class="row">
         <div class="col-md-12">
@@ -79,7 +89,7 @@
     list-style: none;
   }
 </style>
-
+<script src="/resources/js/modal.js"></script>
 <script type="text/javascript">
   document.querySelector(".file-add").addEventListener("click",(e) =>{
     console.log("123")
@@ -90,10 +100,8 @@
 
   document.querySelector(".sendBtn").addEventListener("click", (e) => {
       e.preventDefault()
-      e.stopPropagation()
-
-      const actionForm = document.querySelector(".board")
-      actionForm.submit()
+      document.querySelector(".modal-content").innerHTML = modalText();
+      addModalSubmit(".board");
   },false)
 
 </script>
