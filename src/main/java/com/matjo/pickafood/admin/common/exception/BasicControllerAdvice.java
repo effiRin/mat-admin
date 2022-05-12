@@ -20,6 +20,7 @@ public class BasicControllerAdvice {
 
         log.error("-----------------------------------");
         log.error(exception.getMessage());
+        log.error(exception.getStackTrace());
 
         StringBuffer buffer = new StringBuffer("<ul>");
 

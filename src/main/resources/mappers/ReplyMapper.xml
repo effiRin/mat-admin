@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.matjo.pickafood.admin.reply.mapper.ReplyMapper">
+
+    <select id="selectListOfBoard" resultType="com.matjo.pickafood.admin.reply.domain.ReplyVO">
+        select * from reply where board_seq=#{board_seq} and reply_seq > 0 order by reply_seq asc limit #{listDTO.skip}, #{listDTO.size}}
+    </select>
+
+    <select id="selectTotalOfBoard" resultType="int">
+        select count(reply_seq) from reply where board_seq=#{board_seq} and reply_seq>0
+    </select>
+
+    <insert id="insert">
+        insert into reply (board_seq, content, id, nickName)
+        values (#{board_seq}, #{content}, #{id}, #{nickName})
+    </insert>
+
+</mapper>
