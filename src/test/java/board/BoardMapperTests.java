@@ -2,7 +2,7 @@ package board;
 
 import com.matjo.pickafood.admin.board.vo.BoardVO;
 import com.matjo.pickafood.admin.board.mapper.BoardMapper;
-import com.matjo.pickafood.admin.common.ListDTO;
+import com.matjo.pickafood.admin.common.dto.ListDTO;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -36,7 +36,6 @@ public class BoardMapperTests {
 
     @Test
     public void testSelectList() {
-
         ListDTO listDTO = new ListDTO();
         listDTO.setType("t");
         listDTO.setKeyword("오이");
@@ -76,4 +75,4 @@ public class BoardMapperTests {
 
     }
 
-    }
+}

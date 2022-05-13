@@ -16,17 +16,20 @@
                         content like concat('%', #{keyword}, '%')
                     </if>
                     <if test='item == "w"'>
-                        writer like concat('%', #{keyword}, '%')
+                        nickName like concat('%', #{keyword}, '%')
                     </if>
                 </foreach>
             </if>
+            1=1 and delFlag=0 and boardCategory=30001
         </where>
     </sql>
 
     <select id = "selectList" resultType="com.matjo.pickafood.admin.board.vo.BoardVO">
         select board_seq, boardCategory, mainImage, title, content, id, nickName, regdate, updatedate, replyCount, delFlag, likeCount, viewsCount
         from board
+
         <include refid="search"></include>
+
         order by board_seq desc
         limit #{skip}, #{size}
     </select>

@@ -8,10 +8,14 @@
 
   <context:component-scan base-package="com.matjo.pickafood.admin.board"></context:component-scan>
   <context:component-scan base-package="com.matjo.pickafood.admin.common"></context:component-scan>
-  <context:component-scan base-package="com.matjo.pickafood.admin.config"></context:component-scan>
-  <context:component-scan base-package="com.matjo.pickafood.admin.exception"></context:component-scan>
+  <context:component-scan base-package="com.matjo.pickafood.admin.reply"></context:component-scan>
   <context:component-scan base-package="com.matjo.pickafood.admin.inquiry"></context:component-scan>
   <context:component-scan base-package="com.matjo.pickafood.admin.report"></context:component-scan>
+  <context:component-scan base-package="com.matjo.pickafood.admin.member"></context:component-scan>
+  <context:component-scan base-package="com.matjo.pickafood.admin.meal"></context:component-scan>
+  <context:component-scan base-package="com.matjo.pickafood.admin.notice"></context:component-scan>
+  <context:component-scan base-package="com.matjo.pickafood.admin.file"></context:component-scan>
+
 
   <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
     <property name="driverClassName"
@@ -31,6 +35,7 @@
   <bean id="sqlSessionFactory"  class="org.mybatis.spring.SqlSessionFactoryBean">
     <property name="dataSource" ref="dataSource"></property>
     <property name="mapperLocations" value="classpath:/mappers/**/*.xml"></property>
+    <property name="configLocation" value="/WEB-INF/config/mybatisConfig.xml"></property>
   </bean>
 
   <mybatis-spring:scan base-package="com.matjo.pickafood.admin.*.mapper"/>

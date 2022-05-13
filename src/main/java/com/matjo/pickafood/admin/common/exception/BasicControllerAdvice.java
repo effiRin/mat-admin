@@ -1,4 +1,4 @@
-package com.matjo.pickafood.admin.exception;
+package com.matjo.pickafood.admin.common.exception;
 
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -20,6 +20,7 @@ public class BasicControllerAdvice {
 
         log.error("-----------------------------------");
         log.error(exception.getMessage());
+        log.error(exception.getStackTrace());
 
         StringBuffer buffer = new StringBuffer("<ul>");
 
