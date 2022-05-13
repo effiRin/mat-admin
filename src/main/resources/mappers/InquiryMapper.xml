@@ -11,6 +11,7 @@
             and answerFlag=0
         </if>
         <if test="keyword != null">
+            and
             <foreach collection="types" item="item" separator="or" open="(" close=")">
                 <if test='item == "t"'>
                     title like concat('%', #{keyword}, '%')
@@ -32,7 +33,7 @@
         select *
         from inquiry where delFlag=0
             <include refid="search"></include>
-        order by inquiry_seq desc
+        order by answerFlag asc, inquiry_seq desc
         limit #{skip},#{size}
     </select>
 
@@ -48,8 +49,8 @@
 
     <update id="answerContent">
         update inquiry
-        set answerContent=#{answerContent} , answerDate = now(), answerFlag = 1, answerId='yiseul'
-        where inquiry_seq=#{inquiry_seq}
+        set answerContent = #{answerContent} ,answerDate = now(), answerFlag = 1, answerId='yiseul'
+        where inquiry_seq = #{inquiry_seq}
     </update>
 
 </mapper>

@@ -1,71 +1,100 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ include file="/WEB-INF/views/includes/header.jsp"%>
-<link href="/resources/css/table.css" rel="stylesheet" type="text/css">
-
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800"></h1>
-    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
-</div>
 <div class="row">
-    <div class="col-lg-9">
-        <!-- Post content-->
-        <article clss="inquiryOne">
-            <!-- Post header-->
-            <header class="mb-4">
-                <!-- Post title-->
-                <h4 class="fw-bolder mb-2" style="padding-bottom: 10px"><span style="color: #3c9a9a; font-size:25px">제&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp목 || </span> <c:out value="${dto.title}"></c:out></h4>
-                <!-- Post meta content-->
-                <div class="text-muted fst-italic mb-2" style="font-size:20px"><span style="color: #3c9a9a; font-size:23.3px">문의 회원 || </span><c:out value="${dto.id}"></c:out></div>
-                <!-- Post categories-->
-                <div align="right">
-                    <a class="badge bg-secondary text-decoration-none link-light" style="color: black"><button style="text-decoration: none; border-style: none; background-color:transparent">목록</button></a>
-                </div>
-            </header>
 
-            <section class="mb-5">
-                <div style="font-size:15px"><c:out value="${dto.content}"></c:out></div>
-            </section>
-            <div class="text-muted fst-italic mb-2" style="font-size:20px"><span style="color: #3c9a9a; font-size:23.3px">문의 날짜 || </span><span class="dateType"><c:out value="${dto.inquiryDate}"></c:out></span></div>
-
-        </article>
-        <!-- Comments section-->
-        <section class="mb-5">
-            <div class="card bg-light">
-                <div class="card-body" id="replyArea">
-                    <!-- Comment form-->
-                    <c:if test="${dto.answerFlag == 1}">
-                        <div class="d-flex">
-                            <div class="ms-3">
-                                <div class="flex-shrink-0">${dto.answerId}</div>
-                                <div class="fw-bold">${dto.answerDate}</div>
-                                <hr>
-                                <ul class="answerContent" style="padding-left:1px">${dto.answerContent}</ul>
-                            </div>
-                        </div>
-                    </c:if>
-                    <c:if test="${dto.answerFlag == 0}">
-                        <form action="/inquiry/read/${dto.inquiry_seq}" method="post" >
-
-                            <input type="hidden" name="inquiry_seq" value="${dto.inquiry_seq}">
-                            <textarea class="form-control" rows="2" placeholder="답변 달기" name="answerContent"></textarea>
-                            <div align="right" style="padding-top: 5px">
-                                <a class="badge bg-secondary text-decoration-none link-light">
-                                    <button style="text-decoration: none; border-style:none; color: white; background-color:transparent">등록</button>
-                                </a>
-                            </div></form>
-                    </c:if>
-
-                </div>
-            </div>
-        </section>
+  <section class="content-header" style="margin-left: 10px; width: 300px;">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6" style="">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active"><a href="/inquiry/list?page=${listDTO.page}&size=${listDTO.size}"
+                                                  style="color:#3c3b3b;">문의 목록</a></li>
+          </ol>
+        </div>
+      </div>
     </div>
+  </section>
 
 
+  <div class="col-md-12">
+    <div class="card card-primary card-outline">
+      <div class="card-body" style="display: block;">
+        <div class="form-group" style="display: flex">
+          <label style="width: 7vw;">제 목</label>
+          <c:out value="${dto.title}"></c:out>
+          <label style="width: 10vw;  margin-left: 5vw;">아이디</label>
+          <c:out value="${dto.id}"></c:out>
+          <label style="width: 10vw; margin-left: 5vw;">문의날짜</label>
+          <c:out value="${dto.inquiryDate}"></c:out>
+        </div>
+        <div class="form-group">
+          <label for="inputDescription">내용</label>
+          <textarea id="inputDescription" class="form-control inputContent" rows="5" readonly><c:out
+                  value="${dto.content}"></c:out></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <div class="card card-info">
+      <div class="card-header">
+        <h3 class="card-title">관리자 답변</h3>
+      </div>
+
+      <%-- 답변 단 경우 --%>
+      <c:if test="${dto.answerFlag == 1}">
+        <div class="card-body">
+          <div class="card card-info card-outline">
+            <div class="card-body">
+              <div class="flex-shrink-0">${dto.answerId}</div>
+              <div class="fw-bold">${dto.answerDate}</div>
+            </div>
+
+            <div class="form-group">
+              <div class="answerContent" style="margin-left: 20px;">${dto.answerContent}</div>
+              <button class="btn bg-gradient-info float-right" style="margin-right: 1em">
+                <i class="fas fa-pen"></i>수정
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </c:if>
+
+      <%-- 답변 안 단 경우 --%>
+      <c:if test="${dto.answerFlag == 0}">
+        <form class="form-horizontal" action="/inquiry/read/${dto.inquiry_seq}" method="post">
+          <input type="hidden" name="inquiry_seq" value="${dto.inquiry_seq}">
+          <div class="card-body">
+            <div class="form-group row">
+              <label for="recommand" class="col-sm-2 col-form-label">답 변</label>
+              <div class="col-sm-10">
+                <textarea id="recommand" name="answerContent" class="form-control" rows="5"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button type="submit" class="btn btn-default float-right">댓글 달기</button>
+          </div>
+        </form>
+      </c:if>
+    </div>
+  </div>
 
 
 </div>
+
+
+
+
+
+
+
+
 
 
 
@@ -76,4 +105,4 @@
 
 </script>
 
-<%@ include file="/WEB-INF/views/includes/footer.jsp"%>
+<%@ include file="/WEB-INF/views/includes/footer.jsp" %>

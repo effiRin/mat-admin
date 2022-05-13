@@ -7,7 +7,7 @@
 
     <select id="selectList" resultType="com.matjo.pickafood.admin.report.domain.ReportVO">
         select report_seq,
-               (select name from reportCategory where code = reportCategory) category,
+               (select name from category where cateNum = reportCategory) category,
                reportCategory, content, id, reportId, regDate, reportDate, answerId, report_yn from report
         order by report_seq desc
         limit #{skip},#{size}

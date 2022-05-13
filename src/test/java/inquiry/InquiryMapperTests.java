@@ -1,6 +1,6 @@
 package inquiry;
 
-import com.matjo.pickafood.admin.common.ListDTO;
+import com.matjo.pickafood.admin.common.dto.ListDTO;
 import com.matjo.pickafood.admin.inquiry.mapper.InquiryMapper;
 import com.matjo.pickafood.admin.inquiry.domain.InquiryVO;
 import lombok.extern.log4j.Log4j2;
