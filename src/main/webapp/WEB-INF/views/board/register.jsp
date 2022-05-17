@@ -93,12 +93,14 @@
 <script type="text/javascript">
   document.querySelector(".file-add").addEventListener("click",(e) =>{
     console.log("123")
+   // const filePath = document.querySelector("input[type=file]").value;
+   //  console.log("filePaht", filePath);
      const fileInput = document.querySelector(".file-list");
-    //
     fileInput.innerHTML += "<li><input type='file'></li>";
   },false);
 
   document.querySelector(".sendBtn").addEventListener("click", (e) => {
+   
       e.preventDefault()
       document.querySelector(".modal-content").innerHTML = modalText();
       addModalSubmit(".board");
