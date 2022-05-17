@@ -8,5 +8,5 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public interface FoodService {
     ListResponseDTO<FoodDTO> getList(ListDTO listDTO); //문의글 목록
-
+    void insert(FoodDTO foodDTO);
 }

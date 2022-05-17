@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.matjo.pickafood.admin.meal.mapper.SchoolMapper">
+
+  <insert id="insert">
+    insert into school (
+                        schoolCode,
+                        regionCode,
+                        schoolName,
+                        regionName,
+                        address)
+    values (
+            #{schoolCode},
+            #{regionCode},
+            #{schoolName},
+            #{regionName},
+            #{address}
+           )
+
+  </insert>
+
+  <select id="selectAll" resultType="com.matjo.pickafood.admin.meal.domain.SchoolVO">
+    select * from school where school_seq > 0
+  </select>
+
+  <select id="selectRegion" resultType="com.matjo.pickafood.admin.meal.domain.SchoolVO">
+    select * from school where regionCode = #{regionCode}
+  </select>
+</mapper>

@@ -37,4 +37,10 @@ public class FoodServiceImpl implements FoodService {
                 .total(foodMapper.getTotal(listDTO))
                 .build();
     }
+
+  @Override
+  public void insert(FoodDTO foodDTO) {
+    FoodVO foodVO = modelMapper.map(foodDTO, FoodVO.class);
+    foodMapper.insert(foodVO);
+  }
 }
