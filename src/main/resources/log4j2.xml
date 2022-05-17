@@ -33,6 +33,10 @@
             <appender-ref ref="console" />
         </logger>
 
+        <logger name="com.matjo.pickafood.admin.board" level="TRACE" additivity="false">
+            <appender-ref ref="console" />
+        </logger>
+
         <root level="INFO" additivity="false">
             <AppenderRef ref="console"/>
         </root>
