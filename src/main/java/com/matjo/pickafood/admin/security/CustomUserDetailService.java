@@ -35,15 +35,14 @@ public class CustomUserDetailsService implements UserDetailsService {
         log.info("===========================");
         log.info("===========================");
 
-      /*  List<SimpleGrantedAuthority> authList = adminVO.getAuthList().stream()
-                .map(auth ->new SimpleGrantedAuthority("ROLE_"+auth.getRolename()))
+        List<SimpleGrantedAuthority> authList = adminVO.getAuthList().stream()
+                .map(auth ->new SimpleGrantedAuthority("ROLE_"+"ADMIN"))
                 .collect(Collectors.toList());
 
         //username, password, Authority List
         AdminDTO adminDTO = new AdminDTO(adminVO.getId(), adminVO.getPw(), authList);
-        adminDTO.setNickname(adminVO.getNickname());*/
+        adminDTO.setNickname(adminVO.getNickname());
 
-        AdminDTO adminDTO1 = new AdminDTO(adminVO.getId(), adminVO.getPw());
-        return adminDTO1;
+        return adminDTO;
     }
 }
