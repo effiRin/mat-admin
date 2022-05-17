@@ -25,20 +25,29 @@
         </if>
     </sql>
 
-
+    <!-- 목록 -->
     <select id="selectList" resultType="com.matjo.pickafood.admin.notice.domain.NoticeVO">
-        select board_seq, boardCategory, title, content, id, nickName,
-        (TIMESTAMPDIFF(second , regDate, now())/60) date,
-        date_format(regDate, '%Y년 %m월 %d일') regDate, date_format(updateDate, '%Y년 %m월 %d일') updateDate, replyCount, delFlag, likeCount, viewsCount, mainImage
-        from board where delFlag=0
+        SELECT board_seq,
+               boardCategory,
+               title,
+               content,
+               id,
+               nickName,
+               (TIMESTAMPDIFF(second , regDate, now()) / 60) DATE,
+                date_format(regDate, '%Y년 %m월 %d일') regDate, date_format(updateDate, '%Y년 %m월 %d일') updateDate, replyCount, delFlag, likeCount, viewsCount, mainImage
+        FROM board
+        WHERE delFlag=0
+            AND boardCategory=30000
         <include refid="search"></include>
-        order by board_seq desc
-        limit #{skip},#{size}
+        ORDER BY regDate DESC,
+                 board_seq DESC
+            limit #{skip}, #{size}
     </select>
 
+    <!-- 목록 수 -->
     <select id="getTotal" resultType="int">
         select count(board_seq)
-        from board where delFlag=0
+        from board where delFlag=0 and boardCategory=30000
         <include refid="search"></include>
     </select>
 
@@ -47,8 +56,18 @@
     <selectKey resultType="int" keyProperty="board_seq" order="AFTER">
         select last_insert_id()
     </selectKey>
-    insert into board (boardCategory, title, content, id, nickName)
-    values (30000, #{title},#{content}, #{id}, #{nickName})
-</insert>
+    insert into board (boardCategory, mainImage, title, content, id, nickName)
+    values (30000, #{mainImage}, #{title},#{content}, #{id}, #{nickName})
+    </insert>
+
+    <!-- 상세 조회 -->
+    <select id="selectOne" resultType="com.matjo.pickafood.admin.notice.domain.NoticeVO">
+        select * from board where board_seq = #{board_seq}
+    </select>
+
+    <!--댓글 추가 시 목록에 댓글 수 표시 변화-->
+    <update id="updateReplyCount">
+        update board set replycount = replyCount + #{amount} where board_seq = #{board_seq}
+    </update>
 
 </mapper>

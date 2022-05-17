@@ -6,14 +6,30 @@
 <mapper namespace="com.matjo.pickafood.admin.file.mapper.FileMapper">
 
     <!-- 등록 -->
-    <insert id="insert">
+    <insert id="insert" parameterType="fileDTO">
+        <selectKey keyProperty="fileSeq" resultType="int" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
         insert into file (boardType, uuid, fileName, savepath, img)
         values ('notice', #{uuid}, #{fileName}, #{savePath}, #{img})
+
     </insert>
 
     <delete id="delete">
         delete from file where uuid= #{uuid}
     </delete>
 
+    <insert id="insertBoardFile" parameterType="fileDTO">
+        INSERT INTO fileattach
+        ( file_seq
+        , board_seq)
+          value
+          ( #{fileSeq}
+        , #{boardSeq})
+    </insert>
+
+    <select id="getReadFiles" resultType="com.matjo.pickafood.admin.file.domain.FileVO">
+        select * from file where file_seq in ( select file_seq from fileattach where board_seq = #{bno} );
+    </select>
 
 </mapper>

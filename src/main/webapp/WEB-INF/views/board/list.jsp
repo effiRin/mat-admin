@@ -69,10 +69,10 @@
             </thead>
             <tbody> <%-- 내용 forEach로 감싸기 --%>
 
-            <c:forEach items="${dtoList}" var="board">
+            <c:forEach items="${boardList}" var="board">
             <tr>
               <td><c:out value="${board.board_seq}"/></td>
-              <td><c:out value="${board.title}"/></td>
+              <td><a href="/board/read/${board.board_seq}"><c:out value="${board.title}"/></a></td>
               <td><c:out value="${board.nickName}"/></td>
               <td><c:out value="${board.regDate}"/></td>
               <td><c:out value="${board.viewsCount}"/></td>

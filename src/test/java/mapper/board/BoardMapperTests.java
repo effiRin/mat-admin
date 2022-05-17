@@ -1,4 +1,4 @@
-package board;
+package mapper.board;
 
 import com.matjo.pickafood.admin.board.vo.BoardVO;
 import com.matjo.pickafood.admin.board.mapper.BoardMapper;
@@ -36,7 +36,6 @@ public class BoardMapperTests {
 
     @Test
     public void testSelectList() {
-
         ListDTO listDTO = new ListDTO();
         listDTO.setType("t");
         listDTO.setKeyword("오이");
