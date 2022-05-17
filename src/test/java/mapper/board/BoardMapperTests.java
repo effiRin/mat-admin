@@ -36,7 +36,6 @@ public class BoardMapperTests {
 
     @Test
     public void testSelectList() {
-
         ListDTO listDTO = new ListDTO();
         listDTO.setType("t");
         listDTO.setKeyword("오이");
