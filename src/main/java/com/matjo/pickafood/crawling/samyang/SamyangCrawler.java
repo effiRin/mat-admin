@@ -53,7 +53,7 @@ public class SamyangCrawler {
 
       foodList.forEach(foodLi -> {
         FoodDTO food = new FoodDTO();
-        food.setName(foodLi.getText());
+        food.setName(foodLi.findElements(By.tagName("div")).get(1).getText());
         String strContainingNum = foodLi.findElement(By.tagName("a")).getAttribute("onclick");
         // strContainingNum = "javascript:fnView('./view.do','545')"
         String temp1 = strContainingNum.substring(0, strContainingNum.lastIndexOf("'"));
@@ -61,6 +61,7 @@ public class SamyangCrawler {
         String temp2 = temp1.substring(temp1.lastIndexOf("'") + 1);
         // temp2 = "545"
         food.setUrl("https://www.samyangfoods.com/kor/brand/view.do?seq=" + temp2);
+        food.setMainImage(foodLi.findElement(By.tagName("img")).getAttribute("src"));
         foodListOfPage.add(food);
       });
 
@@ -77,10 +78,16 @@ public class SamyangCrawler {
         List<WebElement> pTags = driver.findElements(By.className("product-view-text")).get(1).findElements(By.tagName("p"));
         StringBuilder builder = new StringBuilder();
         pTags.forEach(p -> {
+          String current = p.getText();
+          current.replaceFirst("면*:", "");
+          current.replaceFirst("스프*:", "");
+          current.replaceFirst(".", ",");
           builder.append(p.getText());
         });
+
         food.setIngredient(builder.toString());
         food.setCompany("삼양");
+        food.setCompanyCategory("40003");
         result.add(food);
       });
       driver.get(mainUrl);

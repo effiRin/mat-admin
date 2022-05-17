@@ -19,7 +19,6 @@ import java.util.List;
 @ContextConfiguration(locations="file:src/main/webapp/WEB-INF/root-context.xml")
 public class SamyangCrawlerTests {
 
-
   private SamyangCrawler crawler;
   @Autowired(required = false)
   private FoodService foodService;
