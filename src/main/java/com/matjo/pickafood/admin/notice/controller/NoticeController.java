@@ -3,6 +3,7 @@ package com.matjo.pickafood.admin.notice.controller;
 import com.matjo.pickafood.admin.common.dto.ListDTO;
 import com.matjo.pickafood.admin.common.dto.ListResponseDTO;
 import com.matjo.pickafood.admin.common.dto.PageMaker;
+import com.matjo.pickafood.admin.file.dto.FileDTO;
 import com.matjo.pickafood.admin.file.service.FileService;
 import com.matjo.pickafood.admin.notice.dto.NoticeDTO;
 import com.matjo.pickafood.admin.notice.service.NoticeService;
@@ -71,10 +72,17 @@ public class NoticeController {
     @GetMapping("/read/{bno}")
     public String read(@PathVariable("bno") Integer bno, ListDTO listDTO, Model model){
 
-        //log.info("==========bno: "+bno);
-        //log.info("======listDTO: "+listDTO);
+        // log.info("==========bno: "+bno);
+        // log.info("======listDTO: "+listDTO);
 
         model.addAttribute("dto", noticeService.getOne(bno));
+        ;
+
+        List<FileDTO> fileList = fileService.getReadFiles(bno);
+        model.addAttribute("files", fileList);
+
+        // log.info("-------- file 자료--------------");
+        // log.info(fileList);
 
         return "/notice/read";
     }

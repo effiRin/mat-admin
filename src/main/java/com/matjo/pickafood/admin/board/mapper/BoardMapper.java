@@ -9,7 +9,6 @@ import java.util.List;
 public interface BoardMapper extends GenericMapper<BoardVO, Integer> {
 
     void updateReplyCount(@Param("board_seq") Integer bno, @Param("amount")  int amount);
-
-     List<AttachFile> selectFiles(Integer bno);
+    List<AttachFile> selectFiles(Integer bno);
 
 }

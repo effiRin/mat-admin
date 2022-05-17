@@ -8,12 +8,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6" style="margin-top: 1vw">
-                <h1 class="m-0">공지사항</h1>
+                <h1></h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item active">공지사항</li>
+                    <li class="breadcrumb-item active">알러지 지식창고</li>
                 </ol>
             </div>
         </div>
@@ -21,7 +21,9 @@
 </div>
 
 <div class="container-fluid">
-
+    카테고리 들어갈 곳
+    <hr>
+    검색, 체크박스
     <div class="row">
         <div class="col-12">
             <div class="card card-primary card-outline">
@@ -52,12 +54,6 @@
                          </div>
                        </div>
                      </div>--%>
-
-                    <div class="row float-right">
-                        <button type="button" class="btn btn-primary btn-block btn-sm" onclick="location.href='/notice/register'">
-                            <i class="fa fa-plus"></i>등록
-                        </button>
-                    </div>
                 </div>
 
                 <div class="card-body table-responsive p-0">
@@ -66,51 +62,26 @@
                         <tr>
                             <th>#</th>
                             <th></th>
-                            <th>제목</th>
-                            <th>닉네임</th>
-                            <th>작성일</th>
-                            <th>조회수</th>
-                            <th>좋아요</th>
+                            <th style="text-align: left;">이름 / 성분 재료 / (같은 제조 공장 식품)</th>
                         </tr>
                         </thead>
-                        <tbody class="boardList">
-                        <c:forEach items="${dtoList}" var="board">
-                            <tr>
-                                <th scope="row">${board.board_seq}</th>
-
-                                <c:choose>
-                                    <c:when test="${board.mainImage eq null}">
-                                        <td></td>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <td style="padding: 4px"><img src='${board.mainImage}' style="max-height: 40px;"></td>
-                                    </c:otherwise>
-                                </c:choose>
-
-                                <td style="text-align: left;"><span><a href='/notice/read/${board.board_seq}' class="dtoLink" style="color:darkblue"><c:out value="${board.title}"></c:out><c:if test="${board.replyCount != 0}">
-                                    <span style="color:black"><c:out value=" [${board.replyCount}]"/></span></c:if></a></span></td>
-                                <td><c:out value="${board.nickName}"></c:out></td>
-
-                                <c:choose>
-                                    <c:when test="${board.date < 1}">
-                                        <td class="dateType">방금전</td>
-                                    </c:when>
-                                    <c:when test="${board.date < 60}">
-                                        <td class="dateType">${board.date}분전</td>
-                                    </c:when>
-                                    <c:when test="${board.date <= 60*24}">
-                                        <td class="dateType">${Integer.valueOf(Math.floor(board.date/60))}시간 전</td>
-                                    </c:when>
-                                    <c:when test="${board.date <= 60*24*7}">
-                                        <td class="dateType">${Integer.valueOf(Math.floor(board.date/420))}일 전</td>
-                                    </c:when>
-                                    <c:when test="${board.date > 60*24}">
-                                        <td class="dateType">${board.regDate}</td>
-                                    </c:when>
-                                </c:choose>
-
-                                <td>${board.viewsCount}</td>
-                                <td>${board.likeCount}</td>
+                        <tbody class="foodList">
+                        <c:forEach items="${dtoList}" var="food">
+                            <c:if test="${food.food_seq % 2 == 0}">
+                                <tr style=" background-color: #f7faf8">
+                            </c:if>
+                            <c:if test="${food.food_seq % 2 == 1}">
+                                <tr style=" background-color: #fffde6">
+                            </c:if>
+                                <td></td>
+                                <td><img src="${food.mainImage}" style="max-width:100px"/></td>
+                                <td style="text-align: left;">
+                                    <span style="font-size: 15px">${food.name}</span><hr>
+                                    <span style="font-size: 18px">${food.ingredient}</span>
+                                    <c:if test="${food.sameFactory != null}">
+                                        <hr><span style="font-size: 15px">${food.sameFactory}</span>
+                                    </c:if>
+                                </td>
                             </tr>
                         </c:forEach>
                         </tbody>
@@ -148,7 +119,7 @@
 </div>
 </div>
 
-<form class="actionForm" action="/notice/list" method="get">
+<form class="actionForm" action="/food/list" method="get">
     <input type="hidden" name="page" value="${listDTO.page}">
     <input type="hidden" name="size" value="${listDTO.size}">
     <input type="hidden" name="type" value="${listDTO.type == null ? '':listDTO.type}">
@@ -156,29 +127,12 @@
 </form>
 
 <script>
-    const boardList = document.querySelector(".boardList");
+    const inquiryList = document.querySelector(".foodList");
+
+    const linkDiv = document.querySelector(".pagination")
     const actionForm = document.querySelector(".actionForm")
 
-    document.querySelector(".boardList").addEventListener("click", (e) => {
-        e.preventDefault()
-        e.stopPropagation()
-
-        const target = e.target
-        if(target.getAttribute("class").indexOf('dtoLink') < 0 ){
-            return                  // class 는 이름이 길어질 수 있으므로 indexOf 그 안에 dtoLink가 있는 지 확인 하는 방식으로 가야함.
-        }
-        const url = target.getAttribute("href")
-
-        actionForm.setAttribute("action", url)
-        actionForm.submit()
-    }, false)
-
-
-
-    /* 페이지 넘김 */
-    const pageDiv = document.querySelector(".pagination")
-
-    pageDiv.addEventListener("click", (e) => {
+    linkDiv.addEventListener("click", (e) => {
         e.stopPropagation()
         e.preventDefault()
 
@@ -189,10 +143,11 @@
         }
         const pageNum = target.getAttribute("href")
         actionForm.querySelector("input[name='page']").value = pageNum
-        actionForm.setAttribute("action","/notice/list")
+        actionForm.setAttribute("action","/food/list")
         actionForm.submit();
 
     }, false)
+    // ↑ 버블링 ok 캡쳐링은 false
 
 </script>
 
