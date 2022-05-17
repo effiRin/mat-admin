@@ -16,4 +16,5 @@ public class FoodDTO {
     private String image3;
 
     private int num;
+    private String url;
 }
