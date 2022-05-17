@@ -6,7 +6,11 @@
 <mapper namespace="com.matjo.pickafood.admin.reply.mapper.ReplyMapper">
 
     <select id="selectListOfBoard" resultType="com.matjo.pickafood.admin.reply.domain.ReplyVO">
-        select * from reply where board_seq=#{board_seq} and reply_seq > 0 order by reply_seq asc limit #{listDTO.skip}, #{listDTO.size}}
+        Select reply_seq, board_seq, originReply_seq, rootReply_seq, content, id, nickName,
+               (TIMESTAMPDIFF(second , regDate, now()) / 60) date, regDate, updateDate, delFlag, likeCount, mainImage, profile
+        from reply where board_seq=#{board_seq} and reply_seq > 0
+        order by reply_seq asc, originReply_seq asc, rootReply_seq asc
+        limit #{listDTO.skip}, #{listDTO.size}
     </select>
 
     <select id="selectTotalOfBoard" resultType="int">
