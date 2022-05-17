@@ -13,5 +13,5 @@ public interface FileMapper extends GenericMapper<FileVO, Integer> {
     void delete(String uuid);;
 
     void insertBoardFile(FileDTO fileDTO);//이미지 삭제
-
+    List<FileDTO> getReadFiles(Integer bno); //이미지 불러오기
 }

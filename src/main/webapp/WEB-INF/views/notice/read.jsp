@@ -35,8 +35,19 @@
                     <c:out value="${dto.regDate}"></c:out>
                 </div>
                 <div class="form-group">
-                    <label for="inputDescription">내용</label>
-                    <textarea id="inputDescription" class="form-control inputContent" rows="5" readonly><c:out value="${dto.content}"></c:out></textarea>
+                    <label>내용</label>
+                    <div style="padding-bottom: 10px; padding-top: 10px ">
+                       <pre><c:out value="${dto.content}"></c:out></pre>
+                    </div>
+                    <div class="imageDiv" >
+                        <c:forEach items="${files}" step="1" var="file">
+                            <img src="/view?fileName=${file.savePath}/${file.uuid}_${file.fileName}" style="max-width: 400px; cursor:pointer;" onclick="window.open('/view?fileName=${file.savePath}/${file.uuid}_${file.fileName}')"/>
+                        </c:forEach>
+                    </div>
+                    <div class="likeDiv" style="margin-left: 37vw; cursor: pointer; margin-right: 50vw;margin-top: 30px;">
+                        <span class=likeCount><i class="far fas fa-heart">&nbsp;${dto.likeCount}</i></span>
+                        <input type="hidden" class="myLike" value="0">
+                    </div>
                 </div>
             </div>
         </div>
@@ -66,24 +77,37 @@
     </div>
 </div>
 
-
-
 <%@ include file="/WEB-INF/views/includes/footer.jsp"%>
 
 <%-- Axios --%>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
+
+   /* 좋아요*/
+   const likeDiv = document.querySelector(".likeDiv")
+
+   likeDiv.addEventListener("click", (e) => {
+       targetSpan = e.target.closest("span")
+       console.log(targetSpan)
+       targetSpan.innerHTML = `<span class=likeCount; style="color:red"><i class="far fas fa-heart">&nbsp;${dto.likeCount}</i></span>`
+
+   });
+
+
+
     <%-- 댓글 --%>
     let initState = {
         board_seq :${dto.board_seq},
         replyArr : [],
         replyCount : 0,
-        size : 10,
+        size : 50,
         pageNum : 1
     }
 
+    const imageDiv = document.querySelector(".imageDiv")
     const replyDIV = document.querySelector(".replyDIV")
     const pageUL = document.querySelector(".pageUL")
+    const secondReplyDIV  = document.querySelector(".secondReplyDIV")
 
     pageUL.addEventListener("click", (e) => {
         if(e.target.tagName != 'LI'){
@@ -93,6 +117,10 @@
         replyService.setState({pageNum:dataNum})
     }, false)
 
+
+
+
+   /* 댓글 등록 */
     document.querySelector(".addReplyBtn").addEventListener("click", (e) => {
         const replyObj = {
             board_seq:${dto.board_seq},
@@ -116,7 +144,6 @@
         if(!e.target.getAttribute("data-reply_seq")){
             return;
         }
-
         targetLi = e.target.closest("li")
         const reply_seq = parseInt(e.target.getAttribute("data-reply_seq"))
 
@@ -130,7 +157,6 @@
 
     removeReplyBtn.addEventListener("click", (e) => {
         const reply_seq = parseInt(e.target.getAttribute("data-reply_seq"))
-
         replyService.removeServer(reply_seq).then(result => {
             targetLi.innerHTML = "삭제된 댓글입니다."
         })
@@ -144,20 +170,35 @@
         function printList(){
             const arr = obj.replyArr
 
-
             replyDIV.innerHTML = arr.map(reply =>
-                 `<div class="d-flex replyRead" style="padding-bottom: 7px; padding-top:7px">
+                 `<div class="d-flex replyRead" style="\${reply.root}; padding-bottom: 7px; padding-top:7px">
                 <div class="flex-shrink-0" style="display: table-cell">
-                    <img class="rounded-circle" style="width: 50px; height: 50px; display: table-cell" src="/resources/image/person.png" alt="..." /></div>
+                    <img class="rounded-circle" style="width: 50px; height: 50px; display: table-cell" src=\${reply.profile} alt="..." /></div>
                 <div class="ms-3 replyContent" style="margin-left: 10px">
                     <div class="fw-bold" style="font-weight: bolder">\${reply.nickName}</div>
                     <div class="replyUL" style="padding-left:1px; display: table-cell">\${reply.content}</div>
+                    \${reply.buttonIcon}
                 </div>
-                <ul class="regDate" style="position:absolute; right: 5%;font-size: 13px">\${reply.regDate}
+                <ul class="regDate" style="position:absolute; right: 5%;font-size: 13px">\${reply.dateStr}
                     <i class="fas fa-solid fa-bars modBtn" data-reply_seq=\${reply.reply_seq} style="margin-left: 10px"></i></ul><br><br>
             </div>`).join(" ")
-        }
 
+            /* 대댓 */
+            document.querySelector(".secondReply").addEventListener("click", (e) => {
+                secondReplyDIV.innerHTML = `
+            <form class="mb-4">
+                <div>
+                    <div style="display: flex">
+                        <textarea class="form-control" type="text" name="content" placeholder="댓글 작성 시 타인에 대한 배려와 책임을 담아주세요" style="width: 85vw; "></textarea>
+                        <button class="btn btn-default float-right addReplyBtn" href="#!" style="width: 10vw; margin-left: 10px; border-style: none">등록</button></div>
+                    <div><input type="hidden" name="nickName" value="아바라한잔"></div>
+                    <div><input type="hidden" name="id" value="aaa14"></div>
+                </div>
+            </form>`
+            })
+
+
+        }
 
         function printPage(){
             const currentPage = obj.pageNum
@@ -179,13 +220,13 @@
             if(prev){
                 str += `<li data-num=\${startPage-1}>이전</li>`
             }
+
             for(let i = startPage; i <= endPage; i++){
                 if(i===currentPage){
                     str += `<li data-num=\${i} style="color:#e54545; cursor:default">\${i}</li>`
                 }else{
                     str += `<li data-num=\${i}>\${i}</li>`
                 }
-
             }
             if(next){
                 str += `<li data-num=\${endPage+1}>다음</li>`
@@ -201,11 +242,8 @@
 
 
 
-
-
     /* ---Aios 통신 부분-----------------------------------------------------------------*/
 
-    //오늘은 그냥 객체로
     const replyService = (function (initState, callbackFn){
         let state = initState
         const callback = callbackFn
@@ -214,14 +252,13 @@
             state = {...state, ...newState} //전개연산자를 이용하여 스테이트 상태값을 변경시키기
 
             //여기서 비동기를 들어가서 자동으로 바뀌도록 하자!
-            //console.log(state)
+            console.log(state)
 
             //newState 안에 replyCount 값 속성이나 pageNum 속성이 있다면!
             if(newState.replyCount || newState.pageNum ){
                 //서버의 데이터를 가져와야만 한다
                 getServerList(newState)
             }
-
             callback(state)
         }
 
@@ -247,11 +284,8 @@
             // 일단 수동으로 수정
 
             setState({replyArr:res.data})
-            //호출이 되는 지 확인
-
         }
 
-        //View 를 하는데 있어서 model 데이터 ViewModel
 
         async function addServerReply(replyObj){
             const res = await axios.post(`/replies/`, replyObj)
@@ -289,14 +323,23 @@
 
         .pageUL{
             list-style: none;
-            display:flex;
+            display: flex;
+            margin-left: auto;
+            margin-right: auto
         }
 
         .pageUL li{
             list-style: none;
-            margin : 0.2em;
-            border: 1px solid;
+            margin: 0.2em;
             cursor: pointer;
+            font-size: 20px;
+        }
+
+        .secondReply{
+            font-size: 10px;
+            background-color: unset;
+            color: darkcyan;
+            border-color: white;
         }
 
     </style>
