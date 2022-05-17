@@ -175,8 +175,7 @@
                 </div>`).join(" ")
 
             fileInput.remove();
-            document.querySelector(".uploadInputDiv").appendChild(cloneInput);
-            //document.querySelector(".uploadInputDiv").appendChild(cloneInput).cloneNode()
+            document.querySelector(".uploadInputDiv").appendChild(cloneInput).cloneNode()
             //업로드 버튼을 눌렀을 때 그제서야 버튼을 찾기 때문에 이렇게 하는 게 가능
             //업로드 버튼을 누르면 dom 이 복구된 상태에서 찾기 때문에 읽을 수 있다.
         })
@@ -196,7 +195,7 @@
     async function uploadToServer (formObj) {
         const response = await axios({
             method: 'post',
-            url: '/upload1',
+            url: '/upload',
             data: formObj,
             headers: {
                 'Content-Type': 'multipart/form-data',
