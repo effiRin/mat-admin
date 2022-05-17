@@ -31,7 +31,6 @@ public class InquiryController {
     //list 페이지
     @GetMapping("/list")
     public void list(ListDTO listDTO, Model model){
-
         log.info("inquiry list.........");
         // log.info("page : "+page);
 

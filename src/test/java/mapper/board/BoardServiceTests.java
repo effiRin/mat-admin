@@ -1,9 +1,9 @@
-package board;
+package mapper.board;
 
 import com.matjo.pickafood.admin.board.dto.BoardDTO;
 import com.matjo.pickafood.admin.board.service.BoardService;
-import com.matjo.pickafood.admin.common.ListDTO;
-import com.matjo.pickafood.admin.common.ListResponseDTO;
+import com.matjo.pickafood.admin.common.dto.ListDTO;
+import com.matjo.pickafood.admin.common.dto.ListResponseDTO;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

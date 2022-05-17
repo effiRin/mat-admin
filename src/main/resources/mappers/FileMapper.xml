@@ -23,10 +23,13 @@
         INSERT INTO fileattach
         ( file_seq
         , board_seq)
-            value
-            ( #{fileSeq}
-            , #{boardSeq})
+          value
+          ( #{fileSeq}
+        , #{boardSeq})
     </insert>
 
+    <select id="getReadFiles" resultType="com.matjo.pickafood.admin.file.domain.FileVO">
+        select * from file where file_seq in ( select file_seq from fileattach where board_seq = #{bno} );
+    </select>
 
 </mapper>

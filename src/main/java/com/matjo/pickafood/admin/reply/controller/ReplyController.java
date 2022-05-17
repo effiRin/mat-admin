@@ -1,11 +1,15 @@
 package com.matjo.pickafood.admin.reply.controller;
 
 import com.matjo.pickafood.admin.common.dto.ListDTO;
+import com.matjo.pickafood.admin.common.dto.ListResponseDTO;
+import com.matjo.pickafood.admin.common.dto.PageMaker;
+import com.matjo.pickafood.admin.notice.dto.NoticeDTO;
 import com.matjo.pickafood.admin.reply.dto.ReplyDTO;
 import com.matjo.pickafood.admin.reply.service.ReplyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.MediaType;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,10 +25,17 @@ public class ReplyController {
 
     //댓글 목록
     @GetMapping(value = "/list/{board_seq}" , produces = MediaType.APPLICATION_JSON_VALUE )
-    public List<ReplyDTO> getListOfBoard(@PathVariable("board_seq") Integer board_seq, ListDTO listDTO){
+    public List<ReplyDTO> getListOfBoard(@PathVariable("board_seq") Integer board_seq, ListDTO listDTO, Model model){
         log.info("reply list....... :"+listDTO);
 
-        return replyService.getListOfBoard(board_seq, listDTO);
+        List<ReplyDTO> list = replyService.getListOfBoard(board_seq, listDTO);
+
+        //ListResponseDTO<ReplyDTO> responseDTO = replyService.getListOfBoard(board_seq, listDTO);
+        //model.addAttribute("dtoList", responseDTO.getDtoList());
+        //model.addAttribute("pageMaker", new PageMaker(listDTO.getPage(), total));
+
+
+        return list;
     }
 
     //댓글 등록
