@@ -71,6 +71,7 @@ public class NoticeServiceImpl implements NoticeService {
                 fileMapper.insertBoardFile(fileDTO);
             }
         }
+
     }
 
 }

@@ -184,7 +184,7 @@
             </div>`).join(" ")
 
             /* 대댓 */
-            document.querySelector(".secondReply").addEventListener("click", (e) => {
+            /*document.querySelector(".secondReply").addEventListener("click", (e) => {
                 secondReplyDIV.innerHTML = `
             <form class="mb-4">
                 <div>
@@ -195,7 +195,7 @@
                     <div><input type="hidden" name="id" value="aaa14"></div>
                 </div>
             </form>`
-            })
+            })*/
 
 
         }

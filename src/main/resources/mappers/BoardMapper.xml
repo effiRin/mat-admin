@@ -52,7 +52,7 @@
         update board set delFlag = 1 where board_seq = #{board_seq}
     </update>
 
-<!-- 아마도 변경 가능성 있음  -->
+    <!-- 아마도 변경 가능성 있음  -->
 
     <update id="update">
         update board set title = #{title}, content= #{content}, updateDate = now() where board_seq = #{board_seq}
