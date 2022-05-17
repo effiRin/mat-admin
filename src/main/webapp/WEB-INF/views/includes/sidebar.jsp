@@ -3,7 +3,7 @@
 <aside class="main-sidebar sidebar-light-primary elevation-4">
   
   <a href="/" class="brand-link logo-switch">
-    <img src="http://106.241.252.54:8085/img/icon/icon_thumbnail.png" alt="AdminLTE Logo" class="brand-image-xl" style="left:12px">
+    <img src="http://106.241.252.54:8085/img/icon/pickafood.png" alt="AdminLTE Logo" class="brand-image-xl" style="left:12px">
     <span class="brand-text font-weight-light">Pick <sup>A</sup> Food</span>
   </a>
   

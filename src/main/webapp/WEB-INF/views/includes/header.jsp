@@ -5,7 +5,8 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Pick A Food</title>
-
+  <!-- Favicon-->
+  <link rel="icon" type="image/x-icon" href="http://106.241.252.54:8085/img/icon/pickafood.ico" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   
     <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/fontawesome-free/css/all.min.css">
