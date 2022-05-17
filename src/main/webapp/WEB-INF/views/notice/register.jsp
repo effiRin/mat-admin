@@ -55,7 +55,7 @@
                     <div class="card-body" style="display: block;">
                         <div class="uploadInputDiv">
                             <input type="file" name="upload" multiple class="uploadFile">
-                            <button class="btn bg-gradient-info float-right file-add uploadBtn">파일 추가</button>
+                            <button class="btn bg-gradient-info float-right file-add uploadBtn">업로드</button>
                         </div>
                     </div>
                     <style>
@@ -135,7 +135,7 @@
         const actionForm =  document.querySelector(".actionForm")
         document.querySelector(".hiddenClass").innerHTML += str
 
-        actionForm.submit();
+       // actionForm.submit();
     }, false)
 
 
@@ -147,7 +147,6 @@
         }
         const btn = e.target
         const link = btn.getAttribute("data-link")
-
         deleteToServer(link).then(result => {
             btn.closest("div").remove()
         })
@@ -158,14 +157,14 @@
 
         const formObj = new FormData();
         const fileInput = document.querySelector(".uploadFile")
-        console.log(fileInput.files)
+        console.log("file", fileInput.files)
 
         const files = fileInput.files
 
         for (let i = 0; i < files.length; i++) {
             formObj.append("files", files[i]);
-            console.log(files[i]);
         }
+      
         //resultArr 은 uploadResultDTO
 
         uploadToServer(formObj).then(resultArr => {
@@ -175,8 +174,9 @@
                 <br><span>\${fileName}</span>
                 </div>`).join(" ")
 
-            fileInput.remove()
-            document.querySelector(".uploadInputDiv").appendChild(cloneInput).cloneNode()
+            fileInput.remove();
+            document.querySelector(".uploadInputDiv").appendChild(cloneInput);
+            //document.querySelector(".uploadInputDiv").appendChild(cloneInput).cloneNode()
             //업로드 버튼을 눌렀을 때 그제서야 버튼을 찾기 때문에 이렇게 하는 게 가능
             //업로드 버튼을 누르면 dom 이 복구된 상태에서 찾기 때문에 읽을 수 있다.
         })
@@ -194,10 +194,9 @@
 
     //이미지 업로드
     async function uploadToServer (formObj) {
-
         const response = await axios({
             method: 'post',
-            url: '/upload',
+            url: '/upload1',
             data: formObj,
             headers: {
                 'Content-Type': 'multipart/form-data',

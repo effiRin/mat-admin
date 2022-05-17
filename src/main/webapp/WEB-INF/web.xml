@@ -29,6 +29,8 @@
 
     <multipart-config>
       <location>D:\\upload</location>
+<!--      <location>/Users/suhong/upload/</location>-->
+<!--      <location>http://106.241.252.54:8085/upload</location>-->
       <max-file-size>20971520</max-file-size> <!--1MB * 20 -->
       <max-request-size>41943040</max-request-size><!-- 40MB -->
       <file-size-threshold>20971520</file-size-threshold> <!-- 20MB -->

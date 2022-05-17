@@ -42,5 +42,9 @@
         from food where food_seq > 0
         <include refid="search"></include>
     </select>
+  <insert id="insert">
+    insert into food (name, companyCategory, company, mainImage, ingredient)
+    values (#{name}, #{companyCategory}, #{company}, #{mainImage}, #{ingredient})
+  </insert>
 
 </mapper>
