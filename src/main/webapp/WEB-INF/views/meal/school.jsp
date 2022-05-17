@@ -69,7 +69,7 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script src="/resources/js/school.js"></script>
+<script src="/resources/js/meal/school.js"></script>
 <script>
   const searchSchoolForm = document.querySelector(".searchSchoolForm");
   searchSchoolForm.addEventListener("submit", (e) => {
