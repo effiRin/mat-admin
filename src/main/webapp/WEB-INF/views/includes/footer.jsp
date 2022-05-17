@@ -26,28 +26,28 @@
 
 <script src="http://106.241.252.54:8085/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-<script src="http://106.241.252.54:8085/vendor/chart.js/Chart.min.js"></script>
+<%--<script src="http://106.241.252.54:8085/vendor/chart.js/Chart.min.js"></script>--%>
 
-<script src="https://adminlte.io/themes/v3/plugins/sparklines/sparkline.js"></script>
+<%--&lt;%&ndash;<script src="https://adminlte.io/themes/v3/plugins/sparklines/sparkline.js"></script>&ndash;%&gt;--%>
 
-<script src="https://adminlte.io/themes/v3/plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="https://adminlte.io/themes/v3/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<%--<script src="https://adminlte.io/themes/v3/plugins/jqvmap/jquery.vmap.min.js"></script>--%>
+<%--<script src="https://adminlte.io/themes/v3/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>--%>
 
-<script src="https://adminlte.io/themes/v3/plugins/jquery-knob/jquery.knob.min.js"></script>
+<%--<script src="https://adminlte.io/themes/v3/plugins/jquery-knob/jquery.knob.min.js"></script>--%>
 
-<script src="https://adminlte.io/themes/v3/plugins/moment/moment.min.js"></script>
-<script src="https://adminlte.io/themes/v3/plugins/daterangepicker/daterangepicker.js"></script>
+<%--<script src="https://adminlte.io/themes/v3/plugins/moment/moment.min.js"></script>--%>
+<%--<script src="https://adminlte.io/themes/v3/plugins/daterangepicker/daterangepicker.js"></script>--%>
 
-<script src="https://adminlte.io/themes/v3/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<%--<script src="https://adminlte.io/themes/v3/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>--%>
 
-<script src="https://adminlte.io/themes/v3/plugins/summernote/summernote-bs4.min.js"></script>
+<%--<script src="https://adminlte.io/themes/v3/plugins/summernote/summernote-bs4.min.js"></script>--%>
 
-<script src="https://adminlte.io/themes/v3/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<%--<script src="https://adminlte.io/themes/v3/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>--%>
 
 <script src="https://adminlte.io/themes/v3/dist/js/adminlte.js?v=3.2.0"></script>
 
-<script src="https://adminlte.io/themes/v3/dist/js/demo.js"></script>
+<%--<script src="https://adminlte.io/themes/v3/dist/js/demo.js"></script>--%>
 
-<script src="https://adminlte.io/themes/v3/dist/js/pages/dashboard.js"></script>
+<%--<script src="https://adminlte.io/themes/v3/dist/js/pages/dashboard.js"></script>--%>
 </body>
 </html>

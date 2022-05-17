@@ -16,4 +16,5 @@ public interface GenericMapper <E, K>{
 
     int getBoardTotal(ListDTO listDTO);
 
+
 }
