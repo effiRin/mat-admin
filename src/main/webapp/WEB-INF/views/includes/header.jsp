@@ -70,7 +70,7 @@ t.parentNode.insertBefore(z,t)}))}(w,d,0,"script");})(window,document);</script>
 
     <ul class="navbar-nav ml-auto">
       <li class="nav-item dropdown user user-menu">
-        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><p>${name}</p> <p>관리자님</p>
+        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">${name} 관리자님 &nbsp;
           <img class="user-image img-circle elevation-2" src="${profile}">
           <%-- http://106.241.252.54:8085/img/undraw_profile.svg --%>
         </a>
