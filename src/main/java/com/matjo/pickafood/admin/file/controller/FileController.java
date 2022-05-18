@@ -52,11 +52,11 @@ public class FileController {
 
     //이미지 업로드
     @ResponseBody
-    @PostMapping("/upload1")
+    @PostMapping("/upload")
     public List<FileDTO> upload(MultipartFile[] files){
-        log.info("----------file---------");
-        log.info(files);
-        log.info("-----------------------");
+//        log.info("----------file---------");
+//        log.info(files);
+//        log.info("-----------------------");
 
         List<FileDTO> list = new ArrayList<>();
         
