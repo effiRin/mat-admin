@@ -51,7 +51,7 @@ public class BoardController {
 
         boardService.register(boardDTO);
 
-        rttr.addFlashAttribute("result", boardDTO.getBoard_seq());
+        rttr.addFlashAttribute("result", boardDTO.getBoardSeq());
 
         return "redirect:/board/list";
 
@@ -67,23 +67,23 @@ public class BoardController {
         return "/board/read";
     }
 
-    @GetMapping("/modify/{board_seq}")
-    public String modifyGET(@PathVariable("board_seq") Integer board_seq, ListDTO listDTO, Model model){
-        log.info("modify board_seq= " + board_seq + "/ " + listDTO);
+    @GetMapping("/modify/{boardSeq}")
+    public String modifyGET(@PathVariable("boardSeq") Integer boardSeq, ListDTO listDTO, Model model){
+        log.info("modify boardSeq= " + boardSeq + "/ " + listDTO);
 
-        model.addAttribute("board", boardService.getOne(board_seq));
+        model.addAttribute("board", boardService.getOne(boardSeq));
 
         return "/board/modify";
     }
 
-    @PostMapping("/modify/{board_seq}")
-    public String modifyPOST(@PathVariable("board_seq") Integer board_seq, BoardDTO boardDTO, ListDTO listDTO, RedirectAttributes rttr) {
+    @PostMapping("/modify/{boardSeq}")
+    public String modifyPOST(@PathVariable("boardSeq") Integer boardSeq, BoardDTO boardDTO, ListDTO listDTO, RedirectAttributes rttr) {
 
-        boardDTO.setBoard_seq(board_seq);
+        boardDTO.setBoardSeq(boardSeq);
         log.info("modify:" + boardDTO);
         boardService.update(boardDTO);
         rttr.addFlashAttribute("result", "modified");
-        return "redirect:/board/read/" + board_seq + listDTO.getLink();
+        return "redirect:/board/read/" + boardSeq + listDTO.getLink();
     }
 
     @GetMapping({"/remove/{bno}"})

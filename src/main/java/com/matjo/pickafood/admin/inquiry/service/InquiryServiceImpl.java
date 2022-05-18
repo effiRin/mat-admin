@@ -54,7 +54,7 @@ public class InquiryServiceImpl implements InquiryService {
         log.info(inquiryDTO.getAnswerContent());
 
         InquiryVO inquiryVO = InquiryVO.builder()
-                .inquiry_seq(inquiryDTO.getInquiry_seq())
+                .inquirySeq(inquiryDTO.getInquirySeq())
                 .answerContent(inquiryDTO.getAnswerContent())
                 .build();
 

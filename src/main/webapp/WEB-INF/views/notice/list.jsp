@@ -76,7 +76,7 @@
                         <tbody class="boardList">
                         <c:forEach items="${dtoList}" var="board">
                             <tr>
-                                <th scope="row">${board.board_seq}</th>
+                                <th scope="row">${board.boardSeq}</th>
 
                                 <c:choose>
                                     <c:when test="${board.mainImage eq null}">
@@ -87,9 +87,9 @@
                                     </c:otherwise>
                                 </c:choose>
 
-                                <td style="text-align: left;"><span><a href='/notice/read/${board.board_seq}' class="dtoLink" style="color:darkblue"><c:out value="${board.title}"></c:out><c:if test="${board.replyCount != 0}">
+                                <td style="text-align: left;"><span><a href='/notice/read/${board.boardSeq}' class="dtoLink" style="color:darkblue"><c:out value="${board.title}"></c:out><c:if test="${board.replyCount != 0}">
                                     <span style="color:black"><c:out value=" [${board.replyCount}]"/></span></c:if></a></span></td>
-                                <td><c:out value="${board.nickName}"></c:out></td>
+                                <td><c:out value="${board.nickname}"></c:out></td>
 
                                 <c:choose>
                                     <c:when test="${board.date < 1}">

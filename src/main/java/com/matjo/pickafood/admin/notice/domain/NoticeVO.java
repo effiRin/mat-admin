@@ -13,13 +13,13 @@ import java.time.LocalTime;
 @NoArgsConstructor
 public class NoticeVO {
 
-    private Integer board_seq;
+    private Integer boardSeq;
     private Integer boardCategory;
     private String mainImage;
     private String title;
     private String content;
     private String id;
-    private String nickName;
+    private String nickname;
 
     private int date;
     private String regDate;

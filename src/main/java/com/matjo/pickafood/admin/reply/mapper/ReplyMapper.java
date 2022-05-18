@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface ReplyMapper extends GenericMapper<ReplyVO, Integer> {
-    List<ReplyVO> selectListOfBoard(@Param("board_seq") Integer board_seq, @Param("listDTO") ListDTO listDTO);
-    int selectTotalOfBoard(Integer board_seq);
+    List<ReplyVO> selectListOfBoard(@Param("boardSeq") Integer boardSeq, @Param("listDTO") ListDTO listDTO);
+    int selectTotalOfBoard(Integer boardSeq);
 
 }

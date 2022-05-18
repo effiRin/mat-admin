@@ -49,7 +49,7 @@
                 <label for="inputName" style="width: 10vw; ">제목</label>
                 <input type="text" id="inputName" name="title" class="for m-control" style="margin-right: 2vw; width: 1800px;">
                 <label for="inputName" style="width: 10vw;">닉네임</label>
-                <input type="text" value="연느짱" name="nickName" class="form-control">
+                <input type="text" value="연느짱" name="nickname" class="form-control">
               </div>
                 <input type="hidden" value="kim" name="id">
               <div class="form-group board">

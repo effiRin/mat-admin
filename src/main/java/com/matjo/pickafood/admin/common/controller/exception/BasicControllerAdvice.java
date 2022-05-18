@@ -1,4 +1,4 @@
-package com.matjo.pickafood.admin.common.exception;
+package com.matjo.pickafood.admin.common.controller.exception;
 
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -14,7 +14,7 @@ import java.util.Arrays;
 @Log4j2
 public class BasicControllerAdvice {
 
-    @ResponseBody
+   /* @ResponseBody
     @ExceptionHandler(Exception.class)
     public String exceptCommon(Exception exception){
 
@@ -38,7 +38,7 @@ public class BasicControllerAdvice {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public String notFound(){
         return "custom404";
-    }
+    }*/
 
 
 }
