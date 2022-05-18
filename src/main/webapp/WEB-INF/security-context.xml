@@ -16,10 +16,7 @@
                 조심해야 할 점: 파-->
         <security:form-login></security:form-login>
 
-        <!--    servlet 에 security:global-method-security 를 설정해서 지워도 된다.
-                <security:intercept-url pattern="/sample/all"></security:intercept-url>
-                <security:intercept-url pattern="/sample/member" access="hasRole('ROLE_MEMBER')"></security:intercept-url>
-                <security:intercept-url pattern="/sample/admin" access="hasRole('ROLE_ADMIN')"></security:intercept-url>-->
+        <security:intercept-url pattern="/**" access="hasRole('ROLE_ADMIN')"></security:intercept-url>
 
         <security:access-denied-handler error-page="/accessError"></security:access-denied-handler>
         <!-- ref 로그를 남겨서 기록하고 싶거나... 등의 따로 -->
