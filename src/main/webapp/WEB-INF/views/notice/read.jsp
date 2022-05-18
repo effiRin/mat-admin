@@ -30,7 +30,7 @@
                     <label style="width: 7vw;">제 목</label>
                     <c:out value="${dto.title}"></c:out>
                     <label style="width: 10vw;  margin-left: 5vw;">닉네임</label>
-                    <c:out value="${dto.nickName}"></c:out>
+                    <c:out value="${dto.nickname}"></c:out>
                     <label style="width: 10vw; margin-left: 5vw;">등록일</label>
                     <c:out value="${dto.regDate}"></c:out>
                 </div>
@@ -67,7 +67,7 @@
                     <div style="display: flex">
                         <textarea class="form-control" type="text" name="content" placeholder="댓글 작성 시 타인에 대한 배려와 책임을 담아주세요" style="width: 85vw; "></textarea>
                         <button class="btn btn-default float-right addReplyBtn" href="#!" style="width: 10vw; margin-left: 10px; border-style: none">등록</button></div>
-                    <div><input type="hidden" name="nickName" value="아바라한잔"></div>
+                    <div><input type="hidden" name="nickname" value="아바라한잔"></div>
                     <div><input type="hidden" name="id" value="aaa14"></div>
                 </div>
             </form>
@@ -97,7 +97,7 @@
 
     <%-- 댓글 --%>
     let initState = {
-        board_seq :${dto.board_seq},
+        boardSeq :${dto.boardSeq},
         replyArr : [],
         replyCount : 0,
         size : 50,
@@ -123,10 +123,10 @@
    /* 댓글 등록 */
     document.querySelector(".addReplyBtn").addEventListener("click", (e) => {
         const replyObj = {
-            board_seq:${dto.board_seq},
+            boardSeq:${dto.boardSeq},
             content: document.querySelector("textarea[name='content']").value,
             id:document.querySelector("input[name='id']").value,
-            nickName:document.querySelector("input[name='nickName']").value
+            nickname:document.querySelector("input[name='nickname']").value
         }
 
         replyService.addServerReply(replyObj)
@@ -134,30 +134,30 @@
     },false)
 
     const modReplyContent = document.querySelector("input[name='modReplyContent']")
-    const modNickNameInput = document.querySelector("input[name='modNickName']")
+    const modNicknameInput = document.querySelector("input[name='modNickname']")
     const modNickId = document.querySelector("input[name='modId']")
     const removeReplyBtn = document.querySelector(".removeReplyBtn")
 
     let targetLi;
 
     replyDIV.addEventListener("click", (e) => {
-        if(!e.target.getAttribute("data-reply_seq")){
+        if(!e.target.getAttribute("data-replySeq")){
             return;
         }
         targetLi = e.target.closest("li")
-        const reply_seq = parseInt(e.target.getAttribute("data-reply_seq"))
+        const replySeq = parseInt(e.target.getAttribute("data-replySeq"))
 
-        const replyObj = replyService.findReply(reply_seq)
+        const replyObj = replyService.findReply(replySeq)
         modReplyContent.value = replyObj.content
-        modNickNameInput.value = replyObj.nickName
+        modNicknameInput.value = replyObj.nickname
         modNickId.value = replyObj.id
-        removeReplyBtn.setAttribute("data-reply_seq", reply_seq)
+        removeReplyBtn.setAttribute("data-replySeq", replySeq)
 
     },false)
 
     removeReplyBtn.addEventListener("click", (e) => {
-        const reply_seq = parseInt(e.target.getAttribute("data-reply_seq"))
-        replyService.removeServer(reply_seq).then(result => {
+        const replySeq = parseInt(e.target.getAttribute("data-replySeq"))
+        replyService.removeServer(replySeq).then(result => {
             targetLi.innerHTML = "삭제된 댓글입니다."
         })
     }, false)
@@ -175,12 +175,12 @@
                 <div class="flex-shrink-0" style="display: table-cell">
                     <img class="rounded-circle" style="width: 50px; height: 50px; display: table-cell" src=\${reply.profile} alt="..." /></div>
                 <div class="ms-3 replyContent" style="margin-left: 10px">
-                    <div class="fw-bold" style="font-weight: bolder">\${reply.nickName}</div>
+                    <div class="fw-bold" style="font-weight: bolder">\${reply.nickname}</div>
                     <div class="replyUL" style="padding-left:1px; display: table-cell">\${reply.content}</div>
                     \${reply.buttonIcon}
                 </div>
                 <ul class="regDate" style="position:absolute; right: 5%;font-size: 13px">\${reply.dateStr}
-                    <i class="fas fa-solid fa-bars modBtn" data-reply_seq=\${reply.reply_seq} style="margin-left: 10px"></i></ul><br><br>
+                    <i class="fas fa-solid fa-bars modBtn" data-replySeq=\${reply.replySeq} style="margin-left: 10px"></i></ul><br><br>
             </div>`).join(" ")
 
             /* 대댓 */
@@ -191,7 +191,7 @@
                     <div style="display: flex">
                         <textarea class="form-control" type="text" name="content" placeholder="댓글 작성 시 타인에 대한 배려와 책임을 담아주세요" style="width: 85vw; "></textarea>
                         <button class="btn btn-default float-right addReplyBtn" href="#!" style="width: 10vw; margin-left: 10px; border-style: none">등록</button></div>
-                    <div><input type="hidden" name="nickName" value="아바라한잔"></div>
+                    <div><input type="hidden" name="nickname" value="아바라한잔"></div>
                     <div><input type="hidden" name="id" value="aaa14"></div>
                 </div>
             </form>`
@@ -275,7 +275,7 @@
             }
 
             const paramObj = {page:pageNum, size:state.size}
-            const res = await axios.get(`/replies/list/\${state.board_seq}`, {params: paramObj})
+            const res = await axios.get(`/replies/list/\${state.boardSeq}`, {params: paramObj})
             console.log(res.data)
 
             //pageNum setState의 넘기면 안돼...
@@ -295,12 +295,12 @@
             setState({replyCount: data.result})
         }
 
-        function findReply(reply_seq){
-            return state.replyArr.find(reply => reply.reply_seq === reply_seq)
+        function findReply(replySeq){
+            return state.replyArr.find(reply => reply.replySeq === replySeq)
         }
 
-        async function removeServer(reply_seq){
-            const res = await axios.delete(`/replies/\${reply_seq}`);
+        async function removeServer(replySeq){
+            const res = await axios.delete(`/replies/\${replySeq}`);
 
             //success
             const result = res.data.result

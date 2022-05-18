@@ -27,7 +27,7 @@ public class BoardMapperTests {
                 .title("테테테")
                 .content("스스스")
                 .id("kim")
-                .nickName("연느짱")
+                .nickname("연느짱")
                 .build();
 
         boardMapper.insert(board);
@@ -49,18 +49,18 @@ public class BoardMapperTests {
     @Test
     public void testSelectOne() {
 
-        int board_seq = 1;
+        int boardSeq = 1;
 
-        BoardVO board = boardMapper.selectOne(board_seq);
+        BoardVO board = boardMapper.selectOne(boardSeq);
 
         log.info(board);
     }
 
     @Test
     public void testDelete(){  //
-        int board_seq = 10;
+        int boardSeq = 10;
 
-        boardMapper.delete(board_seq);
+        boardMapper.delete(boardSeq);
 
     }
 

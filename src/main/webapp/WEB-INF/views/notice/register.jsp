@@ -38,7 +38,7 @@
                             <label for="inputName" style="width: 7vw; ">제 목</label>
                             <input type="text" id="inputName" name="title" class="form-control inputName" style="margin-right: 5vw">
                             <label for="inputName" style="width: 10vw;">닉네임</label>
-                            <input type="text" class="form-control inputId" name="nickName" placeholder="로그인 하면 자동으로 들어갈 곳" >
+                            <input type="text" class="form-control inputId" name="nickname" placeholder="로그인 하면 자동으로 들어갈 곳" >
                             <input type="hidden" name="id" value="member123">
                         </div>
                         <div class="hiddenClass"></div>

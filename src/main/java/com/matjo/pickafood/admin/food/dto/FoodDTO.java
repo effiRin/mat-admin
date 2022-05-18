@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class FoodDTO {
-    private Integer food_seq; //pk
+    private Integer foodSeq; //pk
     private String name; //이름
     private String company; //회사
     private String companyCategory;

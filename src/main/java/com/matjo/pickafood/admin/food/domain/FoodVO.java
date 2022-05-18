@@ -9,7 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 public class FoodVO {
 
-    private Integer food_seq; //pk
+    private Integer foodSeq; //pk
     private String name; //이름
     private String companyCategory;
     private String company; //회사

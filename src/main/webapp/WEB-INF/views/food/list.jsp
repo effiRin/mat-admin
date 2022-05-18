@@ -67,10 +67,10 @@
                         </thead>
                         <tbody class="foodList">
                         <c:forEach items="${dtoList}" var="food">
-                            <c:if test="${food.food_seq % 2 == 0}">
+                            <c:if test="${food.foodSeq % 2 == 0}">
                                 <tr style=" background-color: #f7faf8">
                             </c:if>
-                            <c:if test="${food.food_seq % 2 == 1}">
+                            <c:if test="${food.foodSeq % 2 == 1}">
                                 <tr style=" background-color: #fffde6">
                             </c:if>
                                 <td></td>

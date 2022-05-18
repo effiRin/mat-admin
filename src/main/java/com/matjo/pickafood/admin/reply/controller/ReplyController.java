@@ -24,13 +24,13 @@ public class ReplyController {
     private final ReplyService replyService;
 
     //댓글 목록
-    @GetMapping(value = "/list/{board_seq}" , produces = MediaType.APPLICATION_JSON_VALUE )
-    public List<ReplyDTO> getListOfBoard(@PathVariable("board_seq") Integer board_seq, ListDTO listDTO, Model model){
+    @GetMapping(value = "/list/{boardSeq}" , produces = MediaType.APPLICATION_JSON_VALUE )
+    public List<ReplyDTO> getListOfBoard(@PathVariable("boardSeq") Integer boardSeq, ListDTO listDTO, Model model){
         log.info("reply list....... :"+listDTO);
 
-        List<ReplyDTO> list = replyService.getListOfBoard(board_seq, listDTO);
+        List<ReplyDTO> list = replyService.getListOfBoard(boardSeq, listDTO);
 
-        //ListResponseDTO<ReplyDTO> responseDTO = replyService.getListOfBoard(board_seq, listDTO);
+        //ListResponseDTO<ReplyDTO> responseDTO = replyService.getListOfBoard(boardSeq, listDTO);
         //model.addAttribute("dtoList", responseDTO.getDtoList());
         //model.addAttribute("pageMaker", new PageMaker(listDTO.getPage(), total));
 

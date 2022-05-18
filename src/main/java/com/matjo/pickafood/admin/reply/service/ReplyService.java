@@ -8,6 +8,6 @@ import java.util.List;
 
 @Transactional
 public interface ReplyService {
-    List<ReplyDTO> getListOfBoard(Integer board_seq, ListDTO listDTO);
+    List<ReplyDTO> getListOfBoard(Integer boardSeq, ListDTO listDTO);
     int register(ReplyDTO replyDTO);
 }
