@@ -73,62 +73,20 @@
               <i class="fas fa-chart-pie mr-1"></i>
               Sales
             </h3>
-            <div class="card-tools">
-              <ul class="nav nav-pills ml-auto">
-                <li class="nav-item">
-                  <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Area</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>
-                </li>
-              </ul>
-            </div>
           </div>
           <div class="card-body">
             <div class="tab-content p-0">
-              
               <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;">
-                <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>
-              </div>
-              <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
-                <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
+                <div class="bar-chart-allergy">
+                  <canvas id="myChart" width="400" height="400"></canvas>
+                </div>
               </div>
             </div>
           </div>
         </div>
         
         
-        <div class="card direct-chat direct-chat-primary">
-          <div class="card-header">
-            <h3 class="card-title">Direct Chat</h3>
-            <div class="card-tools">
-              <span title="3 New Messages" class="badge badge-primary">3</span>
-              <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                <i class="fas fa-minus"></i>
-              </button>
-              <button type="button" class="btn btn-tool" title="Contacts" data-widget="chat-pane-toggle">
-                <i class="fas fa-comments"></i>
-              </button>
-              <button type="button" class="btn btn-tool" data-card-widget="remove">
-                <i class="fas fa-times"></i>
-              </button>
-            </div>
-          </div>
-          
        
-          
-          <div class="card-footer">
-            <form action="#" method="post">
-              <div class="input-group">
-                <input type="text" name="message" placeholder="Type Message ..." class="form-control">
-                <span class="input-group-append">
-<button type="button" class="btn btn-primary">Send</button>
-</span>
-              </div>
-            </form>
-          </div>
-        
-        </div>
         
         
         <div class="card">
@@ -267,43 +225,11 @@
         <div class="card bg-gradient-primary">
           <div class="card-header border-0">
             <h3 class="card-title">
-              <i class="fas fa-map-marker-alt mr-1"></i>
-              Visitors
+              월간 회원가입자수
             </h3>
-            
-            <div class="card-tools">
-              <button type="button" class="btn btn-primary btn-sm daterange" title="Date range">
-                <i class="far fa-calendar-alt"></i>
-              </button>
-              <button type="button" class="btn btn-primary btn-sm" data-card-widget="collapse" title="Collapse">
-                <i class="fas fa-minus"></i>
-              </button>
-            </div>
-          
           </div>
           <div class="card-body">
-            <div id="world-map" style="height: 250px; width: 100%;"></div>
-          </div>
-          
-          <div class="card-footer bg-transparent">
-            <div class="row">
-              <div class="col-4 text-center">
-                <div id="sparkline-1"></div>
-                <div class="text-white">Visitors</div>
-              </div>
-              
-              <div class="col-4 text-center">
-                <div id="sparkline-2"></div>
-                <div class="text-white">Online</div>
-              </div>
-              
-              <div class="col-4 text-center">
-                <div id="sparkline-3"></div>
-                <div class="text-white">Sales</div>
-              </div>
-            
-            </div>
-          
+            <svg width="300"  height="200"></svg>
           </div>
         </div>
         
@@ -352,7 +278,7 @@
           
   
           <div id="my-chart">
-            <svg width="300"  height="200"></svg>
+<%--           <svg width="300"  height="200"></svg>--%>
           </div>
           
         </div>
@@ -361,68 +287,46 @@
     </div>
   </div>
 </section>
-<script src="http://106.241.252.54:8085/d3/dist/d3.min.js"></script>
+<%--<script src="http://106.241.252.54:8085/d3/dist/d3.min.js"></script>--%>
 <%--<script type="text/javascript"  src="/resources/js/barChart.js"></script>--%>
+<%--<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>--%>
 <script>
-  const data = [2, 4, 8, 10];
+  // const ctx = document.getElementById('myChart').getContext('2d');
+  // const myChart = new Chart(ctx, {
+  //   type: 'bar',
+  //   data: {
+  //     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+  //     datasets: [{
+  //       label: '# of Votes',
+  //       data: [12, 19, 3, 5, 2, 3],
+  //       backgroundColor: [
+  //         'rgba(255, 99, 132, 0.2)',
+  //         'rgba(54, 162, 235, 0.2)',
+  //         'rgba(255, 206, 86, 0.2)',
+  //         'rgba(75, 192, 192, 0.2)',
+  //         'rgba(153, 102, 255, 0.2)',
+  //         'rgba(255, 159, 64, 0.2)'
+  //       ],
+  //       borderColor: [
+  //         'rgba(255, 99, 132, 1)',
+  //         'rgba(54, 162, 235, 1)',
+  //         'rgba(255, 206, 86, 1)',
+  //         'rgba(75, 192, 192, 1)',
+  //         'rgba(153, 102, 255, 1)',
+  //         'rgba(255, 159, 64, 1)'
+  //       ],
+  //       borderWidth: 1
+  //     }]
+  //   },
+  //   options: {
+  //     scales: {
+  //       y: {
+  //         beginAtZero: true
+  //       }
+  //     }
+  //   }
+  // });
   
-  //var svg = d3.select("#my-chart").append("svg"),
-  const svg = d3.select("svg")
-      width = svg.attr("width"),
-      height = svg.attr("height"),
-      radius = Math.min(width, height) / 2
-     g = svg.append("g").attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-
-  const color = d3.scaleOrdinal(['#4daf4a','#377eb8','#ff7f00','#984ea3','#e41a1c']);
-  
-  const pie = d3.pie();
-  
-  const arc = d3.arc()
-      .outerRadius(radius)
-      .innerRadius(radius - 60);
-  
-  const arcs = g.selectAll("arc")
-      .data(pie(data))
-      .enter()
-      .append("g")
-      .attr("class", "arc");
-
-  var label = d3.arc()
-      .outerRadius(radius)
-      .innerRadius(radius - 30);
-  
-  arcs.append("path")
-      .attr("d", arc)
-      .attr("fill", function(d, i) {
-        return color(i);
-      });
-  
-  arcs.append("text")
-      .attr("transform", function(d) {
-        return "translate(" + label.centroid(d) + ")";
-  })
-  .text(function(d){return d.data.browser;});
-
-
-  svg.append("g")
-      .attr("transform", "translate(" + (width / 2 - 120) + "," + 20 + ")")
-      .append("text")
-      .text("Browser use statistics - Jan 2017")
-      .attr("class", "title")
-  
-  // const dataFile = [5,10,15,20,25,30,35,50,56,60];
-  // const barColor = ['#4daf4a','#377eb8','#ff7f00','#984ea3','#e41a1c'];
-  // const returnData = {
-  //   width : 800,
-  //   height : 900,
-  //   color : barColor
-  // }
-  //
-  //
-  // const svg=  BarChart(dataFile,returnData);
-  // const test = d3.select("#my-chart")
-  //     .append("svg")
-  //     .data(dataFile);
   
 </script>
 
