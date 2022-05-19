@@ -64,7 +64,6 @@ t.parentNode.insertBefore(z,t)}))}(w,d,0,"script");})(window,document);</script>
       </li>
     </ul>
   <sec:authorize access="isAuthenticated()">
-    <sec:authentication property="principal.nickname" var="nickname"/>
     <sec:authentication property="principal.profile" var="profile" />
     <sec:authentication property="principal.name" var="name" />
 
@@ -75,7 +74,7 @@ t.parentNode.insertBefore(z,t)}))}(w,d,0,"script");})(window,document);</script>
           <%-- http://106.241.252.54:8085/img/undraw_profile.svg --%>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a>${nickname}</a>
+          <a class="dropdown-item" href="/admin/myPage">정보수정</a>
           <a class="dropdown-item" href="/logout">Logout</a>
         </div>
       </li>
