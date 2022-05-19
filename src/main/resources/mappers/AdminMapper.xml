@@ -5,10 +5,11 @@
 
 <mapper namespace="com.matjo.pickafood.admin.admin.mapper.AdminMapper">
 
-    <resultMap id="memberMap" type="com.matjo.pickafood.admin.admin.domain.AdminVO">
+    <resultMap id="adminMap" type="com.matjo.pickafood.admin.admin.domain.AdminVO">
         <result property="id" column="id"></result>
         <result property="pw" column="pw"></result>
         <result property="name" column="name"></result>
+        <result property="profile" column="profile"></result>
         <result property="position" column="position"></result>
         <result property="nickname" column="nickname"></result>
 
@@ -20,7 +21,7 @@
         <result property="rolename" column="rolename"></result>
     </resultMap>
 
-    <select id="selectOne"  resultMap="memberMap">
+    <select id="selectOne"  resultMap="adminMap">
         select * from admin inner join auth on admin.id = auth.id
         where admin.id = #{id}
     </select>

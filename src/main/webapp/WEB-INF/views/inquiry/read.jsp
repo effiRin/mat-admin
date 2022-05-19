@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <%@ include file="/WEB-INF/views/includes/header.jsp"%>
 <div class="row">
@@ -65,10 +66,14 @@
         </div>
       </c:if>
 
+<sec:authorize access="isAuthenticated()">
+  <sec:authentication property="principal.nickname" var="nickname"/>
+
       <%-- 답변 안 단 경우 --%>
       <c:if test="${dto.answerFlag == 0}">
         <form class="form-horizontal" action="/inquiry/read/${dto.inquirySeq}" method="post">
           <input type="hidden" name="inquirySeq" value="${dto.inquirySeq}">
+          <input type="hidden" name="answerId" value="${nickname}">
           <div class="card-body">
             <div class="form-group row">
               <label for="recommand" class="col-sm-2 col-form-label">답 변</label>
@@ -82,6 +87,7 @@
           </div>
         </form>
       </c:if>
+</sec:authorize>
     </div>
   </div>
 
