@@ -67,8 +67,8 @@
 
       <%-- 답변 안 단 경우 --%>
       <c:if test="${dto.answerFlag == 0}">
-        <form class="form-horizontal" action="/inquiry/read/${dto.inquiry_seq}" method="post">
-          <input type="hidden" name="inquiry_seq" value="${dto.inquiry_seq}">
+        <form class="form-horizontal" action="/inquiry/read/${dto.inquirySeq}" method="post">
+          <input type="hidden" name="inquirySeq" value="${dto.inquirySeq}">
           <div class="card-body">
             <div class="form-group row">
               <label for="recommand" class="col-sm-2 col-form-label">답 변</label>

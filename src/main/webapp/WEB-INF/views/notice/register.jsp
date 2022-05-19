@@ -38,7 +38,7 @@
                             <label for="inputName" style="width: 7vw; ">제 목</label>
                             <input type="text" id="inputName" name="title" class="form-control inputName" style="margin-right: 5vw">
                             <label for="inputName" style="width: 10vw;">닉네임</label>
-                            <input type="text" class="form-control inputId" name="nickName" placeholder="로그인 하면 자동으로 들어갈 곳" >
+                            <input type="text" class="form-control inputId" name="nickname" placeholder="로그인 하면 자동으로 들어갈 곳" >
                             <input type="hidden" name="id" value="member123">
                         </div>
                         <div class="hiddenClass"></div>
@@ -175,8 +175,7 @@
                 </div>`).join(" ")
 
             fileInput.remove();
-            document.querySelector(".uploadInputDiv").appendChild(cloneInput);
-            //document.querySelector(".uploadInputDiv").appendChild(cloneInput).cloneNode()
+            document.querySelector(".uploadInputDiv").appendChild(cloneInput).cloneNode()
             //업로드 버튼을 눌렀을 때 그제서야 버튼을 찾기 때문에 이렇게 하는 게 가능
             //업로드 버튼을 누르면 dom 이 복구된 상태에서 찾기 때문에 읽을 수 있다.
         })
@@ -196,7 +195,7 @@
     async function uploadToServer (formObj) {
         const response = await axios({
             method: 'post',
-            url: '/upload1',
+            url: '/upload',
             data: formObj,
             headers: {
                 'Content-Type': 'multipart/form-data',

@@ -13,7 +13,10 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @Log4j2
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(locations="file:src/main/webapp/WEB-INF/root-context.xml")
+@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/root-context.xml"
+        ,"file:src/main/webapp/WEB-INF/security-context.xml"
+        ,"file:src/main/webapp/WEB-INF/servlet-context.xml"
+})
 public class AdminMapperTest {
 
     @Autowired(required = false)
@@ -23,43 +26,28 @@ public class AdminMapperTest {
     private PasswordEncoder passwordEncoder;
 
     @Test
-    public void testInsert(){
+    public void testInsert() {
 
-            AdminVO adminVO = AdminVO.builder()
-                    .id("kim")
-                    .pw(passwordEncoder.encode("aaa"))
-                    .name("김이슬")
-                    .nickname("앵")
-                    .position("관리자")
-                    .build();
+        AdminVO adminVo = AdminVO.builder()
+                .id("kim")
+                .pw(passwordEncoder.encode("aaa"))
+                .name("김이슬")
+                .nickname("하이")
+                .position("매니저")
+                .build();
 
-            adminMapper.register(adminVO);
+        log.debug("adminVo: {}", adminVo);
+        log.debug("pw byte: {}", "$2a$10$TJSqFtRd/WBnY/tiRRcx4OQ32kAFQsSLUTSSxrdA12vBWw4VwLW7q".getBytes().length);
 
+        adminMapper.register(adminVo);
+// nn
+        Auth auth = Auth.builder()
+                .id("kim")
+                .rolename("ADMIN") /* ROLE_ 는 자동으로 붙는 접두사임 */
+                .build();
 
-            Auth authAdmin = Auth.builder()
-                    .id("kim")
-                    .rolename("ADMIN") /* ROLE_ 는 자동으로 붙는 접두사임 */
-                    .build();
-            adminMapper.addAuth(authAdmin);
-
-    }
-
-
-    @Test
-    public void testSelectOne(){
-        String id ="user90";
-        /* 권한이 두개 이상인 사람은 문제 .. */
-
-        AdminVO adminVO = adminMapper.selectOne(id);
-
-        log.info("------------------------");
-        log.info("adminVO: "+ adminVO);
-        log.info ("-------------------------");
-
+        adminMapper.addAuth(auth);
 
     }
-
-
-
 
 }

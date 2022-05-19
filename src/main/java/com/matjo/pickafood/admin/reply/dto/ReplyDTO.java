@@ -11,14 +11,14 @@ import java.time.LocalDateTime;
 @Data
 public class ReplyDTO {
 
-    private Integer reply_seq;
-    private Integer board_seq;
-    private Integer rootReply_seq;
-    private Integer originReply_seq;
+    private Integer replySeq;
+    private Integer boardSeq;
+    private Integer rootReplySeq;
+    private Integer originReplySeq;
 
     private String content;
     private String id;
-    private String nickName;
+    private String nickname;
     private String profile;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd kk:mm:ss")
@@ -40,7 +40,7 @@ public class ReplyDTO {
     private String buttonIcon;
 
     public String getRoot() {
-        if(originReply_seq == 0){
+        if(originReplySeq == 0){
             root = "padding-left: 0px";
         }else {
             root = "padding-left: 55px";
@@ -49,7 +49,7 @@ public class ReplyDTO {
     }
 
     public String getButtonIcon(){
-        if(originReply_seq == 0){
+        if(originReplySeq == 0){
             buttonIcon = "<div class=\"secondReplyDIV\"><button class=\"secondReply\">답글쓰기</button></div>";
         }else {
             buttonIcon = "";

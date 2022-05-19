@@ -5,5 +5,5 @@ import com.matjo.pickafood.admin.notice.domain.NoticeVO;
 import org.apache.ibatis.annotations.Param;
 
 public interface NoticeMapper extends GenericMapper<NoticeVO, Integer> {
-    void updateReplyCount(@Param("board_seq") Integer board_seq, @Param("amount")  int amount);
+    void updateReplyCount(@Param("boardSeq") Integer bno, @Param("amount")  int amount);
 }

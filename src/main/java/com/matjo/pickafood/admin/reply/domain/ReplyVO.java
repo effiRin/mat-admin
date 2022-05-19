@@ -14,14 +14,14 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class ReplyVO {
 
-    private Integer reply_seq;
-    private Integer board_seq;
-    private Integer originReply_seq;
-    private Integer rootReply_seq;
+    private Integer replySeq;
+    private Integer boardSeq;
+    private Integer originReplySeq;
+    private Integer rootReplySeq;
 
     private String content;
     private String id;
-    private String nickName;
+    private String nickname;
     private String profile;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd kk:mm:ss")

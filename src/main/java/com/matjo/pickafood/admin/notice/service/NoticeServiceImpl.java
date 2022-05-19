@@ -44,8 +44,8 @@ public class NoticeServiceImpl implements NoticeService {
     //공지사항 상세 페이지 - 조회
     @Override
     public NoticeDTO getOne(Integer bno) {
-        int board_seq = bno;
-        NoticeVO noticeVO = noticeMapper.selectOne(board_seq);
+        int boardSeq = bno;
+        NoticeVO noticeVO = noticeMapper.selectOne(boardSeq);
         NoticeDTO noticeDTO = modelMapper.map(noticeVO, NoticeDTO.class);
         return noticeDTO;
     }
@@ -58,14 +58,14 @@ public class NoticeServiceImpl implements NoticeService {
 
         NoticeVO noticeVO = modelMapper.map(noticeDTO, NoticeVO.class);
         noticeMapper.insert(noticeVO);
-        log.info("boardSeq: {}", noticeVO.getBoard_seq());
+        log.info("boardSeq: {}", noticeVO.getBoardSeq());
 
         if (noticeDTO.getFileSeq() != null) {
             String[] fileSeqArray = noticeDTO.getFileSeq().split("\\,");
             log.info("file count : {}", fileSeqArray.length);
             for (int i = 0; i < fileSeqArray.length; i++) {
                 FileDTO fileDTO = FileDTO.builder()
-                        .boardSeq(noticeVO.getBoard_seq())
+                        .boardSeq(noticeVO.getBoardSeq())
                         .fileSeq(Integer.parseInt(fileSeqArray[i]))
                         .build();
                 fileMapper.insertBoardFile(fileDTO);
