@@ -5,10 +5,6 @@ import com.matjo.pickafood.admin.board.dto.BoardDTO;
 import com.matjo.pickafood.admin.board.dto.UploadResultDTO;
 import com.matjo.pickafood.admin.common.dto.*;
 import com.matjo.pickafood.admin.common.dto.ListDTO;
-import com.matjo.pickafood.admin.board.vo.BoardVO;
-import com.matjo.pickafood.admin.common.dto.ListDTO;
-import com.matjo.pickafood.admin.common.dto.ListResponseDTO;
-import com.matjo.pickafood.admin.common.dto.ListDTO;
 import com.matjo.pickafood.admin.common.dto.ListResponseDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -16,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import java.util.List;
 
 @Log4j2
