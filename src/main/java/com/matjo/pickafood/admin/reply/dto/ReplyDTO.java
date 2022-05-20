@@ -66,7 +66,7 @@ public class ReplyDTO {
             date = date/60;
             dateStr = (int)date+"시간 전";
         }else if(date < (60*168)){
-            date = date/420;
+            date = date/1440;
             dateStr = (int)date+"일 전";
         }else{
             dateStr = regDate+"";

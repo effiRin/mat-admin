@@ -49,7 +49,7 @@
 
     <update id="answerContent">
         update inquiry
-        set answer_content = #{answerContent} ,answer_date = now(), answer_flag = 1, answer_id='yiseul'
+        set answer_content = #{answerContent} ,answer_date = now(), answer_flag = 1, answer_id = #{answerId}
         where inquiry_seq = #{inquirySeq}
     </update>
 

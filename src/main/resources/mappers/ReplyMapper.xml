@@ -19,8 +19,8 @@
     </select>
 
     <insert id="insert">
-        insert into reply (board_seq, content, id, nickname)
-        values (#{boardSeq}, #{content}, #{id}, #{nickname})
+        insert into reply (board_seq, content, id, nickname, profile)
+        values (#{boardSeq}, #{content}, #{id}, #{nickname}, #{profile})
     </insert>
 
 </mapper>

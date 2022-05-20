@@ -73,12 +73,12 @@ public class InquiryController {
     }
 
     //상세 조회 코멘트 달기
-    @PostMapping("/read/{bno}")
+    @PostMapping("/read/{inquirySeq}")
     public String answerContentPost(InquiryDTO inquiryDTO){
 
         inquiryService.answerContent(inquiryDTO);
 
-        return "redirect:/inquiry/read/{bno}";
+        return "redirect:/inquiry/read/{inquirySeq}";
     }
 
 
