@@ -42,7 +42,7 @@ public class CJFoodCrawlerTests {
 
     foodDTOList.forEach(foodDTO -> {
       System.out.println(foodDTO);
-    //  foodService.insert(foodDTO);
+//      foodService.insert(foodDTO);
     });
 
   }

@@ -16,7 +16,7 @@ import java.util.List;
 public class CJFoodCrawler {
 
   private final WebDriver driver;
-  private final String mainUrl = "https://www.cjthemarket.com/pc/ctg/ctgList?ctgrId=0018";
+  private final String mainUrl = "https://www.cjthemarket.com/pc/ctg/ctgList?ctgrId=0019";
 
   public CJFoodCrawler(WebDriver driver) {
     this.driver = driver;
@@ -67,7 +67,7 @@ public class CJFoodCrawler {
       }); // productList
     } // for
 
-    System.out.println(productObjs);
+//    System.out.println(productObjs);
     System.out.println(productObjs.size());
     System.out.println("===============================================");
 
@@ -105,11 +105,18 @@ public class CJFoodCrawler {
 
           if(allergy.contains("이 제품은")) {
             int start = allergy.indexOf("이 제품은");
-            int end = allergy.indexOf("제품과");
-            sameFactory = allergy.substring(start + 6, end - 6);
+
+            if(allergy.contains("혼입")){
+              int end = allergy.indexOf("혼입");
+              sameFactory = allergy.substring(start + 6, end - 1);
+            }
+            else {
+              int end = allergy.indexOf("제품과");
+              sameFactory = allergy.substring(start + 6, end - 6);
+            }
 
             allergy = allergy.substring(0, start-2);
-            productObjs.get(i).setSameFactory(sameFactory);
+            productObjs.get(i).setSame_factory(sameFactory);
           } // if (sameFactory) - 알레르기 물질 함유
 
           if(allergy.contains("알레르기 유발물질 함유")){
@@ -120,16 +127,22 @@ public class CJFoodCrawler {
 
           if(temp2.contains("이 제품은")) {
             int start = temp2.indexOf("이 제품은");
-            int end = temp2.indexOf("제품과");
 
-            sameFactory = temp2.substring(start + 6, end - 6);
-            productObjs.get(i).setSameFactory(sameFactory);
+            if(temp2.contains("혼입")){
+              int end = temp2.indexOf("혼입");
+              sameFactory = temp2.substring(start + 6, end - 1);
+            }
+            else {
+              int end = temp2.indexOf("제품과");
+              sameFactory = temp2.substring(start + 6, end - 6);
+            }
+            productObjs.get(i).setSame_factory(sameFactory);
           } // if (sameFactory) - 소비자 주의사항
 
           productObjs.get(i).setIngredient(ingredient);
-          productObjs.get(i).setAllergyIngredient(allergy);
+          productObjs.get(i).setAllergy_ingredient(allergy);
           productObjs.get(i).setCompany("CJ");
-          productObjs.get(i).setCompanyCategory("40004");
+          productObjs.get(i).setCompany_category("40004");
 
           List<WebElement> imgElements = driver.findElement(By.className("product-images"))
                   .findElement(By.className("product-images-item"))
@@ -144,7 +157,7 @@ public class CJFoodCrawler {
               continue;
             }
 
-            productObjs.get(i).setUrl(src);
+            productObjs.get(i).setMain_image(src);
           }//for
 
           System.out.println(productObjs.get(i));
