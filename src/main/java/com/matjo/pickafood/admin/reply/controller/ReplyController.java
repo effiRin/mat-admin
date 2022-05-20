@@ -41,8 +41,9 @@ public class ReplyController {
     //댓글 등록
     @PostMapping("/")
     public Map<String,Integer> registerReply(@RequestBody ReplyDTO replyDTO){
+        log.info("-------댓글등록확인 -------");
         log.info(replyDTO);
-        log.info("-------댓글 등록 확인 -------");
+        log.info("-------댓글등록확인 -------");
 
         int totalCount = replyService.register(replyDTO);
         return Map.of("result", totalCount);

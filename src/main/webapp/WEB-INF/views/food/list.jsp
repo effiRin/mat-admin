@@ -57,7 +57,7 @@
                 </div>
 
                 <div class="card-body table-responsive p-0">
-                    <table class="table table-hover text-nowrap">
+                    <table class="table table-hover text-nowrap" >
                         <thead>
                         <tr>
                             <th>#</th>
@@ -77,9 +77,9 @@
                                 <td><img src="${food.mainImage}" style="max-width:100px"/></td>
                                 <td style="text-align: left;">
                                     <span style="font-size: 15px">${food.name}</span><hr>
-                                    <span style="font-size: 18px">${food.ingredient}</span>
+                                    <span style="font-size: 18px; max-width: 90vw; word-wrap: break-word;"><pre>${food.ingredient}</pre></span>
                                     <c:if test="${food.sameFactory != null}">
-                                        <hr><span style="font-size: 15px">${food.sameFactory}</span>
+                                        <hr><span style="font-size: 15px"><pre>${food.sameFactory}</pre></span>
                                     </c:if>
                                 </td>
                             </tr>

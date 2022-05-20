@@ -6,6 +6,7 @@
 <mapper namespace="com.matjo.pickafood.admin.admin.mapper.AdminMapper">
 
     <resultMap id="adminMap" type="com.matjo.pickafood.admin.admin.domain.AdminVO">
+        <result property="inquiry_seq" column="inquirySeq"></result>
         <result property="id" column="id"></result>
         <result property="pw" column="pw"></result>
         <result property="name" column="name"></result>

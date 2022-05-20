@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <%@ include file="/WEB-INF/views/includes/header.jsp"%>
 
@@ -62,15 +63,21 @@
             </div>
             <ul class="pageUL"></ul>
 
+<sec:authorize access="isAuthenticated()">
+    <sec:authentication property="principal.profile" var="profile" />
+    <sec:authentication property="principal.nickname" var="nickname" />
+    <sec:authentication property="principal.id" var="id" />
             <form class="mb-4">
                 <div>
                     <div style="display: flex">
                         <textarea class="form-control" type="text" name="content" placeholder="댓글 작성 시 타인에 대한 배려와 책임을 담아주세요" style="width: 85vw; "></textarea>
                         <button class="btn btn-default float-right addReplyBtn" href="#!" style="width: 10vw; margin-left: 10px; border-style: none">등록</button></div>
-                    <div><input type="hidden" name="nickname" value="아바라한잔"></div>
-                    <div><input type="hidden" name="id" value="aaa14"></div>
+                    <div><input type="hidden" name="id" value="${id}"></div>
+                    <div><input type="hidden" name="nickname" value="${nickname}"></div>
+                    <div><input type="hidden" name="profile" value="${profile}"></div>
                 </div>
             </form>
+</sec:authorize>
             <a class="badge bg-secondary text-decoration-none link-light removeReplyBtn" href="#!">삭제</a>
 
         </div>
@@ -126,8 +133,11 @@
             boardSeq:${dto.boardSeq},
             content: document.querySelector("textarea[name='content']").value,
             id:document.querySelector("input[name='id']").value,
-            nickname:document.querySelector("input[name='nickname']").value
+            nickname:document.querySelector("input[name='nickname']").value,
+            profile:document.querySelector("input[name='profile']").value
         }
+
+        console.log(replyObj)
 
         replyService.addServerReply(replyObj)
 
@@ -136,6 +146,7 @@
     const modReplyContent = document.querySelector("input[name='modReplyContent']")
     const modNicknameInput = document.querySelector("input[name='modNickname']")
     const modNickId = document.querySelector("input[name='modId']")
+    const modProfile = document.querySelector("input[name='modProfile']")
     const removeReplyBtn = document.querySelector(".removeReplyBtn")
 
     let targetLi;
@@ -151,6 +162,7 @@
         modReplyContent.value = replyObj.content
         modNicknameInput.value = replyObj.nickname
         modNickId.value = replyObj.id
+        modProfile.value = replyObj.profile
         removeReplyBtn.setAttribute("data-replySeq", replySeq)
 
     },false)
@@ -290,7 +302,7 @@
         async function addServerReply(replyObj){
             const res = await axios.post(`/replies/`, replyObj)
             const data = res.data
-            //console.log("addReplyResult:",data)
+            console.log("addReplyResult:",data)
 
             setState({replyCount: data.result})
         }
