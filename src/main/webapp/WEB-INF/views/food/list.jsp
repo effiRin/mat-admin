@@ -3,7 +3,15 @@
 
 <%@ include file="/WEB-INF/views/includes/header.jsp"%>
 <link href="/resources/css/table.css" rel="stylesheet" type="text/css">
-
+<style>
+    .box {
+        width: 850px;
+        white-space: nowrap;
+        overflow: hidden;
+        display: block;
+        text-overflow:ellipsis;
+    }
+</style>
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
@@ -66,6 +74,11 @@
                         </tr>
                         </thead>
                         <tbody class="foodList">
+                        <style>
+                            .hidden {
+                                display: none;
+                            }
+                        </style>
                         <c:forEach items="${dtoList}" var="food">
                             <c:if test="${food.foodSeq % 2 == 0}">
                                 <tr style=" background-color: #f7faf8">
@@ -77,7 +90,12 @@
                                 <td><img src="${food.mainImage}" style="max-width:100px"/></td>
                                 <td style="text-align: left;">
                                     <span style="font-size: 15px">${food.name}</span><hr>
-                                    <span style="font-size: 18px; max-width: 90vw; word-wrap: break-word;"><pre>${food.ingredient}</pre></span>
+
+                                    <div class="ingredients">
+                                        <span class="box"  style="font-size: 18px">${food.ingredient}</span>
+                                        <span class="show-box hidden"style="font-size: 18px">${food.ingredient}</span>
+                                    </div>
+
                                     <c:if test="${food.sameFactory != null}">
                                         <hr><span style="font-size: 15px"><pre>${food.sameFactory}</pre></span>
                                     </c:if>
@@ -127,11 +145,16 @@
 </form>
 
 <script>
-    const inquiryList = document.querySelector(".foodList");
+    // function test(){
+    //     $(".box").attr("display:none");
+    //     $(".show-box").remove("hidden");
+    // }
+    const foodList = document.querySelector(".foodList");
 
     const linkDiv = document.querySelector(".pagination")
     const actionForm = document.querySelector(".actionForm")
-
+    
+    
     linkDiv.addEventListener("click", (e) => {
         e.stopPropagation()
         e.preventDefault()
@@ -148,7 +171,21 @@
 
     }, false)
     // ↑ 버블링 ok 캡쳐링은 false
-
+    
+    foodList.addEventListener("click", (e) => {
+        const target = e.target.closest("div");
+        if (target.className !== "ingredients") {
+            return;
+        }
+        
+        const boxShort = target.querySelector(".box");
+        const boxLong = target.querySelector(".show-box");
+        
+        boxShort.classList.toggle("hidden")
+        boxLong.classList.toggle("hidden")
+        
+    }, false)
+    
 </script>
 
 <%@ include file="/WEB-INF/views/includes/footer.jsp"%>
