@@ -31,28 +31,31 @@ public class CJFoodCrawlerTests {
     String WEB_DRIVER_PATH = "C:\\Users\\effir\\chromedriver.exe"; // 드라이버 경로
     System.setProperty(WEB_DRIVER_ID, WEB_DRIVER_PATH);
     SeleniumConfig config =
-            new SeleniumConfig(WEB_DRIVER_ID,WEB_DRIVER_PATH);
+            new SeleniumConfig(WEB_DRIVER_ID, WEB_DRIVER_PATH);
     crawler = new CJFoodCrawler(config.getDriver());
   }
 
   @Test
-  public void testCrawlFoodList() throws Exception{
+  public void testCrawlFoodList() throws Exception {
 
     List<FoodDTO> foodDTOList = crawler.crawlFoodList();
 
     foodDTOList.forEach(foodDTO -> {
-      System.out.println(foodDTO);
+              System.out.println(foodDTO);
 //      foodService.insert(foodDTO);
-    });
+            });
 
-  }
+//    for (int i = 0; i < foodDTOList.size() ; i++) {
+//      foodService.insert(foodDTOList.get(i));
+//      }
+    }
 
-  @Test
-  public void testFoodService() {
-    FoodDTO food = new FoodDTO();
-    food.setCompany("삼양");
-    food.setIngredient("튀긴면, 라면스프");
-    food.setName("삼양라면");
-    foodService.insert(food);
+    @Test
+    public void testFoodService () {
+      FoodDTO food = new FoodDTO();
+      food.setCompany("삼양");
+      food.setIngredient("튀긴면, 라면스프");
+      food.setName("삼양라면");
+      foodService.insert(food);
+    }
   }
-}

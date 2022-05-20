@@ -16,7 +16,7 @@ import java.util.List;
 public class CJFoodCrawler {
 
   private final WebDriver driver;
-  private final String mainUrl = "https://www.cjthemarket.com/pc/ctg/ctgList?ctgrId=0019";
+  private final String mainUrl = "https://www.cjthemarket.com/pc/ctg/ctgList?ctgrId=0022";
 
   public CJFoodCrawler(WebDriver driver) {
     this.driver = driver;
@@ -37,11 +37,12 @@ public class CJFoodCrawler {
 
     List<FoodDTO> productObjs = new ArrayList<>();
 
-    int pageNum = driver.findElement(By.className("paging")).findElements(By.tagName("li")).size();
+//    int pageNum = driver.findElement(By.className("paging")).findElements(By.tagName("li")).size();
+    int prdCount = driver.findElement(By.id("prodListArea")).findElements(By.className("product-item")).size();
 
-    for (int i = 1; i <= pageNum; i++) {
-      driver.findElement(By.xpath("//*[@id=\"prodListPageArea\"]/a[" + i + "]")).sendKeys("\n");
-      Thread.sleep(3000);
+//    for (int i = 1; i <= pageNum; i++) {
+//      driver.findElement(By.xpath("//*[@id=\"prodListPageArea\"]/a[" + i + "]")).sendKeys("\n");
+//      Thread.sleep(3000);
 
       List<WebElement> productList = driver.findElement(By.id("prodListArea")).findElements(By.className("product-item"));
 
@@ -65,15 +66,17 @@ public class CJFoodCrawler {
         }
 
       }); // productList
-    } // for
+//    } // for
 
 //    System.out.println(productObjs);
-    System.out.println(productObjs.size());
+//    System.out.println(productObjs.size());
+    System.out.println(prdCount);
     System.out.println("===============================================");
 
     Thread.sleep(2000);
 
-    for (int i = 0; i < productObjs.size(); i++) {
+    for (int i = 0; i < prdCount; i++) {
+//    for (int i = 0; i < productObjs.size(); i++) {
       driver.get("https://www.cjthemarket.com/pc/prod/prodDetail?prdCd=" + productObjs.get(i).getNum() + "&ctgrId=0018&plnId=&giftSetEvntId=");
       Thread.sleep(1500);
 
@@ -110,6 +113,11 @@ public class CJFoodCrawler {
               int end = allergy.indexOf("혼입");
               sameFactory = allergy.substring(start + 6, end - 1);
             }
+
+            if(allergy.contains("사용한")){
+              int end = allergy.indexOf("사용");
+              sameFactory = allergy.substring(start + 6, end - 2);
+            }
             else {
               int end = allergy.indexOf("제품과");
               sameFactory = allergy.substring(start + 6, end - 6);
@@ -132,6 +140,12 @@ public class CJFoodCrawler {
               int end = temp2.indexOf("혼입");
               sameFactory = temp2.substring(start + 6, end - 1);
             }
+
+            if(temp2.contains("사용한")){
+              int end = temp2.indexOf("사용한");
+              sameFactory = temp2.substring(start + 6, end - 2);
+            }
+
             else {
               int end = temp2.indexOf("제품과");
               sameFactory = temp2.substring(start + 6, end - 6);
