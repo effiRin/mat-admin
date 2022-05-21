@@ -43,8 +43,8 @@
         <include refid="search"></include>
     </select>
   <insert id="insert">
-    insert into food (name, company_category, company, main_image, ingredient)
-    values (#{name}, #{companyCategory}, #{company}, #{mainImage}, #{ingredient})
+    insert into food (name, company_category, company, main_image, ingredient, allergy_ingredient, same_factory)
+    values (#{name}, #{company_category}, #{company}, #{main_image}, #{ingredient}, #{allergy_ingredient}, #{same_factory})
   </insert>
 
 </mapper>
