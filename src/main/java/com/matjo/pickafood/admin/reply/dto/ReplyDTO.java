@@ -2,12 +2,17 @@ package com.matjo.pickafood.admin.reply.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class ReplyDTO {
 
@@ -40,7 +45,7 @@ public class ReplyDTO {
     private String buttonIcon;
 
     public String getRoot() {
-        if(originReplySeq == 0){
+        if(originReplySeq == null || originReplySeq == 0){
             root = "padding-left: 0px";
         }else {
             root = "padding-left: 55px";
@@ -49,7 +54,7 @@ public class ReplyDTO {
     }
 
     public String getButtonIcon(){
-        if(originReplySeq == 0){
+        if(originReplySeq == null ||originReplySeq == 0){
             buttonIcon = "<div class=\"secondReplyDIV\"><button class=\"secondReply\">답글쓰기</button></div>";
         }else {
             buttonIcon = "";
