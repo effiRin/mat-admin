@@ -72,7 +72,7 @@ public class BoardController {
 
         model.addAttribute("board", boardService.getOne(boardSeq));
 
-        return "/board/modify/" + boardSeq ;
+        return "/board/modify";
     }
 
     @PostMapping("/modify/{boardSeq}")
