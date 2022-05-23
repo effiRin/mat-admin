@@ -6,7 +6,6 @@
 <mapper namespace="com.matjo.pickafood.admin.admin.mapper.AdminMapper">
 
     <resultMap id="adminMap" type="com.matjo.pickafood.admin.admin.domain.AdminVO">
-        <result property="inquiry_seq" column="inquirySeq"></result>
         <result property="id" column="id"></result>
         <result property="pw" column="pw"></result>
         <result property="name" column="name"></result>
@@ -26,5 +25,9 @@
         select * from admin inner join auth on admin.id = auth.id
         where admin.id = #{id}
     </select>
+
+    <update id="update">
+        update admin set profile = #{profile}, nickname = #{nickname} where id= #{id}
+    </update>
 
 </mapper>

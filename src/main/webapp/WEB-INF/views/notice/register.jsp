@@ -19,6 +19,9 @@
             </div>
         </div>
     </section>
+<sec:authorize access="isAuthenticated()">
+    <sec:authentication property="principal.profile" var="profile" />
+    <sec:authentication property="principal.nickname" var="nickname" />
 
     <section class="content">
         <div class="row">
@@ -37,8 +40,8 @@
                         <div class="form-group" style="display: flex">
                             <label for="inputName" style="width: 7vw; ">제 목</label>
                             <input type="text" id="inputName" name="title" class="form-control inputName" style="margin-right: 5vw">
-                            <label for="inputName" style="width: 10vw;">닉네임</label>
-                            <input type="text" class="form-control inputId" name="nickname" placeholder="로그인 하면 자동으로 들어갈 곳" >
+                            <label for="inputName" style="width: 10vw;">닉네임${nickname}</label>
+                            <input type="text" class="form-control inputId" name="nickname" value="nickname" readonly>
                             <input type="hidden" name="id" value="member123">
                         </div>
                         <div class="hiddenClass"></div>
@@ -93,7 +96,7 @@
         </div>
     </section>
 
-
+</sec:authorize>
 
 <%-- Axios --%>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
