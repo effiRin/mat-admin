@@ -56,12 +56,12 @@ public class BoardController {
 
     }
 
-    @GetMapping("/read/{bno}")
-    public String read(@PathVariable("bno") Integer bno, ListDTO listDTO, Model model){
+    @GetMapping("/read/{boardSeq}")
+    public String read(@PathVariable("boardSeq") Integer boardSeq, ListDTO listDTO, Model model){
 
         log.info(".read");
         model.addAttribute("listDTO", listDTO);
-        model.addAttribute("board", boardService.getOne(bno));
+        model.addAttribute("board", boardService.getOne(boardSeq));
 
         return "/board/read";
     }
@@ -72,7 +72,7 @@ public class BoardController {
 
         model.addAttribute("board", boardService.getOne(boardSeq));
 
-        return "/board/modify";
+        return "/board/modify/" + boardSeq ;
     }
 
     @PostMapping("/modify/{boardSeq}")
@@ -85,24 +85,24 @@ public class BoardController {
         return "redirect:/board/read/" + boardSeq + listDTO.getLink();
     }
 
-    @GetMapping({"/remove/{bno}"})
+    @GetMapping({"/remove/{boardSeq}"})
     public String getNotSupported(){
         return "redirect:/board/list";
     }
 
-    @PostMapping("/remove/{bno}")
-    public String removePost(@PathVariable("bno") Integer bno, RedirectAttributes rttr) {
+    @PostMapping("/remove/{boardSeq}")
+    public String removePost(@PathVariable("boardSeq") Integer boardSeq, RedirectAttributes rttr) {
 
-        boardService.remove(bno);
+        boardService.remove(boardSeq);
         rttr.addFlashAttribute("result", "removed");
         return "redirect:/board/list";
     }
 
-    @GetMapping("/files/{bno}")
+    @GetMapping("/files/{boardSeq}")
     @ResponseBody
-    public List<UploadResultDTO> getFiles(@RequestParam("bno") Integer bno){
+    public List<UploadResultDTO> getFiles(@RequestParam("boardSeq") Integer boardSeq){
 
-        return boardService.getFiles(bno);
+        return boardService.getFiles(boardSeq);
     }
 
     }

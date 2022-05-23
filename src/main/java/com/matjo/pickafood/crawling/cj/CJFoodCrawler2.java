@@ -26,7 +26,6 @@ public class CJFoodCrawler2 {
                 "C:\\Users\\effir\\chromedriver.exe"
         );
         CJFoodCrawler crawler = new CJFoodCrawler(config.getDriver());
-
     }
 
     public List<FoodDTO> crawlFoodList() throws Exception {

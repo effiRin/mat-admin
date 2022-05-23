@@ -57,12 +57,12 @@
           <table class="table table-hover text-nowrap">
             <thead>
             <tr>
-              <th>Num</th>
-              <th>Title</th>
-              <th>NickName</th>
-              <th>regDate</th>
-              <th>Views</th>
-              <th>Like</th>
+              <th> </th>
+              <th>제목</th>
+              <th>닉네임</th>
+              <th>등록일</th>
+              <th>조회수</th>
+              <th>좋아요</th>
             </tr>
             </thead>
             <tbody> <%-- 내용 forEach로 감싸기 --%>
@@ -116,8 +116,6 @@
   <input type="hidden" name="type" value="${listDTO.type == null?'':listDTO.type}">
   <input type="hidden" name="keyword" value="${listDTO.keyword == null? '':listDTO.keyword}">
 </form>
-
-${pageMaker}
 
 <script>
 
