@@ -1,10 +1,9 @@
-package com.matjo.pickafood.admin.reply.domain;
+package com.matjo.pickafood.admin.board.reply.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -17,7 +16,7 @@ public class ReplyVO {
     private Integer replySeq;
     private Integer boardSeq;
     private Integer originReplySeq;
-    private Integer replyNum;
+    private Integer ReplySeq;
 
     private String content;
     private String id;

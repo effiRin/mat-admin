@@ -1,11 +1,11 @@
-package com.matjo.pickafood.admin.reply.dto;
-
+package com.matjo.pickafood.admin.board.reply.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDateTime;
 
 @AllArgsConstructor
@@ -15,7 +15,7 @@ public class ReplyDTO {
 
     private Integer replySeq;
     private Integer boardSeq;
-    private Integer replyNum;
+    private Integer numReplySeq;
     private Integer originReplySeq;
 
     private String content;
@@ -24,11 +24,11 @@ public class ReplyDTO {
     private String profile;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd kk:mm:ss")
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime regDate;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd kk:mm:ss")
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime updateDate;
 
     private String dateStr;
@@ -37,55 +37,43 @@ public class ReplyDTO {
     private int delFlag;
     private int likeCount;
     private String mainImage;
-    private String image;
 
     private String root;
     private String buttonIcon;
 
-
     public String getRoot() {
-        if(originReplySeq == null || originReplySeq == 0){
+        if (originReplySeq == null || originReplySeq == 0) {
             root = "padding-left: 0px";
-        }else {
+        } else {
             root = "padding-left: 55px";
         }
         return root;
     }
 
-    public String getButtonIcon(){
-        if(originReplySeq == null ||originReplySeq == 0){
+    public String getButtonIcon() {
+        if (originReplySeq == null || originReplySeq == 0) {
             buttonIcon = "<div class=\"secondReplyDIV\"><button class=\"secondReply\">답글쓰기</button></div>";
-        }else {
+        } else {
             buttonIcon = "";
         }
         return buttonIcon;
     }
 
-    public String getDateStr(){
-        if(date < 1){
+    public String getDateStr() {
+        if (date < 1) {
             dateStr = "방금 전";
-        }else if(date < 60){
-            dateStr = (int)date+"분 전";
-        }else if(date < (60*24)){
-            date = date/60;
-            dateStr = (int)date+"시간 전";
-        }else if(date < (60*168)){
-            date = date/1440;
-            dateStr = (int)date+"일 전";
-        }else{
-            dateStr = regDate+"";
-            dateStr = dateStr.substring(0,10);
+        } else if (date < 60) {
+            dateStr = (int) date + "분 전";
+        } else if (date < (60 * 24)) {
+            date = date / 60;
+            dateStr = (int) date + "시간 전";
+        } else if (date < (60 * 168)) {
+            date = date / 1440;
+            dateStr = (int) date + "일 전";
+        } else {
+            dateStr = regDate + "";
+            dateStr = dateStr.substring(0, 10);
         }
         return dateStr;
     }
-
-    public String getImage(){
-        if(mainImage != null){
-            image = "<div><img src="+mainImage+"></div>";
-        }else {
-            image ="";
-        }
-        return image;
-    }
-
 }

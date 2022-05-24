@@ -154,9 +154,9 @@ public class CJFoodCrawler {
           } // if (sameFactory) - 소비자 주의사항
 
           productObjs.get(i).setIngredient(ingredient);
-          productObjs.get(i).setAllergy_ingredient(allergy);
+          productObjs.get(i).setAllergyIngredient(allergy);
           productObjs.get(i).setCompany("CJ");
-          productObjs.get(i).setCompany_category("40004");
+          productObjs.get(i).setCompanyCategory("40004");
 
           List<WebElement> imgElements = driver.findElement(By.className("product-images"))
                   .findElement(By.className("product-images-item"))
@@ -171,8 +171,8 @@ public class CJFoodCrawler {
               continue;
             }
 
-            productObjs.get(i).setMain_image(src);
-          }//for
+            productObjs.get(i).setMainImage(src);
+          }//
 
           System.out.println(productObjs.get(i));
 
