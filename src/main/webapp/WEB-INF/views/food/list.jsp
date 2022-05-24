@@ -70,7 +70,7 @@
                         <tr>
                             <th>#</th>
                             <th></th>
-                            <th style="text-align: left;">이름 / 성분 재료 / (같은 제조 공장 식품)</th>
+                            <th style="text-align: left;">이름 / 성분 재료 / <span style="color: brown">(같은 제조 공장 식품)</span></th>
                         </tr>
                         </thead>
                         <tbody class="foodList">
@@ -92,12 +92,12 @@
                                     <span style="font-size: 15px">${food.name}</span><hr>
 
                                     <div class="ingredients">
-                                        <span class="box"  style="font-size: 18px">${food.ingredient}</span>
-                                        <span class="show-box hidden" style="font-size: 18px">${food.ingredient}</span>
+                                        <span class="box" style="font-size: 17px">${food.allergyIngredient}</span>
+                                        <span class="box"  style="font-size: 17px">${food.ingredient}</span>
                                     </div>
 
                                     <c:if test="${food.sameFactory != null}">
-                                        <hr><span style="font-size: 15px"><pre>${food.sameFactory}</pre></span>
+                                        <hr><span style="font-size: 15px; color: brown">${food.sameFactory}</span>
                                     </c:if>
                                 </td>
                             </tr>
