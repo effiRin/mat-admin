@@ -63,48 +63,17 @@
                        </div>
                      </div>--%>
                 </div>
-
-                <div class="card-body table-responsive p-0">
-                    <table class="table table-hover text-nowrap" >
-                        <thead>
-                        <tr>
-                            <th>#</th>
-                            <th></th>
-                            <th style="text-align: left;">이름 / 성분 재료 / <span style="color: brown">(같은 제조 공장 식품)</span></th>
-                        </tr>
-                        </thead>
-                        <tbody class="foodList">
-                        <style>
-                            .hidden {
-                                display: none;
-                            }
-                        </style>
-                        <c:forEach items="${dtoList}" var="food">
-                            <c:if test="${food.foodSeq % 2 == 0}">
-                                <tr style=" background-color: #f7faf8">
-                            </c:if>
-                            <c:if test="${food.foodSeq % 2 == 1}">
-                                <tr style=" background-color: #fffde6">
-                            </c:if>
-                                <td></td>
-                                <td><img src="${food.mainImage}" style="max-width:100px"/></td>
-                                <td style="text-align: left;">
-                                    <span style="font-size: 15px">${food.name}</span><hr>
-
-                                    <div class="ingredients">
-                                        <span class="box" style="font-size: 17px">${food.allergyIngredient}</span>
-                                        <span class="box"  style="font-size: 17px">${food.ingredient}</span>
-                                    </div>
-
-                                    <c:if test="${food.sameFactory != null}">
-                                        <hr><span style="font-size: 15px; color: brown">${food.sameFactory}</span>
-                                    </c:if>
-                                </td>
-                            </tr>
-                        </c:forEach>
-                        </tbody>
-                    </table>
+            <div class="row row-cols-1 row-cols-md-4 g-4">
+                <c:forEach items="${companyList}" var="company">
+                <div class="col" style="text-align: center; margin-bottom: 10px">
+                    <a href="/food/list?type=${company.cateNum}">
+                    <div class="card h-100" style="margin-bottom: 10px; max-height: 100vw; width: auto; display: flex; justify-content:center; align-items: center;">
+                        <img src="${company.image}" class="card-img-top" alt="${company.name}" style="max-height: 10vw; width: 15vw">
+                    </div>
+                    </a>
                 </div>
+                </c:forEach>
+            </div>
                 <div class="pagingArea">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination" style="margin-top: 10px">
@@ -137,7 +106,7 @@
 </div>
 </div>
 
-<form class="actionForm" action="/food/list" method="get">
+<form class="actionForm" action="/food/main" method="get">
     <input type="hidden" name="page" value="${listDTO.page}">
     <input type="hidden" name="size" value="${listDTO.size}">
     <input type="hidden" name="type" value="${listDTO.type == null ? '':listDTO.type}">
@@ -145,16 +114,13 @@
 </form>
 
 <script>
-    // function test(){
-    //     $(".box").attr("display:none");
-    //     $(".show-box").remove("hidden");
-    // }
+
     const foodList = document.querySelector(".foodList");
 
     const linkDiv = document.querySelector(".pagination")
     const actionForm = document.querySelector(".actionForm")
-    
-    
+
+
     linkDiv.addEventListener("click", (e) => {
         e.stopPropagation()
         e.preventDefault()
@@ -171,21 +137,21 @@
 
     }, false)
     // ↑ 버블링 ok 캡쳐링은 false
-    
+
     foodList.addEventListener("click", (e) => {
         const target = e.target.closest("div");
         if (target.className !== "ingredients") {
             return;
         }
-        
+
         const boxShort = target.querySelector(".box");
         const boxLong = target.querySelector(".show-box");
-        
+
         boxShort.classList.toggle("hidden")
         boxLong.classList.toggle("hidden")
-        
+
     }, false)
-    
+
 </script>
 
 <%@ include file="/WEB-INF/views/includes/footer.jsp"%>
