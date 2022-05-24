@@ -13,7 +13,8 @@ public class FoodVO {
     private String name; //이름
     private String company_category;
     private String company; //회사
-    private String main_image; //이미지
+    private String mainImage; //이미지
+    private String allergyIngredient; //알레르기 성분
     private String ingredient; //재료 성분
     private String same_factory; //같은 공장
     private String allergy_ingredient;

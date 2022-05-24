@@ -65,7 +65,7 @@
                 </div>
             <div class="row row-cols-1 row-cols-md-4 g-4">
                 <c:forEach items="${companyList}" var="company">
-                <div class="col" style="text-align: center">
+                <div class="col" style="text-align: center; margin-bottom: 10px">
                     <a href="/food/list?type=${company.cateNum}">
                     <div class="card h-100" style="margin-bottom: 10px; max-height: 100vw; width: auto; display: flex; justify-content:center; align-items: center;">
                         <img src="${company.image}" class="card-img-top" alt="${company.name}" style="max-height: 10vw; width: 15vw">
