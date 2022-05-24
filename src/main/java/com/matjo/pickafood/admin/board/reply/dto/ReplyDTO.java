@@ -15,7 +15,7 @@ public class ReplyDTO {
 
     private Integer replySeq;
     private Integer boardSeq;
-    private Integer rootReplySeq;
+    private Integer numReplySeq;
     private Integer originReplySeq;
 
     private String content;

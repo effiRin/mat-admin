@@ -147,7 +147,7 @@ public class CJFoodCrawler2 {
                     productObjs.get(i).setIngredient(ingredient);
                     productObjs.get(i).setAllergy_ingredient(allergy);
                     productObjs.get(i).setCompany("CJ");
-                    productObjs.get(i).setCompany_category("40004");
+                    productObjs.get(i).setCompanyCategory("40004");
 
                     List<WebElement> imgElements = driver.findElement(By.className("product-images"))
                             .findElement(By.className("product-images-item"))
@@ -162,7 +162,7 @@ public class CJFoodCrawler2 {
                             continue;
                         }
 
-                        productObjs.get(i).setMain_image(src);
+                        productObjs.get(i).setMainImage(src);
                     }//for
 
                     System.out.println(productObjs.get(i));
