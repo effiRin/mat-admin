@@ -27,7 +27,6 @@
   <context:component-scan base-package="com.matjo.pickafood.admin.food.service"></context:component-scan>
 
   <context:component-scan base-package="com.matjo.pickafood.crawling"/>
-
   <context:component-scan base-package="com.matjo.pickafood.admin.config"/>
 
   <context:component-scan base-package="com.matjo.pickafood.admin.security"></context:component-scan>
