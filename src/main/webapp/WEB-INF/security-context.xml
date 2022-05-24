@@ -14,7 +14,8 @@
         <!-- 로그인과 관련해서 속상값이 엄청 많음 - 파라미터 이름도 지정 가능 password-parameter
                 login-processing-url 포스트 방식으로 처리되는 url - > 입력하는 페이지만 만들고 처리하는 페이지를 만들지 않는다. 시큐리티 내부에서 해결
                 조심해야 할 점: 파-->
-        <security:form-login></security:form-login>
+        <security:form-login
+                default-target-url="/admin/main"/>
 
         <security:intercept-url pattern="/**" access="hasRole('ROLE_ADMIN')"></security:intercept-url>
 
