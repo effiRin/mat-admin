@@ -25,7 +25,6 @@ public class ReplyController {
     private final ReplyService replyService;
 
 
-
     //댓글 목록
     @GetMapping(value = "/list/{boardSeq}" , produces = MediaType.APPLICATION_JSON_VALUE )
     public List<ReplyDTO> getListOfBoard(@PathVariable("boardSeq") Integer boardSeq, ListDTO listDTO, Model model){
@@ -44,9 +43,9 @@ public class ReplyController {
 
     @PostMapping("/")
     public Map<String,Integer> registerReply(@RequestBody ReplyDTO replyDTO){
-        // log.info("-------댓글등록확인 -------");
-        // log.info(replyDTO);
-        // log.info("-------댓글등록확인 -------");
+        log.info("-------댓글등록확인 -------");
+        log.info(replyDTO);
+        log.info("-------댓글등록확인 -------");
 
         int totalCount = replyService.register(replyDTO);
         return Map.of("result", totalCount);
