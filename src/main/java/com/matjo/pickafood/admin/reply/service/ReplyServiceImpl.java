@@ -42,4 +42,14 @@ public class ReplyServiceImpl implements ReplyService{
 
         return replyMapper.selectTotalOfBoard(replyDTO.getBoardSeq());
     }
+
+    @Override
+    public int boardRegister(ReplyDTO replyDTO) {
+        ReplyVO replyVO = modelMapper.map(replyDTO, ReplyVO.class);
+
+        replyMapper.insert(replyVO);
+        noticeMapper.updateReplyCount(replyDTO.getBoardSeq(), 1);
+
+        return replyMapper.selectTotalOfBoard(replyDTO.getBoardSeq());
+    }
 }

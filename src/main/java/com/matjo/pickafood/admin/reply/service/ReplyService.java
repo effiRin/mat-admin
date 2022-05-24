@@ -10,4 +10,6 @@ import java.util.List;
 public interface ReplyService {
     List<ReplyDTO> getListOfBoard(Integer boardSeq, ListDTO listDTO);
     int register(ReplyDTO replyDTO);
+
+    int boardRegister(ReplyDTO replyDTO);
 }
