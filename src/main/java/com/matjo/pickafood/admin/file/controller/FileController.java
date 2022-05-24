@@ -143,8 +143,8 @@ public class FileController {
         //name -> uuid_fileName 상태 _ 앞에 uuid만 가져오기
         String uuid = name.substring(0,name.indexOf("_"));
 
-        //log.info("path: "+path);
-        //log.info("name: "+name);
+        // log.info("path: "+path);
+        // log.info("name: "+name);
 
         File targetFile = new File("C:\\upload\\"+fileName);
         boolean result = targetFile.delete();
@@ -155,7 +155,7 @@ public class FileController {
             thumbFile.delete();
         }
 
-        //독립적인 DB등록 방법
+        //독립적인 DB 등록 방법
         fileService.remove(uuid);
 
         return "success";

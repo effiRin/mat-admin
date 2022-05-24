@@ -75,10 +75,25 @@
             <div><input type="hidden" name="id" value="${id}"></div>
             <div><input type="hidden" name="nickname" value="${nickname}"></div>
             <div><input type="hidden" name="profile" value="${profile}"></div>
+            <div class="image-upload">
+                <i class="fas fa-solid fa-image"></i>
+                <input id="file-input" type="file" name="upload" onchange="readURL(this)" class="uploadFile" style="display: none;"/>
+                <img class="viewImage" style="display: inline-table"> 여기</img>
+            </div>
+
+            <div class="card-body" style="display: block;">
+                <div class="uploadInputDiv">
+                    <input type="file" name="upload" multiple class="uploadFile">
+                    <button class="btn bg-gradient-info float-right file-add uploadBtn">업로드</button>
+                </div>
+            </div>
+            <div class="uploadResult">
+            </div>
+
         </div>
 
 </sec:authorize>
-            <a class="badge bg-secondary text-decoration-none link-light removeReplyBtn" href="#!">삭제</a>
+  <a class="badge bg-secondary text-decoration-none link-light removeReplyBtn" href="#!">삭제</a>
 
         </div>
     </div>
@@ -90,6 +105,9 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
 
+
+
+    /* 댓글 */
     let initState = {
         boardSeq :${dto.boardSeq},
         replyArr : [],
@@ -139,7 +157,7 @@
                     <img class="rounded-circle" style="width: 50px; height: 50px; display: table-cell" src=\${reply.profile} alt="..." /></div>
                 <div class="ms-3 replyContent" style="margin-left: 10px">
                     <div class="fw-bold" style="font-weight: bolder">\${reply.nickname}</div>
-                    <div class="replyUL" style="padding-left:1px; display: table-cell">\${reply.content}</div>
+                    <div class="replyUL" style="padding-left:1px; display: table-cell">\${reply.content}\${reply.image}</div>
                     \${reply.buttonIcon}
                 </div>
                 <ul class="regDate" style="position:absolute; right: 5%;font-size: 13px">\${reply.dateStr}
