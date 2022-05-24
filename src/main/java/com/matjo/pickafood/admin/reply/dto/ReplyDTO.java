@@ -37,9 +37,11 @@ public class ReplyDTO {
     private int delFlag;
     private int likeCount;
     private String mainImage;
+    private String image;
 
     private String root;
     private String buttonIcon;
+
 
     public String getRoot() {
         if(originReplySeq == null || originReplySeq == 0){
@@ -75,6 +77,15 @@ public class ReplyDTO {
             dateStr = dateStr.substring(0,10);
         }
         return dateStr;
+    }
+
+    public String getImage(){
+        if(mainImage != null){
+            image = "<div><img src="+mainImage+"></div>";
+        }else {
+            image ="";
+        }
+        return image;
     }
 
 }
