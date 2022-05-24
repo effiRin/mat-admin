@@ -6,8 +6,10 @@ import com.matjo.pickafood.admin.common.mapper.GenericMapper;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
-public interface ReplyMapper extends GenericMapper<ReplyVO, Integer> {
+public interface BoardReplyMapper extends GenericMapper<ReplyVO, Integer> {
     List<ReplyVO> selectListOfBoard(@Param("boardSeq") Integer boardSeq, @Param("listDTO") ListDTO listDTO);
+
+    void insert(ReplyVO vo);
 
     int selectTotalOfBoard(Integer boardSeq);
 }

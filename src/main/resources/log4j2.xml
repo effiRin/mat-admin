@@ -45,7 +45,7 @@
             <appender-ref ref="console" />
         </logger>
 
-        <logger name="com.matjo.pickafood.admin.board" level="TRACE" additivity="false">
+        <logger name="com.matjo.pickafood.admin.board" level="INFO" additivity="false">
             <appender-ref ref="console" />
         </logger>
 

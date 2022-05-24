@@ -3,9 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.matjo.pickafood.admin.reply.mapper.ReplyMapper">
+<mapper namespace="com.matjo.pickafood.admin.board.reply.mapper.BoardReplyMapper">
 
-    <select id="selectListOfBoard" resultType="com.matjo.pickafood.admin.reply.domain.ReplyVO">
+    <select id="selectListOfBoard" resultType="com.matjo.pickafood.admin.board.reply.domain.ReplyVO">
         Select reply_seq, board_seq, origin_reply_seq, root_reply_seq, content, id, nickname,
                (TIMESTAMPDIFF(second , reg_date, now()) / 60) date, reg_date,
                update_date, del_flag, like_count, main_image, profile
