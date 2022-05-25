@@ -70,7 +70,9 @@
             <c:forEach items="${boardList}" var="board">
             <tr>
               <td><c:out value="${board.boardSeq}"/></td>
-              <td><a href="/board/read/${board.boardSeq}"><c:out value="${board.title}"/></a></td>
+              <td><a href="/board/read/${board.boardSeq}" style="color:darkblue"><c:out value="${board.title}"/>
+              <c:if test="${board.replyCount != 0}">
+                <span style="color:black"><c:out value=" [${board.replyCount}]"/></span></c:if></a></td>
               <td><c:out value="${board.nickname}"/></td>
 
               <c:choose>
