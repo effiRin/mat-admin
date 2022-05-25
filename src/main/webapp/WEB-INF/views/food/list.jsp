@@ -70,7 +70,7 @@
                         <tr>
                             <th>#</th>
                             <th></th>
-                            <th style="text-align: left;">식품 이름 / 알레르기 성분/ <span style="color: brown">(같은 공장에서 제조하는 식품 성분)</span></th>
+                            <th style="text-align: left;">식품 이름 / 알레르기 성분/ <span style="color: darkslateblue">식품 재료</span> / <span style="color: brown">(같은 공장에서 제조하는 식품 성분)</span></th>
                         </tr>
                         </thead>
                         <tbody class="foodList">
@@ -90,15 +90,15 @@
                             <td><img src="${food.mainImage}" style="max-width:100px"/></td>
                             <td style="text-align: left;">
                                 <span style="font-size: 15px">${food.name}</span><hr>
-
                                 <div class="ingredients">
-                                    <span class="box" style="font-size: 17px">${food.allergyIngredient}</span>
-                                    <span class="box"  style="font-size: 17px">${food.ingredient}</span>
-                                </div>
-
+                                    <span class="box" style="font-size: 17px">${food.refinedAllergyIngredient}</span>
+                                <c:if test="${food.ingredient != null}">
+                                    <hr><span style="font-size: 15px; color: darkslateblue">${food.ingredient}</span>
+                                </c:if>
                                 <c:if test="${food.sameFactory != null}">
                                     <hr><span style="font-size: 15px; color: brown">${food.sameFactory}</span>
                                 </c:if>
+                                </div>
                             </td>
                             </tr>
                         </c:forEach>
