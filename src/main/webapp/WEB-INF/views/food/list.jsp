@@ -70,7 +70,7 @@
                         <tr>
                             <th>#</th>
                             <th></th>
-                            <th style="text-align: left;">이름 / 성분 재료 / <span style="color: brown">(같은 제조 공장 식품)</span></th>
+                            <th style="text-align: left;">식품 이름 / 알레르기 성분/ <span style="color: brown">(같은 공장에서 제조하는 식품 성분)</span></th>
                         </tr>
                         </thead>
                         <tbody class="foodList">
@@ -86,20 +86,20 @@
                             <c:if test="${food.foodSeq % 2 == 1}">
                                 <tr style=" background-color: #fffde6">
                             </c:if>
-                                <td></td>
-                                <td><img src="${food.mainImage}" style="max-width:100px"/></td>
-                                <td style="text-align: left;">
-                                    <span style="font-size: 15px">${food.name}</span><hr>
+                            <td></td>
+                            <td><img src="${food.mainImage}" style="max-width:100px"/></td>
+                            <td style="text-align: left;">
+                                <span style="font-size: 15px">${food.name}</span><hr>
 
-                                    <div class="ingredients">
-                                        <span class="box" style="font-size: 17px">${food.allergyIngredient}</span>
-                                        <span class="box"  style="font-size: 17px">${food.ingredient}</span>
-                                    </div>
+                                <div class="ingredients">
+                                    <span class="box" style="font-size: 17px">${food.allergyIngredient}</span>
+                                    <span class="box"  style="font-size: 17px">${food.ingredient}</span>
+                                </div>
 
-                                    <c:if test="${food.sameFactory != null}">
-                                        <hr><span style="font-size: 15px; color: brown">${food.sameFactory}</span>
-                                    </c:if>
-                                </td>
+                                <c:if test="${food.sameFactory != null}">
+                                    <hr><span style="font-size: 15px; color: brown">${food.sameFactory}</span>
+                                </c:if>
+                            </td>
                             </tr>
                         </c:forEach>
                         </tbody>
@@ -176,6 +176,8 @@
         const target = e.target.closest("div");
         if (target.className !== "ingredients") {
             return;
+        }else if (target.className !== "allergy_ingredients"){
+
         }
         
         const boxShort = target.querySelector(".box");

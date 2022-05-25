@@ -115,7 +115,7 @@ public class CJFoodCrawler2 {
                         }
 
                         allergy = allergy.substring(0, start-2);
-                        productObjs.get(i).setSame_factory(sameFactory);
+                        productObjs.get(i).setSameFactory(sameFactory);
                     } // if (sameFactory) - 알레르기 물질 함유
 
                     if(allergy.contains("알레르기 유발물질 함유")){
@@ -141,11 +141,11 @@ public class CJFoodCrawler2 {
                             int end = temp2.indexOf("제품과");
                             sameFactory = temp2.substring(start + 6, end - 6);
                         }
-                        productObjs.get(i).setSame_factory(sameFactory);
+                        productObjs.get(i).setSameFactory(sameFactory);
                     } // if (sameFactory) - 소비자 주의사항
 
                     productObjs.get(i).setIngredient(ingredient);
-                    productObjs.get(i).setAllergy_ingredient(allergy);
+                    productObjs.get(i).setAllergyIngredient(allergy);
                     productObjs.get(i).setCompany("CJ");
                     productObjs.get(i).setCompanyCategory("40004");
 
