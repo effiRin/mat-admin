@@ -1,4 +1,4 @@
-package mapper.board.admin.sample;
+package board.admin.sample;
 
 
 import lombok.extern.log4j.Log4j2;

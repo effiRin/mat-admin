@@ -7,42 +7,42 @@
 
     <!-- 검색 조건 -->
     <sql id ="search">
-        <if test='type != null and keyword == null'>
-            and company_category = #{type}
-        </if>
+<!--        <if test='type != null and keyword == null'>-->
+<!--            and company_category = #{type}-->
+<!--        </if>-->
 
-
+    <where>
         <if test="keyword != null">
-            and
             <foreach collection="types" item="item" separator="or" open="(" close=")">
-                <if test='item == "t"'>
+                <if test='item == "n"'>
                     name like concat('%', #{keyword}, '%')
                 </if>
 
-                <if test='item == "c"'>
+                <if test='item == "a"'>
+                    ingredient like concat('%', #{keyword}, '%')
+                    OR
+                    refined_allergy_ingredient like concat('%', #{keyword}, '%')
+                    OR
                     same_factory like concat('%', #{keyword}, '%')
-                </if>
-                <if test='
-                    item == "w"'>
-                    ingredient concat('%', #{keyword}, '%')
                 </if>
             </foreach>
         </if>
-    </sql>
-
-    <select id="companyList" resultType="com.matjo.pickafood.admin.food.domain.CompanyVO">
-        select *
-        from category where cate_num between 40000 and 50000
-        <include refid="search"></include>
-        order by cate_num desc
-        limit #{skip},#{size}
-    </select>
+    </where>
+</sql>
 
     <select id="selectList" resultType="com.matjo.pickafood.admin.food.domain.FoodVO">
         select *
         from food where food_seq > 0 and del_flag = 0
         <include refid="search"></include>
         order by food_seq desc
+        limit #{skip},#{size}
+    </select>
+
+    <select id="companyList" resultType="com.matjo.pickafood.admin.food.domain.CompanyVO">
+        select *
+        from category where cate_num between 40000 and 50000
+        <include refid="search"></include>
+        order by cate_num desc
         limit #{skip},#{size}
     </select>
 

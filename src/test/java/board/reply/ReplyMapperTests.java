@@ -1,4 +1,4 @@
-package mapper.board.reply;
+package board.reply;
 
 import com.matjo.pickafood.admin.common.dto.ListDTO;
 import com.matjo.pickafood.admin.reply.domain.ReplyVO;
