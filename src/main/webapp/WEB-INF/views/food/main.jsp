@@ -31,9 +31,28 @@
 <div class="container-fluid">
     카테고리 들어갈 곳
     <hr>
-    검색, 체크박스
+    <div class="row float-left">
+        <div class="col-sm-1">
+            <div class="form-group searchDiv" style="padding-top: 5px; padding-left: 20px;">
+                <select class="type">
+                    <option value="t" ${listDTO.type =="t"?"selected":""}>제목</option>
+                    <option value="c" ${listDTO.type =="c"?"selected":""}>내용</option>
+                    <option value="w" ${listDTO.type =="w"?"selected":""}>작성자</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-7">
+            <div class="input-group">
+                <input type="text" name="keyword" class="form-control float-right" placeholder="Search">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-default searchBtn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
     <div class="row">
-        <div class="col-12">
+        <div class="col-12" style="padding-top: 20px">
             <div class="card card-primary card-outline">
                 <div class="card-header">
 
