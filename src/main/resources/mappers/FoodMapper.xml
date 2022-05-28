@@ -19,11 +19,12 @@
                 </if>
 
                 <if test='item == "a"'>
-                    ingredient like concat('%', #{keyword}, '%')
-                    OR
-                    refined_allergy_ingredient like concat('%', #{keyword}, '%')
-                    OR
-                    same_factory like concat('%', #{keyword}, '%')
+                    select *
+                    from food a
+                    where concat(a.ingredient,
+                    a.refined_allergy_ingredient,
+                    a.same_factory)
+                    like '%#{keyword}%';
                 </if>
             </foreach>
         </if>
