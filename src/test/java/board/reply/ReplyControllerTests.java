@@ -1,4 +1,4 @@
-package mapper.board.reply;
+package board.reply;
 
 import com.matjo.pickafood.admin.reply.domain.ReplyVO;
 import lombok.extern.log4j.Log4j2;

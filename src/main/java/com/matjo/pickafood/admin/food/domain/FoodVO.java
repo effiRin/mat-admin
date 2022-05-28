@@ -11,7 +11,7 @@ public class FoodVO {
 
     private Integer foodSeq; //pk
     private String name; //이름
-    private String company_category;
+    private String companyCategory;
     private String company; //회사
     private String mainImage; //이미지
     private String allergyIngredient; //알레르기 성분

@@ -1,4 +1,4 @@
-package mapper.board.admin.notice.mapper;
+package board.admin.notice.mapper;
 
 import com.matjo.pickafood.admin.common.dto.ListDTO;
 import com.matjo.pickafood.admin.file.mapper.FileMapper;

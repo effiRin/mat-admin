@@ -31,37 +31,31 @@
 <div class="container-fluid">
     카테고리 들어갈 곳
     <hr>
-    검색, 체크박스
+    <h4 style="padding-left: 20px; padding-bottom: 10px;"><strong>검색으로 찾기</strong></h4>
+    <div class="row float-left">
+        <div class="col-sm-offset-1">
+            <div class="form-group searchDiv" style="padding-top: 5px; padding-left: 20px;">
+                <select class="type">
+                    <option value="t" ${listDTO.type =="t"?"selected":""}>식품명</option>
+                    <option value="a" ${listDTO.type =="a"?"selected":""}>알레르기 성분</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-8" >
+            <div class="input-group" style="padding-left: 10px;">
+                <input type="text" name="keyword" class="form-control float-right" placeholder="Search">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-default searchBtn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
     <div class="row">
-        <div class="col-12">
+        <div class="col-12" style="padding-top: 40px">
+            <h4 style="padding-left: 30px; padding-bottom: 10px;"><strong>브랜드로 찾기</strong></h4>
             <div class="card card-primary card-outline">
                 <div class="card-header">
-
-                    <%--
-                    검색
-                    <div class="row float-left">
-                       <div class="col-sm-5">
-                         <div class="form-group">
-                           <select class="form-control">
-                             <option>option 1</option>
-                             <option>option 2</option>
-                             <option>option 3</option>
-                             <option>option 4</option>
-                             <option>option 5</option>
-                           </select>
-                         </div>
-                       </div>
-                       <div class="col-sm-7">
-                         <div class="input-group" style="width: 150px;">
-                           <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-                           <div class="input-group-append">
-                             <button type="submit" class="btn btn-default">
-                               <i class="fas fa-search"></i>
-                             </button>
-                           </div>
-                         </div>
-                       </div>
-                     </div>--%>
                 </div>
             <div class="row row-cols-1 row-cols-md-4 g-4">
                 <c:forEach items="${companyList}" var="company">
@@ -106,7 +100,7 @@
 </div>
 </div>
 
-<form class="actionForm" action="/food/main" method="get">
+<form class="actionForm" action="/food/list" method="get">
     <input type="hidden" name="page" value="${listDTO.page}">
     <input type="hidden" name="size" value="${listDTO.size}">
     <input type="hidden" name="type" value="${listDTO.type == null ? '':listDTO.type}">
@@ -115,7 +109,7 @@
 
 <script>
 
-    const foodList = document.querySelector(".foodList");
+    // const foodList = document.querySelector(".foodList");
 
     const linkDiv = document.querySelector(".pagination")
     const actionForm = document.querySelector(".actionForm")
@@ -130,6 +124,7 @@
         if(target.getAttribute("class") !== 'page-link'){ //page 링크가 아니면 끝내기
             return
         }
+
         const pageNum = target.getAttribute("href")
         actionForm.querySelector("input[name='page']").value = pageNum
         actionForm.setAttribute("action","/food/list")
@@ -138,19 +133,34 @@
     }, false)
     // ↑ 버블링 ok 캡쳐링은 false
 
-    foodList.addEventListener("click", (e) => {
-        const target = e.target.closest("div");
-        if (target.className !== "ingredients") {
-            return;
-        }
+    document.querySelector(".searchBtn").addEventListener("click",(e)=> {
+        const type = document.querySelector('.searchDiv .type').value
+        const keyword = document.querySelector("input[name='keyword']").value
 
-        const boxShort = target.querySelector(".box");
-        const boxLong = target.querySelector(".show-box");
+        console.log(type, keyword)
 
-        boxShort.classList.toggle("hidden")
-        boxLong.classList.toggle("hidden")
+        actionForm.setAttribute("action","/food/list")
+        actionForm.querySelector("input[name='page']").value = 1
+        actionForm.querySelector("input[name='type']").value = type
+        actionForm.querySelector("input[name='keyword']").value = keyword
+        actionForm.submit()
 
-    }, false)
+    },false)
+
+    // foodList.addEventListener("click", (e) => {
+    //     const target = e.target.closest("div");
+    //
+    //     if (target.className !== "ingredients") {
+    //         return;
+    //     }
+    //
+    //     const boxShort = target.querySelector(".box");
+    //     const boxLong = target.querySelector(".show-box");
+    //
+    //     boxShort.classList.toggle("hidden")
+    //     boxLong.classList.toggle("hidden")
+    //
+    // }, false)
 
 </script>
 

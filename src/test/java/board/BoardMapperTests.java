@@ -1,4 +1,4 @@
-package mapper.board;
+package board;
 
 import com.matjo.pickafood.admin.board.vo.BoardVO;
 import com.matjo.pickafood.admin.board.mapper.BoardMapper;

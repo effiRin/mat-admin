@@ -70,9 +70,29 @@
             <c:forEach items="${boardList}" var="board">
             <tr>
               <td><c:out value="${board.boardSeq}"/></td>
-              <td><a href="/board/read/${board.boardSeq}"><c:out value="${board.title}"/></a></td>
+              <td><a href="/board/read/${board.boardSeq}" style="color:darkblue"><c:out value="${board.title}"/>
+              <c:if test="${board.replyCount != 0}">
+                <span style="color:black"><c:out value=" [${board.replyCount}]"/></span></c:if></a></td>
               <td><c:out value="${board.nickname}"/></td>
-              <td><c:out value="${board.regDate}"/></td>
+
+              <c:choose>
+                <c:when test="${board.date < 1}">
+                  <td class="dateType">방금전</td>
+                </c:when>
+                <c:when test="${board.date < 60}">
+                  <td class="dateType">${board.date}분전</td>
+                </c:when>
+                <c:when test="${board.date <= 60*24}">
+                  <td class="dateType">${Integer.valueOf(Math.floor(board.date/60))}시간 전</td>
+                </c:when>
+                <c:when test="${board.date <= 60*24*7}">
+                  <td class="dateType">${Integer.valueOf(Math.floor(board.date/1440))}일 전</td>
+                </c:when>
+                <c:when test="${board.date > 60*24}">
+                  <td class="dateType">${board.regDate}</td>
+                </c:when>
+              </c:choose>
+
               <td><c:out value="${board.viewsCount}"/></td>
               <td><c:out value="${board.likeCount}"/></td>
             </tr>

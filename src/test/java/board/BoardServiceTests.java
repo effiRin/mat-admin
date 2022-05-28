@@ -1,4 +1,4 @@
-package mapper.board;
+package board;
 
 import com.matjo.pickafood.admin.board.dto.BoardDTO;
 import com.matjo.pickafood.admin.board.service.BoardService;

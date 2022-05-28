@@ -23,8 +23,8 @@
     <div class="col-12">
       <div class="form-group">
         <a href="/board/list" class="btn btn-secondary">목록</a>
-        <button class="btn bg-gradient-info float-right" style="margin-right: 1em">
-          <i class="fas fa-pen"></i>수정</button>
+        <a href="/board/modify/${board.boardSeq}"><button class="btn bg-gradient-info float-right" style="margin-right: 1em">
+          <i class="fas fa-pen"></i>수정</button></a>
       </div>
     </div>
   </div>
@@ -38,7 +38,7 @@
               <input type="text" id="inputName" name="title" class="for m-control" style="margin-right: 2vw; width: 1800px;"
               value='<c:out value="${board.title}"/>' readonly="readonly">
               <label for="inputName" style="width: 10vw;">닉네임</label>
-              <input type="text" name="nickname" class="form-control" value='<c:out value="${board.nickname}"/>' readonly="readonly">
+              <input type="text" class="form-control" value='<c:out value="${board.nickname}"/>' readonly="readonly">
             </div>
             <input type="hidden" value="kim" name="id">
             <div class="form-group board">
@@ -73,25 +73,10 @@
   <div><input type="hidden" name="id" value="${id}"></div>
   <div><input type="hidden" name="nickname" value="${nickname}"></div>
   <div><input type="hidden" name="profile" value="${profile}"></div>
-  <div class="image-upload">
-  <i class="fas fa-solid fa-image"></i>
-  <input id="file-input" type="file" name="upload" onchange="readURL(this)" class="uploadFile" style="display: none;"/>
-  <img class="viewImage" style="display: inline-table"> 여기 </img>
   </div>
-
-  <div class="card-body" style="display: block;">
-    <div class="uploadInputDiv">
-      <input type="file" name="upload" multiple class="uploadFile">
-      <button class="btn bg-gradient-info float-right file-add uploadBtn">업로드</button>
-    </div>
-  </div>
-    <div class="uploadResult">
-    </div>
-
   </div>
 
 </sec:authorize>
-        <a class="badge bg-secondary text-decoration-none link-light removeReplyBtn" href="#!">삭제</a>
       </div>
     </div>
   </div>

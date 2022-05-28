@@ -1,4 +1,4 @@
-package mapper.board;
+package board;
 
 
 import com.matjo.pickafood.admin.file.dto.FileDTO;

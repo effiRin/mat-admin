@@ -25,7 +25,11 @@
     </sql>
 
     <select id = "selectList" resultType="com.matjo.pickafood.admin.board.vo.BoardVO">
-        select board_seq, board_category, main_image, title, content, id, nickname, reg_date, update_date, reply_count, del_flag, like_count, views_count
+        select board_seq, board_category, main_image, title, content, id, nickname,
+        (TIMESTAMPDIFF(second , reg_date, now()) / 60) DATE,
+               date_format(reg_date, '%Y년 %m월 %d일 %h시 %m분') reg_date,
+                       date_format(update_date, '%Y년 %m월 %d일') update_date,
+                       reply_count, del_flag, like_count, views_count
         from board
 
         <include refid="search"></include>

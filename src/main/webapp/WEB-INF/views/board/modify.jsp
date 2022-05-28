@@ -23,7 +23,7 @@
   <div class="row">
     <div class="col-12">
       <div class="form-group">
-        <a href="/board/read/{boardSeq}" class="btn btn-secondary">수정 취소</a>
+        <a href="/board/read/${board.boardSeq}" class="btn btn-secondary">수정 취소</a>
         <button class="btn btn-success float-right modBtn"><i class="fa fa-plus"></i>수정 완료</button>
       </div>
     </div>

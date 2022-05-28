@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -22,8 +23,12 @@ public class BoardDTO {
     private String content;
     private String id;
     private String nickname;
-    private LocalDateTime regDate;
-    private LocalDateTime updateDate;
+
+    private int date;
+
+    private String regDate;
+    private String updateDate;
+
     private int delFlag;
     private int replyCount;
     private int likeCount;
