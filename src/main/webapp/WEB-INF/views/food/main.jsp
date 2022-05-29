@@ -66,7 +66,7 @@
                   <c:forEach items="${allergyOptions}" var="allergy">
                     <div class="col" style="text-align: center; margin-bottom: 10px;">
                   <label style="padding-right: 100px;">
-                    <input type="checkbox" name="makerCode" value="" , key="" , data="">
+                    <input type="checkbox" name="allergyCode" value="${allergy}">
                     <span>${allergy}</span>
                   </label>
                     </div>
@@ -142,12 +142,31 @@
 
 <script>
 
-    // const foodList = document.querySelector(".foodList");
-
     const linkDiv = document.querySelector(".pagination")
     const actionForm = document.querySelector(".actionForm")
 
+    // '검색' 버튼
+    document.querySelector(".searchBtn").addEventListener("click", (e) => {
+        const type = document.querySelector('.searchDiv .type').value
+        const keyword = document.querySelector("input[name='keyword']").value
 
+        console.log(type, keyword)
+
+        actionForm.setAttribute("action", "/food/list")
+        actionForm.querySelector("input[name='page']").value = 1
+        actionForm.querySelector("input[name='type']").value = type
+        actionForm.querySelector("input[name='keyword']").value = keyword
+        actionForm.submit()
+
+    }, false)
+
+    // 알레르기로 '찾기' 버튼
+    document.querySelector(".AllergySearchBtn").addEventListener("click", (e) => {
+
+
+    }, false)
+
+    //페이지 이동
     linkDiv.addEventListener("click", (e) => {
         e.stopPropagation()
         e.preventDefault()
@@ -165,20 +184,6 @@
 
     }, false)
     // ↑ 버블링 ok 캡쳐링은 false
-
-    document.querySelector(".searchBtn").addEventListener("click", (e) => {
-        const type = document.querySelector('.searchDiv .type').value
-        const keyword = document.querySelector("input[name='keyword']").value
-
-        console.log(type, keyword)
-
-        actionForm.setAttribute("action", "/food/list")
-        actionForm.querySelector("input[name='page']").value = 1
-        actionForm.querySelector("input[name='type']").value = type
-        actionForm.querySelector("input[name='keyword']").value = keyword
-        actionForm.submit()
-
-    }, false)
 
     // foodList.addEventListener("click", (e) => {
     //     const target = e.target.closest("div");
