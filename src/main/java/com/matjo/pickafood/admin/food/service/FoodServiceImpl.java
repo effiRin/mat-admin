@@ -61,4 +61,12 @@ public class FoodServiceImpl implements FoodService {
                 .total(foodMapper.getCompanyTotal(listDTO))
                 .build();
     }
+
+    @Override
+    public List<String> getAllergyOptions() {
+        List<String> allergyOptions = foodMapper.allergyOptions();
+        return allergyOptions;
+    }
+
+
 }

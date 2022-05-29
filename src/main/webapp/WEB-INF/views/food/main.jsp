@@ -54,41 +54,24 @@
   </div>
   <hr>
   <h4 style="padding-left: 20px; padding-bottom: 10px;"><strong>알레르기로 찾기</strong></h4>
+  <div class="allergy_option_title">
+    <span><strong>식품의약품안전처 고시 알레르기 유발식품 19종</strong></span>
+  </div>
   <div class="row">
-    <div class="col-12" style="padding-top: 40px">
+    <div class="col-12" style="padding-top: 20px">
       <div class="card card-primary card-outline">
         <div class="card-header">
         </div>
         <div class="row row-cols-1 row-cols-md-4 g-4">
-        <div class="allergy_option_title">
-          <span>식품의약품안전처 고시 알레르기 유발식품 19종</span>
-        </div>
-
-          <div class="card card-primary card-outline">
-            <div class="card-header">
-            </div>
-            <div class="row row-cols-1 row-cols-md-4 g-4">
-              <div >
-              <ul class="allergy_option_list" style="list-style: none;">
+              <div class="col" style="text-align: center; margin-bottom: 10px;">
+                <ul class="allergy_option_list" style="list-style: none;">
                 <li>
-                  <label>
-                    <input type="checkbox" name="makerCode" value="" , key="" , data="난류">
-                    <span>난류</span>
+                  <c:forEach items="${allergyOptions}" var="allergy">
+                  <label style="padding-right: 100px;">
+                    <input type="checkbox" name="makerCode" value="" , key="" , data="">
+                    <span>"${allergy}"</span>
                   </label>
-                  <label>
-                    <input type="checkbox" name="makerCode" value="" , key="" , data="우유">
-                    <span>우유</span>
-                  </label>
-                </li>
-                <li>
-                  <label>
-                    <input type="checkbox" name="makerCode" value="" , key="" , data="난류">
-                    <span>메밀</span>
-                  </label>
-                  <label>
-                    <input type="checkbox" name="makerCode" value="" , key="" , data="우유">
-                    <span>땅콩</span>
-                  </label>
+                  </c:forEach>
                 </li>
               </ul>
             </div>
@@ -96,7 +79,6 @@
         </div>
       </div>
     </div>
-
     <div class="row">
       <div class="col-12" style="padding-top: 40px">
         <h4 style="padding-left: 30px; padding-bottom: 10px;"><strong>브랜드로 찾기</strong></h4>
@@ -105,7 +87,7 @@
           </div>
           <div class="row row-cols-1 row-cols-md-4 g-4">
             <c:forEach items="${companyList}" var="company">
-              <div class="col" style="text-align: center; margin-bottom: 10px">
+              <div class="col" style="text-align: center; margin-bottom: 10px;">
                 <a href="/food/list?type=${company.cateNum}">
                   <div class="card h-100"
                        style="margin-bottom: 10px; max-height: 100vw; width: auto; display: flex; justify-content:center; align-items: center;">

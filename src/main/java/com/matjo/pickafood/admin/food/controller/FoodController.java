@@ -37,6 +37,8 @@ public class FoodController {
         int total = responseDTO.getTotal();
         model.addAttribute("pageMaker", new PageMaker(listDTO.getPage(), total));
 
+        List<String> allergyOptions = foodService.getAllergyOptions();
+        model.addAttribute("allergyOptions", allergyOptions);
     }
 
     //list 페이지
