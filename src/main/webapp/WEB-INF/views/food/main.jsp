@@ -37,7 +37,7 @@
             <div class="form-group searchDiv" style="padding-top: 5px; padding-left: 20px;">
                 <select class="type">
                     <option value="t" ${listDTO.type =="t"?"selected":""}>식품명</option>
-                    <option value="a" ${listDTO.type =="a"?"selected":""}>알레르기 성분</option>
+                    <option value="ris" ${listDTO.type =="ris"?"selected":""}>식재료</option>
                 </select>
             </div>
         </div>
@@ -48,6 +48,30 @@
                     <button type="submit" class="btn btn-default searchBtn">
                         <i class="fas fa-search"></i>
                     </button>
+                </div>
+            </div>
+        </div>
+        <div class="allergyOption">
+            <div>
+                <div class="allergy_option_title">
+                    알레르기 검색
+                    <span>식품의약품안전처 고시 알레르기 유발식품 19종</span>
+                </div>
+                <div class="allergy_option_content">
+                    <ul class="allergy_option_list">
+                        <li>
+                            <label>
+                                <input type="checkbox" name="makerCode" value="", key="", data="난류">
+                                <span>난류</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" name="makerCode" value="", key="", data="우유">
+                                <span>우유</span>
+                            </label>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

@@ -7,24 +7,27 @@
 
     <!-- 검색 조건 -->
     <sql id ="search">
-<!--        <if test='type != null and keyword == null'>-->
-<!--            and company_category = #{type}-->
-<!--        </if>-->
-
     <where>
+        <if test='type != null and keyword == null'>
+            company_category = #{type}
+        </if>
+
         <if test="keyword != null">
             <foreach collection="types" item="item" separator="or" open="(" close=")">
                 <if test='item == "n"'>
                     name like concat('%', #{keyword}, '%')
                 </if>
 
-                <if test='item == "a"'>
-                    select *
-                    from food a
-                    where concat(a.ingredient,
-                    a.refined_allergy_ingredient,
-                    a.same_factory)
-                    like '%#{keyword}%';
+                <if test='item == "r"'>
+                    refined_allergy_ingredient like concat('%', #{keyword}, '%')
+                </if>
+
+                <if test='item == "i"'>
+                    ingredient like concat('%', #{keyword}, '%')
+                </if>
+
+                <if test='item == "s"'>
+                    same_factory like concat('%', #{keyword}, '%')
                 </if>
             </foreach>
         </if>
@@ -33,8 +36,9 @@
 
     <select id="selectList" resultType="com.matjo.pickafood.admin.food.domain.FoodVO">
         select *
-        from food where food_seq > 0 and del_flag = 0
+        from food
         <include refid="search"></include>
+        and food_seq > 0 and del_flag = 0
         order by food_seq desc
         limit #{skip},#{size}
     </select>
@@ -49,8 +53,9 @@
 
     <select id="getTotal" resultType="int">
         select count(food_seq)
-        from food where food_seq > 0 and del_flag = 0
+        from food a
         <include refid="search"></include>
+        and food_seq > 0 and del_flag = 0
     </select>
 
     <select id="getCompanyTotal" resultType="int">

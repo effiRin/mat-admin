@@ -35,35 +35,6 @@
     <div class="row">
         <div class="col-12">
             <div class="card card-primary card-outline">
-                <div class="card-header">
-
-                    <%--
-                    검색
-                    <div class="row float-left">
-                       <div class="col-sm-5">
-                         <div class="form-group">
-                           <select class="form-control">
-                             <option>option 1</option>
-                             <option>option 2</option>
-                             <option>option 3</option>
-                             <option>option 4</option>
-                             <option>option 5</option>
-                           </select>
-                         </div>
-                       </div>
-                       <div class="col-sm-7">
-                         <div class="input-group" style="width: 150px;">
-                           <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-                           <div class="input-group-append">
-                             <button type="submit" class="btn btn-default">
-                               <i class="fas fa-search"></i>
-                             </button>
-                           </div>
-                         </div>
-                       </div>
-                     </div>--%>
-                </div>
-
                 <div class="card-body table-responsive p-0">
                     <table class="table table-hover text-nowrap" >
                         <thead>
@@ -89,7 +60,8 @@
                             <td></td>
                             <td><img src="${food.mainImage}" style="max-width:100px"/></td>
                             <td style="text-align: left;">
-                                <span style="font-size: 15px">${food.name}</span><hr>
+                                <span style="font-size: 15px">${food.name}</span>
+                                <hr>
 
                                 <div class="ingredients">
                                     <span class="box" style="font-size: 17px">${food.allergyIngredient}</span>
@@ -111,6 +83,7 @@
                             <c:if test="${pageMaker.start > 1}">
                                 <li class="page-item"><a class="page-link" href="${pageMaker.start-1}">이전</a></li>
                             </c:if>
+
                             <c:forEach begin="${pageMaker.start}" end ="${pageMaker.end}" var="num">
 
                                 <c:choose>

@@ -1,6 +1,5 @@
 package food;
 
-import com.matjo.pickafood.admin.board.vo.BoardVO;
 import com.matjo.pickafood.admin.common.dto.ListDTO;
 import com.matjo.pickafood.admin.food.domain.FoodVO;
 import com.matjo.pickafood.admin.food.mapper.FoodMapper;
@@ -24,8 +23,9 @@ public class FoodMapperTests {
     @Test
     public void testSelectList() {
         ListDTO listDTO = new ListDTO();
-        listDTO.setType("a");
-        listDTO.setKeyword("밀");
+        listDTO.setType("ris");
+        listDTO.setKeyword("대파");
+        listDTO.setSize(100);
 
         List<FoodVO> foodList = foodMapper.selectList(listDTO);
         foodList.forEach(food -> log.info(food));
