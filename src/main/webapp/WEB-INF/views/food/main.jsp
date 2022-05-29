@@ -36,8 +36,8 @@
     <div class="col-sm-offset-1">
       <div class="form-group searchDiv" style="padding-top: 5px; padding-left: 20px;">
         <select class="type">
-          <option value="t" ${listDTO.type =="t"?"selected":""}>식품명</option>
-          <option value="ris" ${listDTO.type =="ris"?"selected":""}>식재료</option>
+          <option value="n" ${listDTO.type =="n"?"selected":""}>식품명</option>
+          <option value="i" ${listDTO.type =="i"?"selected":""}>식재료</option>
         </select>
       </div>
     </div>
@@ -71,11 +71,15 @@
                   </label>
                     </div>
                   </c:forEach>
-
           </div>
         </div>
       </div>
     </div>
+  <div class="text-center">
+    <button type="submit" class="btn btn-default center AllergySearchBtn" style="zoom: 1.2;">
+      <strong> 찾기 </strong>
+    </button>
+  </div>
   <hr>
     <div class="row">
       <div class="col-12" style="padding-top: 40px">

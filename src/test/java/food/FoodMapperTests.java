@@ -24,8 +24,8 @@ public class FoodMapperTests {
     @Test
     public void testSelectList() {
         ListDTO listDTO = new ListDTO();
-        listDTO.setType("ris");
-        listDTO.setKeyword("대파");
+        listDTO.setType("n");
+        listDTO.setKeyword("비비고");
         listDTO.setSize(100);
 
         List<FoodVO> foodList = foodMapper.selectList(listDTO);

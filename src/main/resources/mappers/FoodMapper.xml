@@ -12,10 +12,10 @@
             company_category = #{type}
         </if>
 
-        <if test="keyword != null">
+        <if test='keyword != null'>
             <foreach collection="types" item="item" separator="or" open="(" close=")">
                 <if test='item == "n"'>
-                    name like concat('%', #{keyword}, '%')
+                     name like concat('%', #{keyword}, '%')
                 </if>
 
                 <if test='item == "r"'>
