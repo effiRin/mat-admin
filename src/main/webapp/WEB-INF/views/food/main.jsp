@@ -31,7 +31,7 @@
 <div class="container-fluid">
   카테고리 들어갈 곳
   <hr>
-  <h4 style="padding-left: 20px; padding-bottom: 10px;"><strong>검색으로 찾기</strong></h4>
+  <h4 style="padding-left: 20px; padding-bottom: 10px;"><strong>'검색'으로 찾기</strong></h4>
   <div class="row">
     <div class="col-sm-offset-1">
       <div class="form-group searchDiv" style="padding-top: 5px; padding-left: 20px;">
@@ -53,35 +53,33 @@
     </div>
   </div>
   <hr>
-  <h4 style="padding-left: 20px; padding-bottom: 10px;"><strong>알레르기로 찾기</strong></h4>
-  <div class="allergy_option_title">
-    <span><strong>식품의약품안전처 고시 알레르기 유발식품 19종</strong></span>
-  </div>
   <div class="row">
-    <div class="col-12" style="padding-top: 20px">
+    <div class="col-12" style="padding-top: 40px">
+      <h4 style="padding-left: 20px; padding-bottom: 10px;"><strong>'알레르기'로 찾기</strong></h4>
+      <div class="allergy_option_title" style="padding-bottom: 10px;">
+        <span style="padding-left: 20px;"><strong>(식품의약품안전처 고시 알레르기 유발식품 19종)</strong></span>
+      </div>
       <div class="card card-primary card-outline">
         <div class="card-header">
         </div>
         <div class="row row-cols-1 row-cols-md-4 g-4">
-              <div class="col" style="text-align: center; margin-bottom: 10px;">
-                <ul class="allergy_option_list" style="list-style: none;">
-                <li>
                   <c:forEach items="${allergyOptions}" var="allergy">
+                    <div class="col" style="text-align: center; margin-bottom: 10px;">
                   <label style="padding-right: 100px;">
                     <input type="checkbox" name="makerCode" value="" , key="" , data="">
-                    <span>"${allergy}"</span>
+                    <span>${allergy}</span>
                   </label>
+                    </div>
                   </c:forEach>
-                </li>
-              </ul>
-            </div>
+
           </div>
         </div>
       </div>
     </div>
+  <hr>
     <div class="row">
       <div class="col-12" style="padding-top: 40px">
-        <h4 style="padding-left: 30px; padding-bottom: 10px;"><strong>브랜드로 찾기</strong></h4>
+        <h4 style="padding-left: 30px; padding-bottom: 10px;"><strong>'브랜드'로 찾기</strong></h4>
         <div class="card card-primary card-outline">
           <div class="card-header">
           </div>
