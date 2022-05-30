@@ -12,9 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 @Log4j2
@@ -58,18 +60,27 @@ public class FoodController {
 
     }
 
-    // 알레르기 체크박스 검색 - 수정필요!!!
-    public String Test(ModelMap model, HttpServletRequest request ) throws Exception{
-        try{
-            int cnt = Integer.parseInt(request.getParameter("cnt"));
-            for(int j = 1; j <= cnt ; j++ ){
-                for(int i = 0; i < request.getParameterValues("ch" + String.valueOf(j)).length ; i++){
-                    System.out.println(request.getParameterValues("ch" + String.valueOf(j))[i]);
-                }
-            }
-        } catch(Exception e){
-            e.printStackTrace();
-        }
-        return null;
+//    // 알레르기 체크박스 검색 - 수정필요!!!
+//    @PostMapping // mapping을 어떻게 해주지?
+//    public String Test(Model model, HttpServletRequest request ) throws Exception{
+//        try{
+//            String[] value = request.getParameterValues("${allergy}");
+//
+//            for(int j = 1; j <= value.length ; j++ ){
+//                for(int i = 0; i < request.getParameterValues("ch" + String.valueOf(j)).length ; i++){
+//                    System.out.println(request.getParameterValues("ch" + String.valueOf(j))[i]);
+//                }
+//            }
+//        } catch(Exception e){
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
+
+    @PostMapping
+    public List<String> allergyCheckPOST(HttpServletRequest request) {
+        List<String> allergyChecks;
+            allergyChecks = List.of(request.getParameterValues("allergyCode"));
+        return allergyChecks;
     }
 }

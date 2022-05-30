@@ -6,33 +6,42 @@
 <mapper namespace="com.matjo.pickafood.admin.food.mapper.FoodMapper">
 
     <!-- 검색 조건 -->
-    <sql id ="search">
-    <where>
-        <if test='type != null and keyword == null'>
-            company_category = #{type}
+    <sql id="search">
+        <where>
+            <if test='type != null and keyword == null'>
+                company_category = #{type}
+            </if>
+
+            <if test='keyword != null'>
+                <foreach collection="types" item="item" separator="or" open="(" close=")">
+                    <if test='item == "n"'>
+                        name like concat('%', #{keyword}, '%')
+                    </if>
+
+                    <if test='item == "r"'>
+                        refined_allergy_ingredient like concat('%', #{keyword}, '%')
+                    </if>
+
+                    <if test='item == "i"'>
+                        ingredient like concat('%', #{keyword}, '%')
+                    </if>
+
+                    <if test='item == "s"'>
+                        same_factory like concat('%', #{keyword}, '%')
+                    </if>
+                </foreach>
+            </if>
+        </where>
+    </sql>
+
+    <sql id="searchCheck">
+        <if test='type = "a"'>
+        and refined_allergy_ingredient like
+        <foreach collection="allergyChecks" item="item" separator="OR" >
+            concat('%',#{item},'%')
+        </foreach>
         </if>
-
-        <if test='keyword != null'>
-            <foreach collection="types" item="item" separator="or" open="(" close=")">
-                <if test='item == "n"'>
-                     name like concat('%', #{keyword}, '%')
-                </if>
-
-                <if test='item == "r"'>
-                    refined_allergy_ingredient like concat('%', #{keyword}, '%')
-                </if>
-
-                <if test='item == "i"'>
-                    ingredient like concat('%', #{keyword}, '%')
-                </if>
-
-                <if test='item == "s"'>
-                    same_factory like concat('%', #{keyword}, '%')
-                </if>
-            </foreach>
-        </if>
-    </where>
-</sql>
+    </sql>
 
     <select id="selectList" resultType="com.matjo.pickafood.admin.food.domain.FoodVO">
         select *
@@ -43,10 +52,19 @@
         limit #{skip},#{size}
     </select>
 
+    <select id="allergyCheck" resultType="com.matjo.pickafood.admin.food.domain.FoodVO">
+        select * from food
+        where food_seq > 0 and del_flag = 0
+        <include refid="searchCheck"></include>
+        order by food_seq desc
+        limit #{skip}, #{size}
+    </select>
+
     <select id="allergyOptions" resultType="string">
-    select name
-    from category where type='allergy'
-    order by cate_num
+        select name
+        from category
+        where type = 'allergy'
+        order by cate_num
     </select>
 
     <select id="companyList" resultType="com.matjo.pickafood.admin.food.domain.CompanyVO">
@@ -66,12 +84,14 @@
 
     <select id="getCompanyTotal" resultType="int">
         select count(cate_num)
-        from category where cate_num between 40000 and 50000
+        from category
+        where cate_num between 40000 and 50000
     </select>
 
-  <insert id="insert">
-    insert into food (name, company_category, company, main_image, ingredient, allergy_ingredient, same_factory)
-    values (#{name}, #{company_category}, #{company}, #{main_image}, #{ingredient}, #{allergy_ingredient}, #{same_factory})
-  </insert>
+    <insert id="insert">
+        insert into food (name, company_category, company, main_image, ingredient, allergy_ingredient, same_factory)
+        values (#{name}, #{company_category}, #{company}, #{main_image}, #{ingredient}, #{allergy_ingredient},
+                #{same_factory})
+    </insert>
 
 </mapper>

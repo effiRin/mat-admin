@@ -140,6 +140,10 @@
   <input type="hidden" name="keyword" value="${listDTO.keyword == null ? '' : listDTO.keyword}">
 </form>
 
+<form class="allergyForm" action="" method="post">
+  <input type="">
+</form>
+
 <script>
 
     const linkDiv = document.querySelector(".pagination")
@@ -162,8 +166,7 @@
 
     // 알레르기로 '찾기' 버튼
     document.querySelector(".AllergySearchBtn").addEventListener("click", (e) => {
-
-
+        const target = e.target
     }, false)
 
     //페이지 이동

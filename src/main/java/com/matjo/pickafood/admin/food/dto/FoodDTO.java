@@ -10,7 +10,7 @@ public class FoodDTO {
   
     private String companyCategory;
     private String mainImage; //이미지
-    private String allergyIngredient; //알레르기 성분
+    private String refinedAllergyIngredient; //알레르기 성분
     private String ingredient; //재료 성분
     private String sameFactory; //같은 공장
 

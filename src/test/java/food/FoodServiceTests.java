@@ -1,8 +1,11 @@
 package food;
 
+import com.matjo.pickafood.admin.board.dto.BoardDTO;
 import com.matjo.pickafood.admin.common.dto.ListDTO;
+import com.matjo.pickafood.admin.common.dto.ListResponseDTO;
 import com.matjo.pickafood.admin.food.domain.FoodVO;
-import com.matjo.pickafood.admin.food.mapper.FoodMapper;
+import com.matjo.pickafood.admin.food.dto.FoodDTO;
+import com.matjo.pickafood.admin.food.service.FoodService;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,24 +19,13 @@ import java.util.List;
 @Log4j2
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations = "file:src/main/webapp/WEB-INF/root-context.xml")
-public class FoodMapperTests {
+public class FoodServiceTests {
 
     @Autowired(required = false)
-    private FoodMapper foodMapper;
+    private FoodService foodService;
 
     @Test
-    public void testSelectList() {
-        ListDTO listDTO = new ListDTO();
-        listDTO.setType("n");
-        listDTO.setKeyword("비비고");
-        listDTO.setSize(100);
-
-        List<FoodVO> foodList = foodMapper.selectList(listDTO);
-        foodList.forEach(food -> log.info(food));
-    }
-
-    @Test
-    public void testAllergyCheck(){
+    public void testGetAllergyCheckList() {  // 776
 
         List<String> allergy = new ArrayList<>();
         allergy.add("밀");
@@ -43,15 +35,10 @@ public class FoodMapperTests {
         listDTO.setType("a");
         listDTO.setSize(1000);
         listDTO.setAllergyChecks(allergy);
-        foodMapper.allergyCheck(listDTO);
+        foodService.getAllergyCheckList(listDTO);
 
-        List<FoodVO> allergyCheckResult = foodMapper.allergyCheck(listDTO);
-        allergyCheckResult.forEach(food -> log.info(food));
+        ListResponseDTO<FoodDTO> foodDTOListResponseDTO = foodService.getAllergyCheckList(listDTO);
+        foodDTOListResponseDTO.getDtoList().forEach(foodDTO -> log.info(foodDTO));
     }
 
-    @Test
-    public void testAllergyOptions(){
-        List<String> allergyOptions = foodMapper.allergyOptions();
-        allergyOptions.forEach(allergy -> log.info(allergy));
-    }
 }

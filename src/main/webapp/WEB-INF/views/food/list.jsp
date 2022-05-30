@@ -64,7 +64,7 @@
                                 <hr>
 
                                 <div class="ingredients">
-                                    <span class="box" style="font-size: 17px">${food.allergyIngredient}</span>
+                                    <span class="box" style="font-size: 17px">${food.refinedAllergyIngredient}</span>
                                     <span class="box"  style="font-size: 17px">${food.ingredient}</span>
                                 </div>
 
