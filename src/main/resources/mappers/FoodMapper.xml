@@ -36,10 +36,15 @@
 
     <sql id="searchCheck">
         <if test='type = "a"'>
-        and refined_allergy_ingredient like
-        <foreach collection="allergyChecks" item="item" separator="OR" >
+        ((refined_allergy_ingredient like
+        <foreach collection="allergyChecks" item="item" separator="OR" close=")">
             concat('%',#{item},'%')
         </foreach>
+            or (same_factory like
+            <foreach collection="allergyChecks" item="item" separator="OR" close=")">
+                concat('%',#{item},'%')
+            </foreach>
+            )
         </if>
     </sql>
 
@@ -54,8 +59,9 @@
 
     <select id="allergyCheck" resultType="com.matjo.pickafood.admin.food.domain.FoodVO">
         select * from food
-        where food_seq > 0 and del_flag = 0
+        where
         <include refid="searchCheck"></include>
+        and food_seq > 0 and del_flag = 0
         order by food_seq desc
         limit #{skip}, #{size}
     </select>

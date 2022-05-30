@@ -25,7 +25,7 @@ public class FoodServiceTests {
     private FoodService foodService;
 
     @Test
-    public void testGetAllergyCheckList() {  // 776
+    public void testGetAllergyCheckList() {
 
         List<String> allergy = new ArrayList<>();
         allergy.add("밀");
