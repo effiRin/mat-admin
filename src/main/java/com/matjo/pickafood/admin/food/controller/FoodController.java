@@ -8,6 +8,7 @@ import com.matjo.pickafood.admin.food.dto.FoodDTO;
 import com.matjo.pickafood.admin.food.service.FoodService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -77,8 +78,11 @@ public class FoodController {
 //        return null;
 //    }
 
-    @PostMapping
-    public List<String> allergyCheckPOST(HttpServletRequest request) {
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public List<String> allergyCheckPOST(ListDTO listDTO, HttpServletRequest request) {
+
+        foodService.getAllergyCheckList()
+
         List<String> allergyChecks;
             allergyChecks = List.of(request.getParameterValues("allergyCode"));
         return allergyChecks;

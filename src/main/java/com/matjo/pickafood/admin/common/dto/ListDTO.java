@@ -21,7 +21,6 @@ public class ListDTO {
 
     private List<String> allergyChecks;
 
-
     public List<String> getAllergyChecks() {
         return allergyChecks;
     }
