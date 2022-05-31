@@ -4,6 +4,7 @@ import com.matjo.pickafood.admin.common.dto.ListDTO;
 import com.matjo.pickafood.admin.common.dto.ListResponseDTO;
 import com.matjo.pickafood.admin.food.dto.CompanyDTO;
 import com.matjo.pickafood.admin.food.dto.FoodDTO;
+import com.matjo.pickafood.admin.food.dto.FoodSearchDTO;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 

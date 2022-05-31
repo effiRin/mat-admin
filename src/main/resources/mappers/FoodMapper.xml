@@ -37,7 +37,7 @@
     <sql id="searchCheck">
         <if test='type = "a"'>
         and refined_allergy_ingredient like
-        <foreach collection="allergyChecks" item="item" separator="OR" >
+        <foreach collection="allergies" item="item" separator="OR" >
             concat('%',#{item},'%')
         </foreach>
         </if>
@@ -60,6 +60,12 @@
         limit #{skip}, #{size}
     </select>
 
+    <select id="getAllergyCheckTotal" resultType="int">
+        select count(*) from food
+        where food_seq > 0 and del_flag = 0
+        <include refid="searchCheck"></include>
+        order by food_seq desc
+    </select>
     <select id="allergyOptions" resultType="string">
         select name
         from category

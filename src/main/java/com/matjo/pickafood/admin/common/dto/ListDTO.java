@@ -1,7 +1,6 @@
 package com.matjo.pickafood.admin.common.dto;
 
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.UnsupportedEncodingException;
@@ -10,6 +9,9 @@ import java.util.List;
 
 @ToString
 @Getter
+@Setter
+@Builder
+@AllArgsConstructor
 public class ListDTO {
     private int page;
     private int size;
@@ -19,18 +21,10 @@ public class ListDTO {
     private String type;
     private String keyword;
 
-    private List<String> allergyChecks;
-
-    public List<String> getAllergyChecks() {
-        return allergyChecks;
-    }
-
-    public void setAllergyChecks(List<String> allergyChecks) {
-        this.allergyChecks = allergyChecks;
-    }
-
-
     private int replyCount;
+
+    private String allergy;
+
 
     public ListDTO(){
         this.page = 1;
@@ -88,7 +82,18 @@ public class ListDTO {
             }
         }
 
+        if(allergy != null) {
+            try {
+                String enStr = URLEncoder.encode(allergy, "UTF-8");
+                builder.queryParam("allergy",enStr);
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        }
         return builder.build().toString();
     }
 
+    public String[] getAllergies() {
+        return this.allergy.split(",");
+    }
 }

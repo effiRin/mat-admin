@@ -24,21 +24,21 @@ public class FoodServiceTests {
     @Autowired(required = false)
     private FoodService foodService;
 
-    @Test
-    public void testGetAllergyCheckList() {
-
-        List<String> allergy = new ArrayList<>();
-        allergy.add("밀");
-        allergy.add("난류");
-
-        ListDTO listDTO = new ListDTO();
-        listDTO.setType("a");
-        listDTO.setSize(1000);
-        listDTO.setAllergyChecks(allergy);
-        foodService.getAllergyCheckList(listDTO);
-
-        ListResponseDTO<FoodDTO> foodDTOListResponseDTO = foodService.getAllergyCheckList(listDTO);
-        foodDTOListResponseDTO.getDtoList().forEach(foodDTO -> log.info(foodDTO));
-    }
+//    @Test
+//    public void testGetAllergyCheckList() {
+//
+//        List<String> allergy = new ArrayList<>();
+//        allergy.add("밀");
+//        allergy.add("난류");
+//
+//        ListDTO listDTO = new ListDTO();
+//        listDTO.setType("a");
+//        listDTO.setSize(1000);
+//        listDTO.setAllergyChecks(allergy);
+//        foodService.getAllergyCheckList(listDTO);
+//
+//        ListResponseDTO<FoodDTO> foodDTOListResponseDTO = foodService.getAllergyCheckList(listDTO);
+//        foodDTOListResponseDTO.getDtoList().forEach(foodDTO -> log.info(foodDTO));
+//    }
 
 }

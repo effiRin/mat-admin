@@ -27,7 +27,6 @@
     </div>
   </div>
 </div>
-
 <div class="container-fluid">
   카테고리 들어갈 곳
   <hr>
@@ -35,10 +34,6 @@
   <div class="row">
     <div class="col-sm-offset-1">
       <div class="form-group searchDiv" style="padding-top: 5px; padding-left: 20px;">
-        <select class="type">
-          <option value="n" ${listDTO.type =="n"?"selected":""}>식품명</option>
-          <option value="i" ${listDTO.type =="i"?"selected":""}>식재료</option>
-        </select>
       </div>
     </div>
     <div class="col-sm-8">
@@ -63,110 +58,110 @@
         <div class="card-header">
         </div>
         <div class="row row-cols-1 row-cols-md-4 g-4">
-                  <c:forEach items="${allergyOptions}" var="allergy">
-                    <div class="col" style="text-align: center; margin-bottom: 10px;">
-                  <label style="padding-right: 100px;">
-                    <input type="checkbox" name="allergyCode" value="${allergy}">
-                    <span>${allergy}</span>
-                  </label>
-                    </div>
-                  </c:forEach>
-          </div>
+          <c:forEach items="${allergyOptions}" var="allergy">
+            <div class="col" style="text-align: center; margin-bottom: 10px;">
+              <label style="padding-right: 100px;">
+                <input type="checkbox" name="allergyCode" value="${allergy}">
+                <span>${allergy}</span>
+              </label>
+            </div>
+          </c:forEach>
         </div>
       </div>
     </div>
+  </div>
   <div class="text-center">
     <button type="submit" class="btn btn-default center AllergySearchBtn" style="zoom: 1.2;">
       <strong> 찾기 </strong>
     </button>
   </div>
   <hr>
-    <div class="row">
-      <div class="col-12" style="padding-top: 40px">
-        <h4 style="padding-left: 30px; padding-bottom: 10px;"><strong>'브랜드'로 찾기</strong></h4>
-        <div class="card card-primary card-outline">
-          <div class="card-header">
-          </div>
-          <div class="row row-cols-1 row-cols-md-4 g-4">
-            <c:forEach items="${companyList}" var="company">
-              <div class="col" style="text-align: center; margin-bottom: 10px;">
-                <a href="/food/list?type=${company.cateNum}">
-                  <div class="card h-100"
-                       style="margin-bottom: 10px; max-height: 100vw; width: auto; display: flex; justify-content:center; align-items: center;">
-                    <img src="${company.image}" class="card-img-top" alt="${company.name}"
-                         style="max-height: 10vw; width: 15vw">
-                  </div>
-                </a>
-              </div>
-            </c:forEach>
-          </div>
-          <div class="pagingArea">
-            <nav aria-label="Page navigation example">
-              <ul class="pagination" style="margin-top: 10px">
-                <c:if test="${pageMaker.start > 1}">
-                  <li class="page-item"><a class="page-link" href="${pageMaker.start-1}">이전</a></li>
-                </c:if>
-                <c:forEach begin="${pageMaker.start}" end="${pageMaker.end}" var="num">
-
-                  <c:choose>
-                    <c:when test="${num eq listDTO.page}">
-                      <li class="page-item active" aria-current="page"><a class="page-link" href="${num}">${num}</a>
-                      </li>
-                    </c:when>
-                    <c:otherwise>
-                      <li class="page-item"><a class="page-link" href="${num}">${num}</a></li>
-                    </c:otherwise>
-                  </c:choose>
-
-                </c:forEach>
-
-                <c:if test="${pageMaker.end < total/listDTO.size}">
-                  <li class="page-item"><a class="page-link" href="${pageMaker.end+1}">다음</a></li>
-                </c:if>
-              </ul>
-            </nav>
-          </div>
+  <div class="row">
+    <div class="col-12" style="padding-top: 40px">
+      <h4 style="padding-left: 30px; padding-bottom: 10px;"><strong>'브랜드'로 찾기</strong></h4>
+      <div class="card card-primary card-outline">
+        <div class="card-header">
         </div>
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+          <c:forEach items="${companyList}" var="company">
+            <div class="col" style="text-align: center; margin-bottom: 10px;">
+              <a href="/food/list?type=${company.cateNum}">
+                <div class="card h-100"
+                     style="margin-bottom: 10px; max-height: 100vw; width: auto; display: flex; justify-content:center; align-items: center;">
+                  <img src="${company.image}" class="card-img-top" alt="${company.name}"
+                       style="max-height: 10vw; width: 15vw">
+                </div>
+              </a>
+            </div>
+          </c:forEach>
+        </div>
+        <div class="pagingArea">
+          <nav aria-label="Page navigation example">
+            <ul class="pagination" style="margin-top: 10px">
+              <c:if test="${pageMaker.start > 1}">
+                <li class="page-item"><a class="page-link" href="${pageMaker.start-1}">이전</a></li>
+              </c:if>
+              <c:forEach begin="${pageMaker.start}" end="${pageMaker.end}" var="num">
 
+                <c:choose>
+                  <c:when test="${num eq listDTO.page}">
+                    <li class="page-item active" aria-current="page"><a class="page-link" href="${num}">${num}</a>
+                    </li>
+                  </c:when>
+                  <c:otherwise>
+                    <li class="page-item"><a class="page-link" href="${num}">${num}</a></li>
+                  </c:otherwise>
+                </c:choose>
+
+              </c:forEach>
+
+              <c:if test="${pageMaker.end < total/listDTO.size}">
+                <li class="page-item"><a class="page-link" href="${pageMaker.end+1}">다음</a></li>
+              </c:if>
+            </ul>
+          </nav>
+        </div>
       </div>
+
     </div>
   </div>
 </div>
-
-<form class="actionForm" action="/food/list" method="get">
+</div>
+<form class="allergyForm" action="/food/list" method="get">
   <input type="hidden" name="page" value="${listDTO.page}">
   <input type="hidden" name="size" value="${listDTO.size}">
-  <input type="hidden" name="type" value="${listDTO.type == null ? '':listDTO.type}">
-  <input type="hidden" name="keyword" value="${listDTO.keyword == null ? '' : listDTO.keyword}">
+  <input type="hidden" name="type" value="${listDTO.type == null ? '':'a'}">
+  <input type="hidden" name="allergy" >
 </form>
-
-<form class="allergyForm" action="" method="post">
-  <input type="">
-</form>
-
 <script>
 
     const linkDiv = document.querySelector(".pagination")
     const actionForm = document.querySelector(".actionForm")
-
+    const allergyForm = document.querySelector(".allergyForm")
     // '검색' 버튼
-    document.querySelector(".searchBtn").addEventListener("click", (e) => {
-        const type = document.querySelector('.searchDiv .type').value
-        const keyword = document.querySelector("input[name='keyword']").value
-
-        console.log(type, keyword)
-
-        actionForm.setAttribute("action", "/food/list")
-        actionForm.querySelector("input[name='page']").value = 1
-        actionForm.querySelector("input[name='type']").value = type
-        actionForm.querySelector("input[name='keyword']").value = keyword
-        actionForm.submit()
-
-    }, false)
-
-    // 알레르기로 '찾기' 버튼
     document.querySelector(".AllergySearchBtn").addEventListener("click", (e) => {
-        const target = e.target
+        //const type = document.querySelector('.searchDiv .type').value
+        //const keyword = document.querySelector("input[name='keyword']").value
+
+        allergyForm.setAttribute("action", "/food/list")
+        allergyForm.querySelector("input[name='page']").value = 1
+      //  allergyForm.querySelector("input[name='type']").value = type
+       // allergyForm.querySelector("input[name='keyword']").value = keyword
+
+        const allergies = []
+        const allergychecks = document.querySelectorAll("input[name='allergyCode']")
+
+        for (let i = 0; i < allergychecks.length; i++) {
+            if (allergychecks[i].checked) {
+                allergies.push(allergychecks[i].value)
+            }
+        }
+
+        //allergyForm.querySelector("input[name='allergy']").value = allergy;
+        allergyForm.querySelector("input[name='allergy']").value = allergies.toString();
+
+         allergyForm.submit()
+
     }, false)
 
     //페이지 이동
@@ -202,6 +197,7 @@
     //     boxLong.classList.toggle("hidden")
     //
     // }, false)
+
 
 </script>
 

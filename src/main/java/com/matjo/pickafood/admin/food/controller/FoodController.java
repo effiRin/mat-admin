@@ -5,6 +5,7 @@ import com.matjo.pickafood.admin.common.dto.ListResponseDTO;
 import com.matjo.pickafood.admin.common.dto.PageMaker;
 import com.matjo.pickafood.admin.food.dto.CompanyDTO;
 import com.matjo.pickafood.admin.food.dto.FoodDTO;
+import com.matjo.pickafood.admin.food.dto.FoodSearchDTO;
 import com.matjo.pickafood.admin.food.service.FoodService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -29,13 +30,13 @@ public class FoodController {
 
     //list
     @GetMapping("/")
-    public String basic(){
+    public String basic() {
         return "redirect:/food/list";
     }
 
     //main
     @GetMapping("/main")
-    public void  main(ListDTO listDTO, Model model){
+    public void main(ListDTO listDTO, Model model) {
         ListResponseDTO<CompanyDTO> responseDTO = foodService.getMain(listDTO);
         model.addAttribute("companyList", responseDTO.getDtoList());
         model.addAttribute("total", responseDTO.getTotal());
@@ -48,43 +49,39 @@ public class FoodController {
 
     //list 페이지
     @GetMapping("/list")
-    public void list(ListDTO listDTO, Model model){
-
+    public void list(ListDTO listDTO, Model model) {
+        log.info(listDTO);
         // log.info("food list.........");
         // log.info("page : "+page);
-
-        ListResponseDTO<FoodDTO> responseDTO = foodService.getList(listDTO);
-        model.addAttribute("dtoList", responseDTO.getDtoList());
-        model.addAttribute("total", responseDTO.getTotal());
-        int total = responseDTO.getTotal();
-        model.addAttribute("pageMaker", new PageMaker(listDTO.getPage(), total));
-
+        if (listDTO.getAllergy() == null) {
+            log.info("=======");
+            log.info("allergy is null");
+            log.info("=======");
+            ListResponseDTO<FoodDTO> responseDTO = foodService.getList(listDTO);
+            model.addAttribute("dtoList", responseDTO.getDtoList());
+            model.addAttribute("total", responseDTO.getTotal());
+            int total = responseDTO.getTotal();
+            model.addAttribute("pageMaker", new PageMaker(listDTO.getPage(), total));
+        } else {
+            log.info("=======");
+            log.info("allergy!!!!");
+            log.info("=======");
+            ListResponseDTO<FoodDTO> responseDTO = foodService.getAllergyCheckList(listDTO);
+            model.addAttribute("dtoList", responseDTO.getDtoList());
+            model.addAttribute("total", responseDTO.getTotal());
+            int total = responseDTO.getTotal();
+            PageMaker pageMaker = new PageMaker(listDTO.getPage(), total);
+            log.info(pageMaker);
+            model.addAttribute("pageMaker", pageMaker);
+        }
     }
 
-//    // 알레르기 체크박스 검색 - 수정필요!!!
-//    @PostMapping // mapping을 어떻게 해주지?
-//    public String Test(Model model, HttpServletRequest request ) throws Exception{
-//        try{
-//            String[] value = request.getParameterValues("${allergy}");
+//    @PostMapping("/allergySearch")
+//    public List<FoodDTO> allergyCheckPOST(ListDTO listDTO) {
 //
-//            for(int j = 1; j <= value.length ; j++ ){
-//                for(int i = 0; i < request.getParameterValues("ch" + String.valueOf(j)).length ; i++){
-//                    System.out.println(request.getParameterValues("ch" + String.valueOf(j))[i]);
-//                }
-//            }
-//        } catch(Exception e){
-//            e.printStackTrace();
-//        }
-//        return null;
+//       foodService.getAllergyCheckList(listDTO).getDtoList();
 //    }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public List<String> allergyCheckPOST(ListDTO listDTO, HttpServletRequest request) {
 
-        foodService.getAllergyCheckList()
 
-        List<String> allergyChecks;
-            allergyChecks = List.of(request.getParameterValues("allergyCode"));
-        return allergyChecks;
-    }
 }
