@@ -10,4 +10,8 @@ import java.util.List;
 public interface FoodMapper extends GenericMapper<FoodVO, Integer> {
     List<CompanyVO> companyList(ListDTO listDTO);
     int getCompanyTotal(ListDTO listDTO);
+    List<String> allergyOptions();
+
+    List<FoodVO> allergyCheck(ListDTO listDTO);
+
 }

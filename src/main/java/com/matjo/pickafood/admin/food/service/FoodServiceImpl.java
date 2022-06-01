@@ -7,8 +7,6 @@ import com.matjo.pickafood.admin.food.domain.FoodVO;
 import com.matjo.pickafood.admin.food.dto.CompanyDTO;
 import com.matjo.pickafood.admin.food.dto.FoodDTO;
 import com.matjo.pickafood.admin.food.mapper.FoodMapper;
-import com.matjo.pickafood.admin.inquiry.domain.InquiryVO;
-import com.matjo.pickafood.admin.inquiry.dto.InquiryDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
@@ -61,4 +59,26 @@ public class FoodServiceImpl implements FoodService {
                 .total(foodMapper.getCompanyTotal(listDTO))
                 .build();
     }
+
+    @Override
+    public List<String> getAllergyOptions() {
+        List<String> allergyOptions = foodMapper.allergyOptions();
+        return allergyOptions;
+    }
+
+    @Override
+    public ListResponseDTO<FoodDTO> getAllergyCheckList(ListDTO listDTO) {
+        List<FoodVO> allergyCheckList = foodMapper.allergyCheck(listDTO);
+
+        List<FoodDTO> dtoList =
+                allergyCheckList.stream()
+                        .map(foodVO -> modelMapper.map(foodVO, FoodDTO.class))
+                        .collect(Collectors.toList());
+
+        return ListResponseDTO.<FoodDTO>builder()
+                .dtoList(dtoList)
+                .build();
+    }
+
+
 }

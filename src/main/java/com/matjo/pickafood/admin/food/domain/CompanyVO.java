@@ -11,5 +11,4 @@ public class CompanyVO {
     private int cateNum;
     private String name;
     private String image;
-
 }

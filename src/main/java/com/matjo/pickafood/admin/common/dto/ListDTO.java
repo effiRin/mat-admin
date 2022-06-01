@@ -6,6 +6,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.List;
 
 @ToString
 @Getter
@@ -17,6 +18,17 @@ public class ListDTO {
     //tcw
     private String type;
     private String keyword;
+
+    private List<String> allergyChecks;
+
+    public List<String> getAllergyChecks() {
+        return allergyChecks;
+    }
+
+    public void setAllergyChecks(List<String> allergyChecks) {
+        this.allergyChecks = allergyChecks;
+    }
+
 
     private int replyCount;
 
