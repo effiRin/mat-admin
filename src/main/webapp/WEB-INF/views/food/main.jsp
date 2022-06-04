@@ -36,9 +36,9 @@
       <div class="form-group searchDiv" style="padding-top: 5px; padding-left: 20px;">
       </div>
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-11">
       <div class="input-group" style="padding-left: 10px;">
-        <input type="text" name="keyword" class="form-control float-right" placeholder="Search">
+        <input type="text" name="keyword" class="form-control float-right" placeholder="'식품명'을 입력하세요!">
         <div class="input-group-append">
           <button type="submit" class="btn btn-default searchBtn">
             <i class="fas fa-search"></i>
@@ -66,6 +66,22 @@
               </label>
             </div>
           </c:forEach>
+          <div class="col" style="text-align: center; margin-bottom: 10px;">
+            <label style="padding-right: 100px;">
+              <input type="checkbox" id="others">
+              <span>기타</span>
+            </label>
+          </div>
+        </div>
+        <div class="col-sm-5" name="ingredientSearchDiv" style="margin: auto; display: none;">
+          <div class="input-group" style="padding-bottom: 20px">
+            <input type="text" name="keyword" class="form-control float-right" placeholder="'재료명'을 입력하세요!" style="text-align: center;">
+            <div class="input-group-append">
+              <button type="submit" class="btn btn-default searchBtn">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -131,9 +147,20 @@
   <input type="hidden" name="page" value="${listDTO.page}">
   <input type="hidden" name="size" value="${listDTO.size}">
   <input type="hidden" name="type" value="${listDTO.type == null ? '':'a'}">
-  <input type="hidden" name="allergy" >
+  <input type="hidden" name="allergy">
 </form>
 <script>
+
+    function show_ingredientSearchDiv(){
+
+        const othersInput = document.getElementById(others);
+
+        if(othersInput.checked == true){
+        document.querySelector("ingredientSearchDiv").style.display = "";
+        }else{
+        document.querySelector("ingredientSearchDiv").style.display = "none";
+        }
+    }
 
     const linkDiv = document.querySelector(".pagination")
     const actionForm = document.querySelector(".actionForm")
@@ -149,11 +176,11 @@
        // allergyForm.querySelector("input[name='keyword']").value = keyword
 
         const allergies = []
-        const allergychecks = document.querySelectorAll("input[name='allergyCode']")
+        const allergyChecks = document.querySelectorAll("input[name='allergyCode']")
 
-        for (let i = 0; i < allergychecks.length; i++) {
-            if (allergychecks[i].checked) {
-                allergies.push(allergychecks[i].value)
+        for (let i = 0; i < allergyChecks.length; i++) {
+            if (allergyChecks[i].checked) {
+                allergies.push(allergyChecks[i].value)
             }
         }
 
