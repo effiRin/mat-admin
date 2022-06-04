@@ -41,7 +41,7 @@
                         <tr>
                             <th>#</th>
                             <th></th>
-                            <th style="text-align: left;">식품 이름 / 알레르기 성분/ <span style="color: brown">(같은 공장에서 제조하는 식품 성분)</span></th>
+                            <th style="text-align: left;">식품 이름 / 알레르기 성분/ <span style="color: darkslateblue">식품 재료</span> / <span style="color: brown">(같은 공장에서 제조하는 식품 성분)</span></th>
                         </tr>
                         </thead>
                         <tbody class="foodList">
@@ -60,6 +60,7 @@
                             <td></td>
                             <td><img src="${food.mainImage}" style="max-width:100px"/></td>
                             <td style="text-align: left;">
+                              
                                 <span style="font-size: 15px">${food.name}</span>
                                 <hr>
 
@@ -71,6 +72,7 @@
                                 <c:if test="${food.sameFactory != null}">
                                     <hr><span style="font-size: 15px; color: brown">${food.sameFactory}</span>
                                 </c:if>
+                                </div>
                             </td>
                             </tr>
                         </c:forEach>
