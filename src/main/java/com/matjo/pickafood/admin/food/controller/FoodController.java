@@ -43,6 +43,7 @@ public class FoodController {
         int total = responseDTO.getTotal();
         model.addAttribute("pageMaker", new PageMaker(listDTO.getPage(), total));
 
+        // 알레르기 옵션 뿌려주기
         List<String> allergyOptions = foodService.getAllergyOptions();
         model.addAttribute("allergyOptions", allergyOptions);
     }
@@ -53,7 +54,7 @@ public class FoodController {
         log.info(listDTO);
         // log.info("food list.........");
         // log.info("page : "+page);
-        if (listDTO.getAllergy() == null) {
+        if (listDTO.getAllergy() == null) { // 알레르기 체크 안 했을 경우
             log.info("=======");
             log.info("allergy is null");
             log.info("=======");
@@ -62,7 +63,8 @@ public class FoodController {
             model.addAttribute("total", responseDTO.getTotal());
             int total = responseDTO.getTotal();
             model.addAttribute("pageMaker", new PageMaker(listDTO.getPage(), total));
-        } else {
+
+        } else { // 알레르기 체크했을 경우
             log.info("=======");
             log.info("allergy!!!!");
             log.info("=======");
@@ -70,18 +72,7 @@ public class FoodController {
             model.addAttribute("dtoList", responseDTO.getDtoList());
             model.addAttribute("total", responseDTO.getTotal());
             int total = responseDTO.getTotal();
-            PageMaker pageMaker = new PageMaker(listDTO.getPage(), total);
-            log.info(pageMaker);
-            model.addAttribute("pageMaker", pageMaker);
+            model.addAttribute("pageMaker", new PageMaker(listDTO.getPage(), total));
         }
     }
-
-//    @PostMapping("/allergySearch")
-//    public List<FoodDTO> allergyCheckPOST(ListDTO listDTO) {
-//
-//       foodService.getAllergyCheckList(listDTO).getDtoList();
-//    }
-
-
-
 }

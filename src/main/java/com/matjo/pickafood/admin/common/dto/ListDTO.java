@@ -39,11 +39,18 @@ public class ListDTO {
         this.keyword = keyword;
     }
 
-    public String[] getTypes(){
+//    public String[] getTypes(){
+//        if (type == null || type.trim().length() == 0) {
+//            return new String[]{};
+//        }
+//        return type.split("");
+//    }
+
+    public String getTypes(){
         if (type == null || type.trim().length() == 0) {
-            return new String[]{};
+            return null;
         }
-        return type.split("");
+        return type;
     }
 
     public String getKeyword(){

@@ -28,73 +28,66 @@
   </div>
 </div>
 <div class="container-fluid">
-  카테고리 들어갈 곳
-  <hr>
-  <h4 style="padding-left: 20px; padding-bottom: 10px;"><strong>'검색'으로 찾기</strong></h4>
   <div class="row">
-    <div class="col-sm-offset-1">
-      <div class="form-group searchDiv" style="padding-top: 5px; padding-left: 20px;">
-      </div>
-    </div>
-    <div class="col-sm-11">
-      <div class="input-group" style="padding-left: 10px;">
-        <input type="text" name="keyword" class="form-control float-right" placeholder="'식품명'을 입력하세요!">
-        <div class="input-group-append">
-          <button type="submit" class="btn btn-default searchBtn">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <hr>
-  <div class="row">
-    <div class="col-12" style="padding-top: 40px">
-      <h4 style="padding-left: 20px; padding-bottom: 10px;"><strong>'알레르기'로 찾기</strong></h4>
+    <div class="col-12" style="padding-top: 20px">
+      <h4 style="padding-left: 20px; padding-bottom: 10px;"><strong>'알레르기' 선택하기</strong></h4>
       <div class="allergy_option_title" style="padding-bottom: 10px;">
         <span style="padding-left: 20px;"><strong>(식품의약품안전처 고시 알레르기 유발식품 19종)</strong></span>
       </div>
       <div class="card card-primary card-outline">
         <div class="card-header">
         </div>
-        <div class="row row-cols-1 row-cols-md-4 g-4">
-          <c:forEach items="${allergyOptions}" var="allergy">
-            <div class="col" style="text-align: center; margin-bottom: 10px;">
-              <label style="padding-right: 100px;">
-                <input type="checkbox" name="allergyCode" value="${allergy}">
-                <span>${allergy}</span>
-              </label>
-            </div>
-          </c:forEach>
-          <div class="col" style="text-align: center; margin-bottom: 10px;">
-            <label style="padding-right: 100px;">
-              <input type="checkbox" id="others">
-              <span>기타</span>
-            </label>
+        <form>
+          <div class="row row-cols-1 row-cols-md-4 g-4">
+            <c:forEach items="${allergyOptions}" var="allergy">
+              <div class="col" style="text-align: center; margin-bottom: 10px;">
+                <label style="padding-right: 100px;">
+                  <input type="checkbox" name="allergyCode" value="${allergy}">
+                  <span>${allergy}</span>
+                </label>
+              </div>
+            </c:forEach>
           </div>
-        </div>
-        <div class="col-sm-5" name="ingredientSearchDiv" style="margin: auto; display: none;">
-          <div class="input-group" style="padding-bottom: 20px">
-            <input type="text" name="keyword" class="form-control float-right" placeholder="'재료명'을 입력하세요!" style="text-align: center;">
-            <div class="input-group-append">
-              <button type="submit" class="btn btn-default searchBtn">
-                <i class="fas fa-search"></i>
-              </button>
+          <div class="col-sm-5" style="margin: auto; text-align: center;">
+            <input type="checkbox" name="others" onclick="show_ingredientDiv(this)" style="margin-bottom: 1vw;">
+            <strong>찾으시는 알레르기가 없나요?</strong>
+            <div class="input-group ingredientDiv" style="margin-bottom: 1vw; display: none;">
+              <input type="text" name="foodIngredient" class="form-control float-right" placeholder="'재료명'을 입력해 보세요!"
+                     style="text-align: center;">
             </div>
           </div>
-        </div>
+      </div>
+    </div>
+    <div style="margin: auto">
+      <span style="padding-right: 10vw;">
+        <input type="radio" name="choice" value="included" checked> 포함한 식품 보기
+        </span>
+      <span style="padding-right: 10vw;">
+    <input type="radio" name="choice" value="excepted"> 제외한 식품 보기
+        </span>
+      <span style="padding-right: 10vw;">
+    <button type="reset"> 초기화 </button>
+        </span>
+    </div>
+    </form>
+  </div>
+
+  <h4 style="padding-left: 20px; margin-top: 40px; padding-bottom: 10px;"><strong>'식품명' 입력하기</strong></h4>
+  <div class="row justify-content-center">
+    <div class="col-sm-offset-1">
+      <div class="form-group searchDiv" style="padding-top: 5px; padding-left: 20px;">
+      </div>
+    </div>
+    <div class="col-sm-5">
+      <div class="input-group">
+        <input type="text" name="foodName" class="form-control float-right" placeholder="'식품명'을 입력하세요!"
+               style="text-align: center;">
       </div>
     </div>
   </div>
-  <div class="text-center">
-    <button type="submit" class="btn btn-default center AllergySearchBtn" style="zoom: 1.2;">
-      <strong> 찾기 </strong>
-    </button>
-  </div>
-  <hr>
   <div class="row">
-    <div class="col-12" style="padding-top: 40px">
-      <h4 style="padding-left: 30px; padding-bottom: 10px;"><strong>'브랜드'로 찾기</strong></h4>
+    <div class="col-12" style="margin-top: 40px">
+      <h4 style="padding-left: 30px; padding-bottom: 10px;"><strong>'브랜드' 선택하기</strong></h4>
       <div class="card card-primary card-outline">
         <div class="card-header">
         </div>
@@ -138,43 +131,47 @@
           </nav>
         </div>
       </div>
-
     </div>
   </div>
-</div>
+  <hr>
+  <div class="text-center">
+    <button type="submit" class="btn btn-default center SearchBtn" style="zoom: 1.2;">
+      <strong> 찾기 </strong>
+    </button>
+  </div>
 </div>
 <form class="allergyForm" action="/food/list" method="get">
   <input type="hidden" name="page" value="${listDTO.page}">
   <input type="hidden" name="size" value="${listDTO.size}">
-  <input type="hidden" name="type" value="${listDTO.type == null ? '':'a'}">
+  <input type="hidden" name="type" value="${listDTO.type == null ? '':''}">
   <input type="hidden" name="allergy">
+  <input type="hidden" name="ingredient">
 </form>
+
 <script>
 
-    function show_ingredientSearchDiv(){
+    // 체크하면 ingredient 창 보여주기
+    function show_ingredientDiv(others){
 
-        const othersInput = document.getElementById(others);
-
-        if(othersInput.checked == true){
-        document.querySelector("ingredientSearchDiv").style.display = "";
+        if(others.checked==true){
+        document.querySelector(".ingredientDiv").style.display = ""
         }else{
-        document.querySelector("ingredientSearchDiv").style.display = "none";
+        document.querySelector(".ingredientDiv").style.display = "none"
         }
     }
 
     const linkDiv = document.querySelector(".pagination")
     const actionForm = document.querySelector(".actionForm")
     const allergyForm = document.querySelector(".allergyForm")
+
     // '검색' 버튼
-    document.querySelector(".AllergySearchBtn").addEventListener("click", (e) => {
-        //const type = document.querySelector('.searchDiv .type').value
-        //const keyword = document.querySelector("input[name='keyword']").value
+    document.querySelector(".SearchBtn").addEventListener("click", (e) => {
 
         allergyForm.setAttribute("action", "/food/list")
         allergyForm.querySelector("input[name='page']").value = 1
-      //  allergyForm.querySelector("input[name='type']").value = type
-       // allergyForm.querySelector("input[name='keyword']").value = keyword
 
+
+        // 알레르기 체크 했을 때
         const allergies = []
         const allergyChecks = document.querySelectorAll("input[name='allergyCode']")
 
@@ -184,10 +181,31 @@
             }
         }
 
-        //allergyForm.querySelector("input[name='allergy']").value = allergy;
         allergyForm.querySelector("input[name='allergy']").value = allergies.toString();
 
-         allergyForm.submit()
+
+        // ingredient 입력했을 때
+
+        const ingredient = document.querySelector("input[name='foodIngredient']").value
+        allergyForm.querySelector("input[name='ingredient']").value = ingredient;
+
+        // 포함, 제외
+        const choiceNodeList = document.getElementsByName('choice');
+
+        choiceNodeList.forEach((node) => {
+            if(node.checked)  {
+                if(node.value == 'included'){
+                    allergyForm.querySelector("input[name='type']").value = 'ai'
+                }
+                else{
+                    allergyForm.querySelector("input[name='type']").value = 'ae'
+                }
+            }
+        })
+
+        console.log(allergyForm)
+
+       // allergyForm.submit()
 
     }, false)
 
