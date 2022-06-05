@@ -24,6 +24,7 @@ public class ListDTO {
     private int replyCount;
 
     private String allergy;
+    private String ingredient;
 
 
     public ListDTO(){

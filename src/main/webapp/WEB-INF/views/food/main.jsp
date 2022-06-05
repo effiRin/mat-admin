@@ -203,9 +203,9 @@
             }
         })
 
-        console.log(allergyForm)
+        // console.log(allergyForm)
 
-       // allergyForm.submit()
+       allergyForm.submit()
 
     }, false)
 

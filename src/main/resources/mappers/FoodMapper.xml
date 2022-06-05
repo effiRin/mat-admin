@@ -52,6 +52,11 @@
             )
         </if>
     </sql>
+    <sql id = "searchIngredient">
+        <if test="ingredient != null">
+
+        </if>
+    </sql>
 
     <select id="selectList" resultType="com.matjo.pickafood.admin.food.domain.FoodVO">
         select *
@@ -66,6 +71,7 @@
         select * from food
         where food_seq > 0 and del_flag = 0
         <include refid="searchCheck"></include>
+        <include refid="searchIngredient"></include>
         order by food_seq desc
         limit #{skip}, #{size}
     </select>
