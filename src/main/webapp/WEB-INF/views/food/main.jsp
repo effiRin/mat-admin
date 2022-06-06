@@ -181,37 +181,47 @@
             }
         }
 
-        allergyForm.querySelector("input[name='allergy']").value = allergies.toString();
+        let allergy = allergies.toString();
+        console.log(allergies.toString())
+        allergyForm.querySelector("input[name='allergy']").value = allergy;
 
 
         // ingredient 입력했을 때
 
-        const ingredient = document.querySelector("input[name='foodIngredient']").value
+        let ingredient = document.querySelector("input[name='foodIngredient']").value
         allergyForm.querySelector("input[name='ingredient']").value = ingredient;
 
-        // 포함, 제외
+
+        // 포함, 제외 + 타입
         const choiceNodeList = document.getElementsByName('choice');
         let type;
 
         choiceNodeList.forEach((node) => {
             if(node.checked)  {
-                if(node.value == 'contained' && allergies != null){
+                if(node.value == 'contained' && allergy.toString().length != 0){
                     type = "ac"
                 }
-                if(node.value == 'excepted' && allergies != null){
+                if(node.value == 'excepted' && allergy.toString().length != 0){
                     type = "ae"
                 }
-                if(node.value == 'contained' && ingredient != null) {
+                if(node.value == 'contained' && ingredient.toString().length != 0) {
                     type = "ic"
                 }
-                if(node.value == 'excepted' && ingredient != null) {
+                if(node.value == 'excepted' && ingredient.toString().length != 0) {
                     type = "ie"
+                }
+
+                if(node.value == 'contained' && allergy.toString().length != 0 && ingredient.toString().length != 0) {
+                    type = "aic"
+                }
+                if(node.value == 'excepted' && allergy.toString().length != 0 && ingredient.toString().length != 0){
+                    type = "aie"
                 }
             }
             allergyForm.querySelector("input[name='type']").value = type;
         })
 
-        // console.log(allergyForm)
+       // console.log(allergyForm)
 
        allergyForm.submit()
 

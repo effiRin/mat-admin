@@ -36,23 +36,28 @@
 
     <sql id="searchCheck">
         and (
-        <if test='type == "ac"'>
-            <foreach collection="allergies" item="checked" separator="OR">
-                (refined_allergy_ingredient like
-                concat('%',#{checked},'%'))
-            </foreach>
+        <if test='type.contains("i")'>
+            <if test='type.contains("c")'>
+                ingredient like concat('%',#{ingredient},'%')
+            </if>
+            <if test='type.contains("e")'>
+                ingredient not like concat('%',#{ingredient},'%')
+            </if>
         </if>
-        <if test='type=="ic"'>
-            (ingredient like concat('%',#{ingredient},'%'))
+        <if test='type.contains("ai")'>
+            OR
         </if>
-        <if test='type == "ae"'>
-            <foreach collection="allergies" item="checked" separator="OR">
-                (refined_allergy_ingredient not like
-                concat('%',#{checked},'%'))
-            </foreach>
-        </if>
-        <if test='type=="ie"'>
-            (ingredient not like concat('%',#{ingredient},'%'))
+        <if test='type.contains("a")'>
+            <if test='type.contains("c")'>
+                <foreach collection="allergies" item="allergy" separator="OR">
+                    refined_allergy_ingredient like concat('%',#{allergy},'%')
+                </foreach>
+            </if>
+            <if test='type.contains("e")'>
+                <foreach collection="allergies" item="allergy" separator="OR">
+                    refined_allergy_ingredient not like concat('%',#{allergy},'%')
+                </foreach>
+            </if>
         </if>
         )
     </sql>
