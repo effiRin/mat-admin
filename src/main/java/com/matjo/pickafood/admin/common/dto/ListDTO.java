@@ -25,6 +25,8 @@ public class ListDTO {
 
     private String allergy;
     private String ingredient;
+    private String name;
+    private String company;
 
 
     public ListDTO(){

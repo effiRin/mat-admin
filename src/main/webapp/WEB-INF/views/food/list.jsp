@@ -188,7 +188,9 @@
     <input type="hidden" name="size" value="${listDTO.size}">
     <input type="hidden" name="type" value="${listDTO.type == null ? '':listDTO.type}">
     <input type="hidden" name="allergy" value="${listDTO.allergy == null ? '' : listDTO.allergy}">
-    <input type="hidden" name="allergy" value="${listDTO.ingredient == null ? '' : listDTO.ingredient}">
+    <input type="hidden" name="ingredient" value="${listDTO.ingredient == null ? '' : listDTO.ingredient}">
+    <input type="hidden" name="name" value="${listDTO.name == null ? '':listDTO.name}">
+    <input type="hidden" name="brand" value="${listDTO.company == null ? '':listDTO.company}">
 </form>
 
 <script>

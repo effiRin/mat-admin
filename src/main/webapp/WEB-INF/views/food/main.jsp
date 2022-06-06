@@ -146,6 +146,8 @@
   <input type="hidden" name="type" value="${listDTO.type == null?'':listDTO.type}">
   <input type="hidden" name="allergy">
   <input type="hidden" name="ingredient">
+  <input type="hidden" name="name">
+  <input type="hidden" name="brand">
 </form>
 
 <script>
@@ -157,6 +159,7 @@
         document.querySelector(".ingredientDiv").style.display = ""
         }else{
         document.querySelector(".ingredientDiv").style.display = "none"
+        document.querySelector("input[name='foodIngredient']").value = null
         }
     }
 
@@ -171,7 +174,7 @@
         allergyForm.querySelector("input[name='page']").value = 1
 
 
-        // 알레르기 체크 했을 때
+        // 알레르기 19종 체크 했을 때
         const allergies = []
         const allergyChecks = document.querySelectorAll("input[name='allergyCode']")
 
@@ -182,48 +185,57 @@
         }
 
         let allergy = allergies.toString();
-        console.log(allergies.toString())
         allergyForm.querySelector("input[name='allergy']").value = allergy;
 
 
-        // ingredient 입력했을 때
-
+        // ingredient(재료명) 입력했을 때
         let ingredient = document.querySelector("input[name='foodIngredient']").value
         allergyForm.querySelector("input[name='ingredient']").value = ingredient;
 
 
-        // 포함, 제외 + 타입
+        // foodName(식품명) 입력했을 때
+        let foodName = document.querySelector("input[name='foodName']").value
+        allergyForm.querySelector("input[name='name']").value = foodName;
+
+        // brand (company 회사) 선택했을 때
+
+
+        // 포함과 제외 + 타입
         const choiceNodeList = document.getElementsByName('choice');
-        let type;
+        let type = "";
 
         choiceNodeList.forEach((node) => {
+            // 포함,여부 조건문
+            const cond1 = {
+                "c": node.value == 'contained',
+                "e": node.value == 'excepted',
+            };
+
             if(node.checked)  {
-                if(node.value == 'contained' && allergy.toString().length != 0){
-                    type = "ac"
-                }
-                if(node.value == 'excepted' && allergy.toString().length != 0){
-                    type = "ae"
-                }
-                if(node.value == 'contained' && ingredient.toString().length != 0) {
-                    type = "ic"
-                }
-                if(node.value == 'excepted' && ingredient.toString().length != 0) {
-                    type = "ie"
-                }
-
-                if(node.value == 'contained' && allergy.toString().length != 0 && ingredient.toString().length != 0) {
-                    type = "aic"
-                }
-                if(node.value == 'excepted' && allergy.toString().length != 0 && ingredient.toString().length != 0){
-                    type = "aie"
-                }
+                if(cond1.c){return type = 'c'}
+                if(cond1.e){return type = 'e'}
             }
-            allergyForm.querySelector("input[name='type']").value = type;
-        })
+        }) // forEach 끝
 
-       // console.log(allergyForm)
+        const cond2 = {
+            "a": allergy.toString().length != 0,
+            "i": ingredient.toString().length != 0,
+            "n": foodName.toString().length != 0
+            // "b"
+        };
 
-       allergyForm.submit()
+        if(cond2.a){type = "a" + type}
+        if(cond2.i){type = "i" + type}
+        if(cond2.n){type = "n" + type}
+        // if(cond2.b){type = "b" + type}
+
+        allergyForm.querySelector("input[name='type']").value = type;
+
+        console.log(allergyForm)
+        console.log(allergies.toString())
+        console.log(type)
+
+       // allergyForm.submit()
 
     }, false)
 
