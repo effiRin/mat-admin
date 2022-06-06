@@ -54,12 +54,15 @@ public class FoodController {
         log.info(listDTO);
         // log.info("food list.........");
         // log.info("page : "+page);
-        if (listDTO.getAllergy() == null) { // 알레르기 체크 안 했을 경우
+
+        // 알레르기 체크 X, 재료명 입력 O
+        if ((listDTO.getAllergy() == null) && (listDTO.getIngredient() != null)) {
             log.info("=======");
-            log.info("allergy is null");
+            log.info("allergy is null & ingredient is " + listDTO.getIngredient());
             log.info("=======");
             ListResponseDTO<FoodDTO> responseDTO = foodService.getList(listDTO);
             model.addAttribute("dtoList", responseDTO.getDtoList());
+//            model.addAttribute("sameFactoryList", responseDTO.get)
             model.addAttribute("total", responseDTO.getTotal());
             int total = responseDTO.getTotal();
             model.addAttribute("pageMaker", new PageMaker(listDTO.getPage(), total));

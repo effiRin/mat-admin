@@ -40,18 +40,11 @@ public class ListDTO {
         this.keyword = keyword;
     }
 
-//    public String[] getTypes(){
-//        if (type == null || type.trim().length() == 0) {
-//            return new String[]{};
-//        }
-//        return type.split("");
-//    }
-
-    public String getTypes(){
+    public String[] getTypes(){
         if (type == null || type.trim().length() == 0) {
-            return null;
+            return new String[]{};
         }
-        return type;
+        return type.split("");
     }
 
     public String getKeyword(){
@@ -98,10 +91,26 @@ public class ListDTO {
                 e.printStackTrace();
             }
         }
+
+        if(ingredient != null) {
+            try {
+                String enStr = URLEncoder.encode(ingredient, "UTF-8");
+                builder.queryParam("ingredient",enStr);
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        }
+
         return builder.build().toString();
     }
 
     public String[] getAllergies() {
         return this.allergy.split(",");
     }
+
+
+    public String getIngredient(){
+        return ingredient == null || ingredient.trim().length() == 0 ? null : ingredient.trim();
+    }
+
 }

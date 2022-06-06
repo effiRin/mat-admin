@@ -60,7 +60,7 @@
     </div>
     <div style="margin: auto">
       <span style="padding-right: 10vw;">
-        <input type="radio" name="choice" value="included" checked> 포함한 식품 보기
+        <input type="radio" name="choice" value="contained" checked> 포함한 식품 보기
         </span>
       <span style="padding-right: 10vw;">
     <input type="radio" name="choice" value="excepted"> 제외한 식품 보기
@@ -71,7 +71,7 @@
     </div>
     </form>
   </div>
-
+<hr>
   <h4 style="padding-left: 20px; margin-top: 40px; padding-bottom: 10px;"><strong>'식품명' 입력하기</strong></h4>
   <div class="row justify-content-center">
     <div class="col-sm-offset-1">
@@ -191,16 +191,24 @@
 
         // 포함, 제외
         const choiceNodeList = document.getElementsByName('choice');
+        let type;
 
         choiceNodeList.forEach((node) => {
             if(node.checked)  {
-                if(node.value == 'included'){
-                    allergyForm.querySelector("input[name='type']").value = 'ai'
+                if(node.value == 'contained' && allergies != null){
+                    type = "ac"
                 }
-                else{
-                    allergyForm.querySelector("input[name='type']").value = 'ae'
+                if(node.value == 'excepted' && allergies != null){
+                    type = "ae"
+                }
+                if(node.value == 'contained' && ingredient != null) {
+                    type = "ic"
+                }
+                if(node.value == 'excepted' && ingredient != null) {
+                    type = "ie"
                 }
             }
+            allergyForm.querySelector("input[name='type']").value = type;
         })
 
         // console.log(allergyForm)
@@ -227,22 +235,6 @@
 
     }, false)
     // ↑ 버블링 ok 캡쳐링은 false
-
-    // foodList.addEventListener("click", (e) => {
-    //     const target = e.target.closest("div");
-    //
-    //     if (target.className !== "ingredients") {
-    //         return;
-    //     }
-    //
-    //     const boxShort = target.querySelector(".box");
-    //     const boxLong = target.querySelector(".show-box");
-    //
-    //     boxShort.classList.toggle("hidden")
-    //     boxLong.classList.toggle("hidden")
-    //
-    // }, false)
-
 
 </script>
 

@@ -24,7 +24,7 @@ public class FoodMapperTests {
     @Test
     public void testSelectList() {
         ListDTO listDTO = new ListDTO();
-        listDTO.setType("n");
+        listDTO.setType("dn");
         listDTO.setKeyword("비비고");
         listDTO.setSize(100);
 
@@ -35,15 +35,24 @@ public class FoodMapperTests {
     @Test
     public void testAllergyCheck(){
 
-        List<String> allergy = new ArrayList<>();
-        allergy.add("밀");
-        allergy.add("난류");
+//        List<String> allergy = new ArrayList<>();
+//        allergy.add("밀");
+//        allergy.add("난류");
+//
+//        ListDTO listDTO = new ListDTO();
+//        listDTO.setType("a");
+//        listDTO.setSize(1000);
+//        listDTO.setAllergy(allergy.toString());
 
+        String ingredient = "두유";
         ListDTO listDTO = new ListDTO();
-        listDTO.setType("a");
-        listDTO.setSize(1000);
-        listDTO.setAllergyChecks(allergy);
-        foodMapper.allergyCheck(listDTO);
+        listDTO.setIngredient(ingredient);
+        listDTO.setType("ic");
+        listDTO.setSize(100);
+        log.info(listDTO);
+
+        String[] types = listDTO.getTypes();
+        log.info(types);
 
         List<FoodVO> allergyCheckResult = foodMapper.allergyCheck(listDTO);
         allergyCheckResult.forEach(food -> log.info(food));

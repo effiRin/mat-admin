@@ -35,27 +35,26 @@
     </sql>
 
     <sql id="searchCheck">
-        <if test="allergy != null">
-            and(
-            <if test='type == "ai"'>
-                <foreach collection="allergies" item="checked" separator="OR">
-                    (refined_allergy_ingredient like
-                    concat('%',#{checked},'%'))
-                </foreach>
-            </if>
-            <if test='type == "ae"'>
-                <foreach collection="allergies" item="checked" separator="OR">
-                    (refined_allergy_ingredient not like
-                    concat('%',#{checked},'%'))
-                </foreach>
-            </if>
-            )
+        and (
+        <if test='type == "ac"'>
+            <foreach collection="allergies" item="checked" separator="OR">
+                (refined_allergy_ingredient like
+                concat('%',#{checked},'%'))
+            </foreach>
         </if>
-    </sql>
-    <sql id = "searchIngredient">
-        <if test="ingredient != null">
-
+        <if test='type=="ic"'>
+            (ingredient like concat('%',#{ingredient},'%'))
         </if>
+        <if test='type == "ae"'>
+            <foreach collection="allergies" item="checked" separator="OR">
+                (refined_allergy_ingredient not like
+                concat('%',#{checked},'%'))
+            </foreach>
+        </if>
+        <if test='type=="ie"'>
+            (ingredient not like concat('%',#{ingredient},'%'))
+        </if>
+        )
     </sql>
 
     <select id="selectList" resultType="com.matjo.pickafood.admin.food.domain.FoodVO">
@@ -71,7 +70,6 @@
         select * from food
         where food_seq > 0 and del_flag = 0
         <include refid="searchCheck"></include>
-        <include refid="searchIngredient"></include>
         order by food_seq desc
         limit #{skip}, #{size}
     </select>
