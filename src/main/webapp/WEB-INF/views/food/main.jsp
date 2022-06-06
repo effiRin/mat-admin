@@ -143,7 +143,7 @@
 <form class="allergyForm" action="/food/list" method="get">
   <input type="hidden" name="page" value="${listDTO.page}">
   <input type="hidden" name="size" value="${listDTO.size}">
-  <input type="hidden" name="type" value="${listDTO.type == null ? '':''}">
+  <input type="hidden" name="type" value="${listDTO.type == null?'':listDTO.type}">
   <input type="hidden" name="allergy">
   <input type="hidden" name="ingredient">
 </form>
