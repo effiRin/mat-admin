@@ -10,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Log4j2
@@ -45,7 +43,10 @@ public class FoodMapperTests {
         String ingredient = "두유";
         listDTO.setIngredient(ingredient);
 
-        listDTO.setType("aic");
+        listDTO.setName("만두");
+        listDTO.setCompany("CJ");
+
+        listDTO.setType("ainbc");
         listDTO.setSize(1000);
 
         List<FoodVO> allergyCheckResult = foodMapper.allergyCheck(listDTO);

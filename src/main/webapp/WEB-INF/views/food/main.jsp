@@ -147,7 +147,7 @@
   <input type="hidden" name="allergy">
   <input type="hidden" name="ingredient">
   <input type="hidden" name="name">
-  <input type="hidden" name="brand">
+<%--  <input type="hidden" name="brand">--%>
 </form>
 
 <script>
@@ -209,34 +209,45 @@
             const cond1 = {
                 "c": node.value == 'contained',
                 "e": node.value == 'excepted',
+                "a": allergy.toString().length != 0,
+                "i": ingredient.toString().length != 0,
+                "n": foodName.toString().length != 0
             };
 
             if(node.checked)  {
                 if(cond1.c){return type = 'c'}
                 if(cond1.e){return type = 'e'}
             }
+
+            if(cond1.a){type = "a" + type}
+            if(cond1.i){type = "i" + type}
+            if(cond1.n){type = "n" + type}
+            if(cond1.b){type = "b" + type}
+            console.log(type)
+            allergyForm.querySelector("input[name='type']").value = type;
+
         }) // forEach 끝
 
-        const cond2 = {
-            "a": allergy.toString().length != 0,
-            "i": ingredient.toString().length != 0,
-            "n": foodName.toString().length != 0
-            // "b"
-        };
+        // const cond2 = {
+        //     "a": allergy.toString().length != 0,
+        //     "i": ingredient.toString().length != 0,
+        //     "n": foodName.toString().length != 0
+        //     // "b"
+        // };
 
-        if(cond2.a){type = "a" + type}
-        if(cond2.i){type = "i" + type}
-        if(cond2.n){type = "n" + type}
+        // if(cond2.a){type = "a" + type}
+        // if(cond2.i){type = "i" + type}
+        // if(cond2.n){type = "n" + type}
         // if(cond2.b){type = "b" + type}
+        //
+        // allergyForm.querySelector("input[name='type']").value = type;
 
-        allergyForm.querySelector("input[name='type']").value = type;
+        // console.log(allergyForm)
+        // console.log(allergies.toString())
+        // console.log(type)
 
+       allergyForm.submit()
         console.log(allergyForm)
-        console.log(allergies.toString())
-        console.log(type)
-
-       // allergyForm.submit()
-
     }, false)
 
     //페이지 이동

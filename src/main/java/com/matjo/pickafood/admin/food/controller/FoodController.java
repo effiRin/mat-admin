@@ -37,6 +37,7 @@ public class FoodController {
     //main
     @GetMapping("/main")
     public void main(ListDTO listDTO, Model model) {
+        log.info(listDTO);
         ListResponseDTO<CompanyDTO> responseDTO = foodService.getMain(listDTO);
         model.addAttribute("companyList", responseDTO.getDtoList());
         model.addAttribute("total", responseDTO.getTotal());

@@ -5,7 +5,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.List;
 
 @ToString
 @Getter
@@ -17,17 +16,15 @@ public class ListDTO {
     private int size;
 
     private String link;
-    //tcw
     private String type;
     private String keyword;
 
     private int replyCount;
 
-    private String allergy;
-    private String ingredient;
-    private String name;
-    private String company;
-
+    private String allergy;  // a
+    private String ingredient;  // i
+    private String name; // n
+    private String company; // type은 b
 
     public ListDTO(){
         this.page = 1;
@@ -110,9 +107,12 @@ public class ListDTO {
         return this.allergy.split(",");
     }
 
-
     public String getIngredient(){
         return ingredient == null || ingredient.trim().length() == 0 ? null : ingredient.trim();
+    }
+
+    public String[] getCompanies() {
+        return this.company.split(",");
     }
 
 }

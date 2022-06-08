@@ -6,7 +6,6 @@ import com.matjo.pickafood.admin.food.domain.CompanyVO;
 import com.matjo.pickafood.admin.food.domain.FoodVO;
 import com.matjo.pickafood.admin.food.dto.CompanyDTO;
 import com.matjo.pickafood.admin.food.dto.FoodDTO;
-import com.matjo.pickafood.admin.food.dto.FoodSearchDTO;
 import com.matjo.pickafood.admin.food.mapper.FoodMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
