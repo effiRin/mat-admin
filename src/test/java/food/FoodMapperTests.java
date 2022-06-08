@@ -44,7 +44,7 @@ public class FoodMapperTests {
         listDTO.setIngredient(ingredient);
 
         listDTO.setName("만두");
-        listDTO.setCompany("CJ");
+        listDTO.setBrand("CJ");
 
         listDTO.setType("ainbc");
         listDTO.setSize(1000);

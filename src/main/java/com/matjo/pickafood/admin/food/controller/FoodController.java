@@ -56,7 +56,7 @@ public class FoodController {
         // log.info("food list.........");
         // log.info("page : "+page);
 
-        // 알레르기 체크 X, 재료명 입력 O
+        // 알레르기 체크 X, 재료명 입력 O -> 이거 줄여도 될듯??
         if ((listDTO.getAllergy() == null) && (listDTO.getIngredient() != null)) {
             log.info("=======");
             log.info("allergy is null & ingredient is " + listDTO.getIngredient());

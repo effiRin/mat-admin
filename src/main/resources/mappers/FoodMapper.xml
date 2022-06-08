@@ -48,7 +48,7 @@
         </if>
         <if test='type.contains("b")'>
             <trim prefix="and (" suffix=")">
-                <foreach collection="companies" item="company" separator="OR">
+                <foreach collection="brands" item="company" separator="OR">
                     ( company = #{company} )
                 </foreach>
             </trim>

@@ -24,7 +24,7 @@ public class ListDTO {
     private String allergy;  // a
     private String ingredient;  // i
     private String name; // n
-    private String company; // type은 b
+    private String brand; // DB의 company를 의미, type은 b (brand)
 
     public ListDTO(){
         this.page = 1;
@@ -111,8 +111,8 @@ public class ListDTO {
         return ingredient == null || ingredient.trim().length() == 0 ? null : ingredient.trim();
     }
 
-    public String[] getCompanies() {
-        return this.company.split(",");
+    public String[] getBrands() {
+        return this.brand.split(",");
     }
 
 }

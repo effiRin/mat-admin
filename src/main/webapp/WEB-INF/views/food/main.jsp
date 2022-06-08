@@ -94,13 +94,12 @@
         <div class="row row-cols-1 row-cols-md-4 g-4">
           <c:forEach items="${companyList}" var="company">
             <div class="col" style="text-align: center; margin-bottom: 10px;">
-              <a href="/food/list?type=${company.cateNum}">
                 <div class="card h-100"
                      style="margin-bottom: 10px; max-height: 100vw; width: auto; display: flex; justify-content:center; align-items: center;">
                   <img src="${company.image}" class="card-img-top" alt="${company.name}"
                        style="max-height: 10vw; width: 15vw">
+                  <input type="checkbox" name="brandCode" value="${company.name}", style="position: absolute; bottom: 0px; right: 0px;">
                 </div>
-              </a>
             </div>
           </c:forEach>
         </div>
@@ -147,7 +146,7 @@
   <input type="hidden" name="allergy">
   <input type="hidden" name="ingredient">
   <input type="hidden" name="name">
-<%--  <input type="hidden" name="brand">--%>
+  <input type="hidden" name="brand">
 </form>
 
 <script>
@@ -198,7 +197,17 @@
         allergyForm.querySelector("input[name='name']").value = foodName;
 
         // brand (company 회사) 선택했을 때
+        const brands = []
+        const brandChecks = document.querySelectorAll("input[name='brandCode']")
 
+        for (let i = 0; i < brandChecks.length; i++) {
+            if (brandChecks[i].checked) {
+                brands.push(brandChecks[i].value)
+            }
+        }
+
+        let brand = brands.toString();
+        allergyForm.querySelector("input[name='brand']").value = brand;
 
         // 포함과 제외 + 타입
         const choiceNodeList = document.getElementsByName('choice');
@@ -209,45 +218,32 @@
             const cond1 = {
                 "c": node.value == 'contained',
                 "e": node.value == 'excepted',
-                "a": allergy.toString().length != 0,
-                "i": ingredient.toString().length != 0,
-                "n": foodName.toString().length != 0
             };
 
             if(node.checked)  {
                 if(cond1.c){return type = 'c'}
                 if(cond1.e){return type = 'e'}
             }
-
-            if(cond1.a){type = "a" + type}
-            if(cond1.i){type = "i" + type}
-            if(cond1.n){type = "n" + type}
-            if(cond1.b){type = "b" + type}
-            console.log(type)
-            allergyForm.querySelector("input[name='type']").value = type;
-
         }) // forEach 끝
 
-        // const cond2 = {
-        //     "a": allergy.toString().length != 0,
-        //     "i": ingredient.toString().length != 0,
-        //     "n": foodName.toString().length != 0
-        //     // "b"
-        // };
+        const cond2 = {
+            "a": allergy.toString().length != 0,
+            "i": ingredient.toString().length != 0,
+            "n": foodName.toString().length != 0,
+            "b": brand.toString().length != 0
+        };
 
-        // if(cond2.a){type = "a" + type}
-        // if(cond2.i){type = "i" + type}
-        // if(cond2.n){type = "n" + type}
-        // if(cond2.b){type = "b" + type}
-        //
-        // allergyForm.querySelector("input[name='type']").value = type;
+        if(cond2.a){type = "a" + type}
+        if(cond2.i){type = "i" + type}
+        if(cond2.n){type = "n" + type}
+        if(cond2.b){type = "b" + type}
+
+        allergyForm.querySelector("input[name='type']").value = type;
 
         // console.log(allergyForm)
-        // console.log(allergies.toString())
-        // console.log(type)
 
        allergyForm.submit()
-        console.log(allergyForm)
+
     }, false)
 
     //페이지 이동
