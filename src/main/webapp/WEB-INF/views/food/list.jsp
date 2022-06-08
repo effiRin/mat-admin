@@ -75,7 +75,7 @@
     검색 조건별 <strong>'우선순'</strong> 보기
     <div class="row" style="margin-top: 1vw;">
       <c:if test="${listDTO.allergy ne ''}">
-        <div class="col-md-4">
+        <div class="col-md-3">
           <input type="radio" name="sort" checked> <strong>알레르기 19종</strong><br>'${listDTO.allergy}'
           <c:if test="${fn:contains(listDTO.type, 'c')}"><br> (포함) </c:if>
           <c:if test="${fn:contains(listDTO.type, 'e')}"><br> (제외) </c:if>
@@ -83,7 +83,7 @@
       </c:if>
 
       <c:if test="${listDTO.ingredient ne null}">
-        <div class="col-md-4">
+        <div class="col-md-3">
           <input type="radio" name="sort"> <strong>재료명</strong><br>'${listDTO.ingredient}'
           <c:if test="${fn:contains(listDTO.type, 'c')}"><br> (포함) </c:if>
           <c:if test="${fn:contains(listDTO.type, 'e')}"><br> (제외) </c:if>
@@ -92,13 +92,13 @@
 
 
       <c:if test="${listDTO.name ne ''}">
-        <div class="col-md-4">
+        <div class="col-md-3">
           <input type="radio" name="sort"> <strong>제품명</strong><br>'${listDTO.name}'
         </div>
       </c:if>
 
       <c:if test="${listDTO.brand ne ''}">
-        <div class="col-md-4">
+        <div class="col-md-3">
           <input type="radio" name="sort"> <strong>브랜드</strong><br>'${listDTO.brand}'
         </div>
       </c:if>
