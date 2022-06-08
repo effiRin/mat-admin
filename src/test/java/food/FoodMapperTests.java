@@ -32,7 +32,7 @@ public class FoodMapperTests {
     }
 
     @Test
-    public void testAllergyCheck(){
+    public void testAllergySelectList(){
 
         ListDTO listDTO = new ListDTO();
 
@@ -49,7 +49,7 @@ public class FoodMapperTests {
         listDTO.setType("ainbc");
         listDTO.setSize(1000);
 
-        List<FoodVO> allergyCheckResult = foodMapper.allergyCheck(listDTO);
+        List<FoodVO> allergyCheckResult = foodMapper.allergySearchList(listDTO);
         allergyCheckResult.forEach(food -> log.info(food));
         log.info("======================"+allergyCheckResult.size()+"====================");
     }

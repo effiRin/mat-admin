@@ -72,7 +72,7 @@ public class FoodController {
             log.info("=======");
             log.info("allergy!!!!");
             log.info("=======");
-            ListResponseDTO<FoodDTO> responseDTO = foodService.getAllergyCheckList(listDTO);
+            ListResponseDTO<FoodDTO> responseDTO = foodService.getAllergySearchList(listDTO);
             model.addAttribute("dtoList", responseDTO.getDtoList());
             model.addAttribute("total", responseDTO.getTotal());
             int total = responseDTO.getTotal();

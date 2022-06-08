@@ -14,7 +14,11 @@
         </where>
     </sql>
 
-    <sql id="searchCheck">
+    <sql id="sort">
+
+    </sql>
+
+    <sql id="allergySearch">
         <trim prefix="and (" suffix=")">
             <if test='type.contains("i")'>
                 <if test='type.contains("c")'>
@@ -64,10 +68,10 @@
         limit #{skip},#{size}
     </select>
 
-    <select id="allergyCheck" resultType="com.matjo.pickafood.admin.food.domain.FoodVO">
+    <select id="allergySearchList" resultType="com.matjo.pickafood.admin.food.domain.FoodVO">
         select * from food
         where food_seq > 0 and del_flag = 0
-        <include refid="searchCheck"></include>
+        <include refid="allergySearch"></include>
         order by food_seq desc
         limit #{skip}, #{size}
     </select>
@@ -75,7 +79,7 @@
     <select id="getAllergyCheckTotal" resultType="int">
         select count(*) from food
         where food_seq > 0 and del_flag = 0
-        <include refid="searchCheck"></include>
+        <include refid="allergySearch"></include>
         order by food_seq desc
     </select>
 
@@ -106,11 +110,5 @@
         from category
         where cate_num between 40000 and 50000
     </select>
-
-    <insert id="insert">
-        insert into food (name, company_category, company, main_image, ingredient, allergy_ingredient, same_factory)
-        values (#{name}, #{company_category}, #{company}, #{main_image}, #{ingredient}, #{allergy_ingredient},
-                #{same_factory})
-    </insert>
 
 </mapper>

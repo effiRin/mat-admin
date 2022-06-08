@@ -29,6 +29,7 @@
 </div>
 <div class="container-fluid">
   <div class="row">
+    <form>
     <div class="col-12" style="padding-top: 20px">
       <h4 style="padding-left: 20px; padding-bottom: 10px;"><strong>'알레르기' 선택하기</strong></h4>
       <div class="allergy_option_title" style="padding-bottom: 10px;">
@@ -37,7 +38,6 @@
       <div class="card card-primary card-outline">
         <div class="card-header">
         </div>
-        <form>
           <div class="row row-cols-1 row-cols-md-4 g-4">
             <c:forEach items="${allergyOptions}" var="allergy">
               <div class="col" style="text-align: center; margin-bottom: 10px;">
@@ -56,9 +56,9 @@
                      style="text-align: center;">
             </div>
           </div>
-      </div>
+        </div>
     </div>
-    <div style="margin: auto">
+    <div style="text-align: center;">
       <span style="padding-right: 10vw;">
         <input type="radio" name="choice" value="contained" checked> 포함한 식품 보기
         </span>
@@ -143,10 +143,10 @@
   <input type="hidden" name="page" value="${listDTO.page}">
   <input type="hidden" name="size" value="${listDTO.size}">
   <input type="hidden" name="type" value="${listDTO.type == null?'':listDTO.type}">
-  <input type="hidden" name="allergy">
-  <input type="hidden" name="ingredient">
-  <input type="hidden" name="name">
-  <input type="hidden" name="brand">
+  <input type="hidden" name="allergy" value = "${listDTO.allergy == null ? '' : listDTO.allergy}">>
+  <input type="hidden" name="ingredient" value = "${listDTO.ingredient == null ? '' : listDTO.ingredient}">
+  <input type="hidden" name="name" value = "${listDTO.name == null ? '' : listDTO.name}">
+  <input type="hidden" name="brand" value = "${listDTO.brand == null ? '' : listDTO.brand}">
 </form>
 
 <script>
