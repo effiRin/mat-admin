@@ -25,6 +25,7 @@ public class ListDTO {
     private String ingredient;  // i
     private String name; // n
     private String brand; // DB의 company를 의미, type은 b (brand)
+    private String sort;
 
     public ListDTO(){
         this.page = 1;
@@ -94,10 +95,19 @@ public class ListDTO {
         if(ingredient != null) {
             try {
                 String enStr = URLEncoder.encode(ingredient, "UTF-8");
-                builder.queryParam("ingredient",enStr);
+                builder.queryParam("ingredient", enStr);
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
+        }
+
+            if(brand != null) {
+                try {
+                    String enStr = URLEncoder.encode(brand, "UTF-8");
+                    builder.queryParam("brand",enStr);
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
         }
 
         return builder.build().toString();

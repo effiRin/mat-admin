@@ -76,7 +76,7 @@
     <div class="row" style="margin-top: 1vw;">
       <c:if test="${listDTO.allergy ne ''}">
         <div class="col-md-3">
-          <input type="radio" name="sort" checked> <strong>알레르기 19종</strong><br>'${listDTO.allergy}'
+          <input type="radio" name="sort" value="allergySort" checked> <strong>알레르기 19종</strong><br>'${listDTO.allergy}'
           <c:if test="${fn:contains(listDTO.type, 'c')}"><br> (포함) </c:if>
           <c:if test="${fn:contains(listDTO.type, 'e')}"><br> (제외) </c:if>
         </div>
@@ -84,7 +84,7 @@
 
       <c:if test="${listDTO.ingredient ne null}">
         <div class="col-md-3">
-          <input type="radio" name="sort"> <strong>재료명</strong><br>'${listDTO.ingredient}'
+          <input type="radio" name="sort" value="ingredientSort"> <strong>재료명</strong><br>'${listDTO.ingredient}'
           <c:if test="${fn:contains(listDTO.type, 'c')}"><br> (포함) </c:if>
           <c:if test="${fn:contains(listDTO.type, 'e')}"><br> (제외) </c:if>
         </div>
@@ -93,13 +93,13 @@
 
       <c:if test="${listDTO.name ne ''}">
         <div class="col-md-3">
-          <input type="radio" name="sort"> <strong>제품명</strong><br>'${listDTO.name}'
+          <input type="radio" name="sort" value="foodNameSort"> <strong>제품명</strong><br>'${listDTO.name}'
         </div>
       </c:if>
 
       <c:if test="${listDTO.brand ne ''}">
         <div class="col-md-3">
-          <input type="radio" name="sort"> <strong>브랜드</strong><br>'${listDTO.brand}'
+          <input type="radio" name="sort" value="brandSort"> <strong>브랜드</strong><br>'${listDTO.brand}'
         </div>
       </c:if>
     </div>
@@ -192,6 +192,7 @@
   <input type="hidden" name="ingredient" value="${listDTO.ingredient == null ? '' : listDTO.ingredient}">
   <input type="hidden" name="name" value="${listDTO.name == null ? '':listDTO.name}">
   <input type="hidden" name="brand" value="${listDTO.brand == null ? '':listDTO.brand}">
+  <input type="hidden" name="sort" value="${listDTO.sort == null ? '':listDTO.sort}">
 </form>
 
 <script>
@@ -199,6 +200,43 @@
     const foodList = document.querySelector(".foodList");
     const linkDiv = document.querySelector(".pagination")
     const actionForm = document.querySelector(".actionForm")
+
+    // sort click 했을 때
+
+    if (document.querySelector('input[name="sort"]')) {
+        document.querySelectorAll('input[name="sort"]').forEach((elem) => {
+            elem.addEventListener("change", (e) => {
+                const item = e.target.value;
+                let sort;
+
+                // console.log(item);
+
+                switch (item) {
+                    case 'allergySort':
+                        sort = "allergy";
+                        break;
+                    case 'ingredientSort':
+                        sort = "ingredient";
+                        break;
+                    case 'foodNameSort':
+                        sort = "foodName";
+                        break;
+                    case 'brandSort':
+                        sort = "brand";
+                        break;
+                }
+
+                actionForm.querySelector("input[name='sort']").value = sort;
+
+                // console.log(sort)
+                // console.log(actionForm)
+
+                actionForm.submit()
+
+            }, false)
+        })
+    }
+
 
     // 페이지 링크
     linkDiv.addEventListener("click", (e) => {
