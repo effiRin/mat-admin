@@ -36,11 +36,11 @@ public class FoodMapperTests {
 
         ListDTO listDTO = new ListDTO();
 
-        listDTO.setAllergy("우유,밀");
+        listDTO.setAllergy("조개류,난류");
         log.info("getAllergy() : " + listDTO.getAllergy());
         log.info("getAllergies() : " + listDTO.getAllergies().toString());
 
-        String ingredient = "두유";
+        String ingredient = "조개";
         listDTO.setIngredient(ingredient);
 
         listDTO.setName("만두");
@@ -48,6 +48,7 @@ public class FoodMapperTests {
 
         listDTO.setType("ainbc");
         listDTO.setSize(1000);
+        listDTO.setSort("allergy");
 
         List<FoodVO> allergyCheckResult = foodMapper.allergySearchList(listDTO);
         allergyCheckResult.forEach(food -> log.info(food));

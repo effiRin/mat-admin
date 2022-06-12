@@ -15,13 +15,13 @@
     </sql>
 
     <sql id="allergySearch">
-        <trim prefix="and (" suffix=")">
+        <trim prefix="and">
             <if test='type.contains("i")'>
                 <if test='type.contains("c")'>
-                    ingredient like concat('%',#{ingredient},'%')
+                    (ingredient like concat('%',#{ingredient},'%'))
                 </if>
                 <if test='type.contains("e")'>
-                    ingredient not like concat('%',#{ingredient},'%')
+                    (ingredient not like concat('%',#{ingredient},'%'))
                 </if>
             </if>
             <if test='type.contains("a") and type.contains("i")'>
@@ -30,47 +30,67 @@
             <if test='type.contains("a")'>
                 <if test='type.contains("c")'>
                     <foreach collection="allergies" item="allergy" separator="OR">
-                        refined_allergy_ingredient like concat('%',#{allergy},'%')
+                        (refined_allergy_ingredient like concat('%',#{allergy},'%'))
                     </foreach>
                 </if>
                 <if test='type.contains("e")'>
                     <foreach collection="allergies" item="allergy" separator="OR">
-                        refined_allergy_ingredient not like concat('%',#{allergy},'%')
+                        (refined_allergy_ingredient not like concat('%',#{allergy},'%'))
                     </foreach>
                 </if>
             </if>
+            <if test='type.contains("n")'>
+                <trim prefix="and (" suffix=")">
+                    name like concat('%',#{name},'%')
+                </trim>
+            </if>
+            <if test='type.contains("b")'>
+                <trim prefix="and (" suffix=")">
+                    <foreach collection="brands" item="company" separator="OR">
+                        company = #{company}
+                    </foreach>
+                </trim>
+            </if>
         </trim>
 
-        <if test='type.contains("n")'>
-            <trim prefix="and (" suffix=")">
-                name like concat('%',#{name},'%')
-            </trim>
-        </if>
-        <if test='type.contains("b")'>
-            <trim prefix="and (" suffix=")">
-                <foreach collection="brands" item="company" separator="OR">
-                    ( company = #{company} )
-                </foreach>
-            </trim>
-        </if>
     </sql>
 
     <sql id="sort">
-        <if test='sort == "allergy"'>(
-            <foreach collection="allergies" item="allergy" separator="OR">
-                refined_allergy_ingredient like concat('%',#{allergy},'%')
-            </foreach>
-            )
+        (CASE WHEN
+
+        <if test='sort == "allergy"'>
+            <if test='type.contains("c")'>
+                <foreach collection="allergies" item="allergy" separator="OR">
+                    (refined_allergy_ingredient like concat('%',#{allergy},'%'))
+                </foreach>
+            </if>
+            <if test='type.contains("e")'>
+                <foreach collection="allergies" item="allergy" separator="OR">
+                    (refined_allergy_ingredient not like concat('%',#{allergy},'%'))
+                </foreach>
+            </if>
         </if>
+
         <if test='sort == "ingredient"'>
+            <if test='type.contains("c")'>
+                (ingredient like concat('%',#{ingredient},'%'))
+            </if>
+            <if test='type.contains("e")'>
+                (ingredient not like concat('%',#{ingredient},'%'))
+            </if>
 
         </if>
+
         <if test='sort == "name"'>
-
+            name like concat('%',#{name},'%')
         </if>
+
         <if test='sort == "brand"'>
-
+            <foreach collection="brands" item="company" separator="OR">
+                company = #{company}
+            </foreach>
         </if>
+        THEN 1 ELSE 2 END),
     </sql>
 
     <select id="selectList" resultType="com.matjo.pickafood.admin.food.domain.FoodVO">
@@ -86,7 +106,7 @@
         select * from food
         where food_seq > 0 and del_flag = 0
         <include refid="allergySearch"></include>
-        order by <include refid="sort"></include>, food_seq desc
+        order by <include refid="sort"></include> food_seq desc
         limit #{skip}, #{size}
     </select>
 
