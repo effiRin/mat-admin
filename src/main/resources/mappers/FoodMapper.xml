@@ -57,8 +57,7 @@
 
     <sql id="sort">
         (CASE WHEN
-
-        <if test='sort == "allergy"'>
+        <if test='sort == "allergySort"'>
             <if test='type.contains("c")'>
                 <foreach collection="allergies" item="allergy" separator="OR">
                     (refined_allergy_ingredient like concat('%',#{allergy},'%'))
@@ -71,7 +70,7 @@
             </if>
         </if>
 
-        <if test='sort == "ingredient"'>
+        <if test='sort == "ingredientSort"'>
             <if test='type.contains("c")'>
                 (ingredient like concat('%',#{ingredient},'%'))
             </if>
@@ -81,11 +80,11 @@
 
         </if>
 
-        <if test='sort == "name"'>
+        <if test='sort == "foodNameSort"'>
             name like concat('%',#{name},'%')
         </if>
 
-        <if test='sort == "brand"'>
+        <if test='sort == "brandSort"'>
             <foreach collection="brands" item="company" separator="OR">
                 company = #{company}
             </foreach>

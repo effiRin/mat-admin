@@ -30,53 +30,13 @@
 </div>
 
 <div class="container-fluid">
-
-  <%--  <h5 style="text-align: center;"><strong> [검색 조건] </strong></h5>--%>
-  <%--  <div class="card-body table-responsive p-0">--%>
-  <%--    <table class="table table-hover text-nowrap">--%>
-  <%--      <thead>--%>
-  <%--      </thead>--%>
-  <%--      <tbody>--%>
-  <%--      <tr>--%>
-  <%--        <c:if test="${listDTO.allergy ne ''}">--%>
-  <%--          <td style="width: 25%">--%>
-  <%--            <strong> 알레르기 19종 </strong> : '${listDTO.allergy}'--%>
-  <%--            <c:if test="${fn:contains(listDTO.type, 'c')}"> (포함) </c:if>--%>
-  <%--            <c:if test="${fn:contains(listDTO.type, 'e')}"> (제외) </c:if>--%>
-  <%--          </td>--%>
-  <%--        </c:if>--%>
-
-  <%--        <c:if test="${listDTO.ingredient ne null}">--%>
-  <%--          <td style="width: 25%">--%>
-  <%--            <strong> 재료 </strong> : '${listDTO.ingredient}'--%>
-  <%--            <c:if test="${fn:contains(listDTO.type, 'c')}"> (포함) </c:if>--%>
-  <%--            <c:if test="${fn:contains(listDTO.type, 'e')}"> (제외) </c:if>--%>
-  <%--          </td>--%>
-  <%--        </c:if>--%>
-
-  <%--        <c:if test="${listDTO.name ne ''}">--%>
-  <%--          <td style="width: 25%">--%>
-  <%--            <strong> 제품명 </strong> : '${listDTO.name}'--%>
-  <%--          </td>--%>
-  <%--        </c:if>--%>
-
-  <%--        <c:if test="${listDTO.brand ne ''}">--%>
-  <%--          <td style="width: 25%">--%>
-  <%--            <strong> 브랜드 </strong> : '${listDTO.brand}'--%>
-  <%--          </td>--%>
-  <%--        </c:if>--%>
-  <%--      </tr>--%>
-  <%--      </tbody>--%>
-  <%--    </table>--%>
-  <%--  </div>--%>
-
   <div style="text-align: center; margin-bottom: 1vw;">
     <h5><strong>[정렬]</strong></h5>
     검색 조건별 <strong>'우선순'</strong> 보기
     <div class="row" style="margin-top: 1vw;">
       <c:if test="${listDTO.allergy ne ''}">
         <div class="col-md-3">
-          <input type="radio" name="sort" value="allergySort" checked> <strong>알레르기 19종</strong><br>'${listDTO.allergy}'
+          <input type="radio" name="sort" value="allergySort" checked  ${listDTO.sort =='allergySort' ? 'checked' : ''}> <strong>알레르기 19종</strong><br>'${listDTO.allergy}'
           <c:if test="${fn:contains(listDTO.type, 'c')}"><br> (포함) </c:if>
           <c:if test="${fn:contains(listDTO.type, 'e')}"><br> (제외) </c:if>
         </div>
@@ -84,22 +44,21 @@
 
       <c:if test="${listDTO.ingredient ne null}">
         <div class="col-md-3">
-          <input type="radio" name="sort" value="ingredientSort"> <strong>재료명</strong><br>'${listDTO.ingredient}'
+          <input type="radio" name="sort" value="ingredientSort" ${listDTO.sort =='ingredientSort' ? 'checked' : ''}> <strong>재료명</strong><br>'${listDTO.ingredient}'
           <c:if test="${fn:contains(listDTO.type, 'c')}"><br> (포함) </c:if>
           <c:if test="${fn:contains(listDTO.type, 'e')}"><br> (제외) </c:if>
         </div>
       </c:if>
 
-
       <c:if test="${listDTO.name ne ''}">
         <div class="col-md-3">
-          <input type="radio" name="sort" value="foodNameSort"> <strong>제품명</strong><br>'${listDTO.name}'
+          <input type="radio" name="sort" value="foodNameSort" ${listDTO.sort =='foodNameSort' ? 'checked' : ''}> <strong>제품명</strong><br>'${listDTO.name}'
         </div>
       </c:if>
 
       <c:if test="${listDTO.brand ne ''}">
         <div class="col-md-3">
-          <input type="radio" name="sort" value="brandSort"> <strong>브랜드</strong><br>'${listDTO.brand}'
+          <input type="radio" name="sort" value="brandSort" ${listDTO.sort=='brandSort' ? 'checked' : ''}> <strong>브랜드</strong><br>'${listDTO.brand}'
         </div>
       </c:if>
     </div>
@@ -126,8 +85,9 @@
               }
           </style>
           <c:forEach items="${dtoList}" var="food">
+
           <c:if test="${food.foodSeq % 2 == 0}">
-          <tr style=" background-color: #f7faf8">
+          <tr class="foodListTr" style=" background-color: #f7faf8">
             </c:if>
             <c:if test="${food.foodSeq % 2 == 1}">
           <tr style=" background-color: #fffde6">
@@ -202,41 +162,56 @@
     const actionForm = document.querySelector(".actionForm")
 
     // sort click 했을 때
-
     if (document.querySelector('input[name="sort"]')) {
-        document.querySelectorAll('input[name="sort"]').forEach((elem) => {
-            elem.addEventListener("change", (e) => {
-                const item = e.target.value;
-                let sort;
+         document.querySelectorAll('input[name="sort"]').forEach((elem) => {
+             elem.addEventListener("change", (e) => {
+                 const item = e.target.value;
 
-                // console.log(item);
+                actionForm.querySelector("input[name='sort']").value = item;
+                actionForm.querySelector("input[name='page']").value = 1;
+                 actionForm.submit()
 
-                switch (item) {
-                    case 'allergySort':
-                        sort = "allergy";
-                        break;
-                    case 'ingredientSort':
-                        sort = "ingredient";
-                        break;
-                    case 'foodNameSort':
-                        sort = "foodName";
-                        break;
-                    case 'brandSort':
-                        sort = "brand";
-                        break;
-                }
-
-                actionForm.querySelector("input[name='sort']").value = sort;
-
-                // console.log(sort)
-                // console.log(actionForm)
-
-                actionForm.submit()
-
-            }, false)
-        })
+             }, false)
+         })
     }
 
+    // 검색어 하이라이트
+    let sort = actionForm.querySelector("input[name='sort']").value;
+    let text = document.querySelector(".foodList").innerHTML;
+    let highLightList;
+    // console.log(sort);
+
+    switch (sort) {
+        case "allergySort" :
+            highLightList = `${listDTO.allergy}`.split(",");
+            // console.log(highLightList);
+
+            highLightList.forEach(item => {
+                text = text.replaceAll(item, `<strong>\${item}</strong>`);
+            });
+            break;
+
+        <%--case "brandSort" :--%>
+        <%--    highLightList = `${listDTO.brand}`.split(",");--%>
+        <%--    // console.log(highLightList);--%>
+
+        <%--    highLightList.forEach(item => {--%>
+        <%--        text = text.replaceAll(item, `<strong>\${item}</strong>`);--%>
+        <%--    });--%>
+        <%--    break;--%>
+
+        case "ingredientSort" :
+            highLightList = `${listDTO.ingredient}`;
+            text = text.replaceAll(highLightList, `<strong>\${highLightList}</strong>`);
+            break;
+
+        case "foodNameSort" :
+            highLightList = `${listDTO.name}`;
+            text = text.replaceAll(highLightList, `<strong>\${highLightList}</strong>`);
+            break;
+    } // switch
+
+    document.querySelector(".foodList").innerHTML = text;
 
     // 페이지 링크
     linkDiv.addEventListener("click", (e) => {

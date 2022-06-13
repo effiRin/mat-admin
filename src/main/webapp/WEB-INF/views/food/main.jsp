@@ -103,32 +103,32 @@
             </div>
           </c:forEach>
         </div>
-<%--        <div class="pagingArea">--%>
-<%--          <nav aria-label="Page navigation example">--%>
-<%--            <ul class="pagination" style="margin-top: 10px">--%>
-<%--              <c:if test="${pageMaker.start > 1}">--%>
-<%--                <li class="page-item"><a class="page-link" href="${pageMaker.start-1}">이전</a></li>--%>
-<%--              </c:if>--%>
-<%--              <c:forEach begin="${pageMaker.start}" end="${pageMaker.end}" var="num">--%>
+        <div class="pagingArea">
+          <nav aria-label="Page navigation example">
+            <ul class="pagination" style="margin-top: 10px">
+              <c:if test="${pageMaker.start > 1}">
+                <li class="page-item"><a class="page-link" href="${pageMaker.start-1}">이전</a></li>
+              </c:if>
+              <c:forEach begin="${pageMaker.start}" end="${pageMaker.end}" var="num">
 
-<%--                <c:choose>--%>
-<%--                  <c:when test="${num eq listDTO.page}">--%>
-<%--                    <li class="page-item active" aria-current="page"><a class="page-link" href="${num}">${num}</a>--%>
-<%--                    </li>--%>
-<%--                  </c:when>--%>
-<%--                  <c:otherwise>--%>
-<%--                    <li class="page-item"><a class="page-link" href="${num}">${num}</a></li>--%>
-<%--                  </c:otherwise>--%>
-<%--                </c:choose>--%>
+                <c:choose>
+                  <c:when test="${num eq listDTO.page}">
+                    <li class="page-item active" aria-current="page"><a class="page-link" href="${num}">${num}</a>
+                    </li>
+                  </c:when>
+                  <c:otherwise>
+                    <li class="page-item"><a class="page-link" href="${num}">${num}</a></li>
+                  </c:otherwise>
+                </c:choose>
 
-<%--              </c:forEach>--%>
+              </c:forEach>
 
-<%--              <c:if test="${pageMaker.end < total/listDTO.size}">--%>
-<%--                <li class="page-item"><a class="page-link" href="${pageMaker.end+1}">다음</a></li>--%>
-<%--              </c:if>--%>
-<%--            </ul>--%>
-<%--          </nav>--%>
-<%--        </div>--%>
+              <c:if test="${pageMaker.end < total/listDTO.size}">
+                <li class="page-item"><a class="page-link" href="${pageMaker.end+1}">다음</a></li>
+              </c:if>
+            </ul>
+          </nav>
+        </div>
       </div>
     </div>
   </div>
@@ -143,10 +143,11 @@
   <input type="hidden" name="page" value="${listDTO.page}">
   <input type="hidden" name="size" value="${listDTO.size}">
   <input type="hidden" name="type" value="${listDTO.type == null?'':listDTO.type}">
-  <input type="hidden" name="allergy" value = "${listDTO.allergy == null ? '' : listDTO.allergy}">>
+  <input type="hidden" name="allergy" value = "${listDTO.allergy == null ? '' : listDTO.allergy}">
   <input type="hidden" name="ingredient" value = "${listDTO.ingredient == null ? '' : listDTO.ingredient}">
   <input type="hidden" name="name" value = "${listDTO.name == null ? '' : listDTO.name}">
   <input type="hidden" name="brand" value = "${listDTO.brand == null ? '' : listDTO.brand}">
+  <input type="hidden" name="sort" value="${listDTO.sort == null ? 'allergySort':listDTO.sort}">
 </form>
 
 <script>
@@ -181,15 +182,12 @@
                 allergies.push(allergyChecks[i].value)
             }
         }
-
         let allergy = allergies.toString();
         allergyForm.querySelector("input[name='allergy']").value = allergy;
-
 
         // ingredient(재료명) 입력했을 때
         let ingredient = document.querySelector("input[name='foodIngredient']").value
         allergyForm.querySelector("input[name='ingredient']").value = ingredient;
-
 
         // foodName(식품명) 입력했을 때
         let foodName = document.querySelector("input[name='foodName']").value
@@ -245,24 +243,26 @@
 
     }, false)
 
-    // //페이지 이동
-    // linkDiv.addEventListener("click", (e) => {
-    //     e.stopPropagation()
-    //     e.preventDefault()
-    //
-    //     const target = e.target
-    //
-    //     if (target.getAttribute("class") !== 'page-link') { //page 링크가 아니면 끝내기
-    //         return
-    //     }
-    //
-    //     const pageNum = target.getAttribute("href")
-    //     actionForm.querySelector("input[name='page']").value = pageNum
-    //     actionForm.setAttribute("action", "/food/list")
-    //     actionForm.submit();
-    //
-    // }, false)
-    // // ↑ 버블링 ok 캡쳐링은 false
+    //페이지 이동
+    linkDiv.addEventListener("click", (e) => {
+        e.stopPropagation()
+        e.preventDefault()
+
+        const target = e.target
+        console.log(target)
+
+        if (target.getAttribute("class") !== 'page-link') { //page 링크가 아니면 끝내기
+            return
+        }
+
+        const pageNum = target.getAttribute("href")
+        actionForm.querySelector("input[name='page']").value = pageNum
+        actionForm.setAttribute("action", "/food/list")
+        actionForm.submit();
+
+    }, false)
+    // ↑ 버블링 ok 캡쳐링은 false
+
 
 </script>
 
