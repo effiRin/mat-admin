@@ -14,5 +14,5 @@ public interface FoodService {
     ListResponseDTO<CompanyDTO> getMain(ListDTO listDTO); //메인화면
     List<String> getAllergyOptions(); // 알레르기 19종 가져오기
 
-    ListResponseDTO<FoodDTO> getAllergyCheckList(ListDTO listDTO); // 알레르기 체크된 리스트 불러오기
+    ListResponseDTO<FoodDTO> getAllergySearchList(ListDTO listDTO); // 알레르기 리스트 불러오기
 }

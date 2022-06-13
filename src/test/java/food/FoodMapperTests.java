@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Log4j2
@@ -24,7 +23,7 @@ public class FoodMapperTests {
     @Test
     public void testSelectList() {
         ListDTO listDTO = new ListDTO();
-        listDTO.setType("n");
+        listDTO.setType("dn");
         listDTO.setKeyword("비비고");
         listDTO.setSize(100);
 
@@ -33,20 +32,27 @@ public class FoodMapperTests {
     }
 
     @Test
-    public void testAllergyCheck(){
-
-        List<String> allergy = new ArrayList<>();
-        allergy.add("밀");
-        allergy.add("난류");
+    public void testAllergySelectList(){
 
         ListDTO listDTO = new ListDTO();
-        listDTO.setType("a");
-        listDTO.setSize(1000);
-        listDTO.setAllergyChecks(allergy);
-        foodMapper.allergyCheck(listDTO);
 
-        List<FoodVO> allergyCheckResult = foodMapper.allergyCheck(listDTO);
+        listDTO.setAllergy("조개류,난류");
+        log.info("getAllergy() : " + listDTO.getAllergy());
+        log.info("getAllergies() : " + listDTO.getAllergies().toString());
+
+        String ingredient = "조개";
+        listDTO.setIngredient(ingredient);
+
+        listDTO.setName("만두");
+        listDTO.setBrand("CJ");
+
+        listDTO.setType("ainbc");
+        listDTO.setSize(1000);
+        listDTO.setSort("allergy");
+
+        List<FoodVO> allergyCheckResult = foodMapper.allergySearchList(listDTO);
         allergyCheckResult.forEach(food -> log.info(food));
+        log.info("======================"+allergyCheckResult.size()+"====================");
     }
 
     @Test

@@ -11,36 +11,85 @@
             <if test='type != null and keyword == null'>
                 company_category = #{type}
             </if>
-
-            <if test='keyword != null'>
-                <foreach collection="types" item="item" separator="or" open="(" close=")">
-                    <if test='item == "n"'>
-                        name like concat('%', #{keyword}, '%')
-                    </if>
-
-                    <if test='item == "r"'>
-                        refined_allergy_ingredient like concat('%', #{keyword}, '%')
-                    </if>
-
-                    <if test='item == "i"'>
-                        ingredient like concat('%', #{keyword}, '%')
-                    </if>
-
-                    <if test='item == "s"'>
-                        same_factory like concat('%', #{keyword}, '%')
-                    </if>
-                </foreach>
-            </if>
         </where>
     </sql>
 
-    <sql id="searchCheck">
-        <if test='type = "a"'>
-        and refined_allergy_ingredient like
-        <foreach collection="allergyChecks" item="item" separator="OR" >
-            concat('%',#{item},'%')
-        </foreach>
+    <sql id="allergySearch">
+        <trim prefix="and">
+            <if test='type.contains("i")'>
+                <if test='type.contains("c")'>
+                    (ingredient like concat('%',#{ingredient},'%'))
+                </if>
+                <if test='type.contains("e")'>
+                    (ingredient not like concat('%',#{ingredient},'%'))
+                </if>
+            </if>
+            <if test='type.contains("a") and type.contains("i")'>
+                OR
+            </if>
+            <if test='type.contains("a")'>
+                <if test='type.contains("c")'>
+                    <foreach collection="allergies" item="allergy" separator="OR">
+                        (refined_allergy_ingredient like concat('%',#{allergy},'%'))
+                    </foreach>
+                </if>
+                <if test='type.contains("e")'>
+                    <foreach collection="allergies" item="allergy" separator="OR">
+                        (refined_allergy_ingredient not like concat('%',#{allergy},'%'))
+                    </foreach>
+                </if>
+            </if>
+            <if test='type.contains("n")'>
+                <trim prefix="and (" suffix=")">
+                    name like concat('%',#{name},'%')
+                </trim>
+            </if>
+            <if test='type.contains("b")'>
+                <trim prefix="and (" suffix=")">
+                    <foreach collection="brands" item="company" separator="OR">
+                        company = #{company}
+                    </foreach>
+                </trim>
+            </if>
+        </trim>
+
+    </sql>
+
+    <sql id="sort">
+        (CASE WHEN
+        <if test='sort == "allergySort"'>
+            <if test='type.contains("c")'>
+                <foreach collection="allergies" item="allergy" separator="OR">
+                    (refined_allergy_ingredient like concat('%',#{allergy},'%'))
+                </foreach>
+            </if>
+            <if test='type.contains("e")'>
+                <foreach collection="allergies" item="allergy" separator="OR">
+                    (refined_allergy_ingredient not like concat('%',#{allergy},'%'))
+                </foreach>
+            </if>
         </if>
+
+        <if test='sort == "ingredientSort"'>
+            <if test='type.contains("c")'>
+                (ingredient like concat('%',#{ingredient},'%'))
+            </if>
+            <if test='type.contains("e")'>
+                (ingredient not like concat('%',#{ingredient},'%'))
+            </if>
+
+        </if>
+
+        <if test='sort == "foodNameSort"'>
+            name like concat('%',#{name},'%')
+        </if>
+
+        <if test='sort == "brandSort"'>
+            <foreach collection="brands" item="company" separator="OR">
+                company = #{company}
+            </foreach>
+        </if>
+        THEN 1 ELSE 2 END),
     </sql>
 
     <select id="selectList" resultType="com.matjo.pickafood.admin.food.domain.FoodVO">
@@ -52,12 +101,19 @@
         limit #{skip},#{size}
     </select>
 
-    <select id="allergyCheck" resultType="com.matjo.pickafood.admin.food.domain.FoodVO">
+    <select id="allergySearchList" resultType="com.matjo.pickafood.admin.food.domain.FoodVO">
         select * from food
         where food_seq > 0 and del_flag = 0
-        <include refid="searchCheck"></include>
-        order by food_seq desc
+        <include refid="allergySearch"></include>
+        order by <include refid="sort"></include> food_seq desc
         limit #{skip}, #{size}
+    </select>
+
+    <select id="getAllergyCheckTotal" resultType="int">
+        select count(*) from food
+        where food_seq > 0 and del_flag = 0
+        <include refid="allergySearch"></include>
+        order by food_seq desc
     </select>
 
     <select id="allergyOptions" resultType="string">
@@ -87,11 +143,5 @@
         from category
         where cate_num between 40000 and 50000
     </select>
-
-    <insert id="insert">
-        insert into food (name, company_category, company, main_image, ingredient, allergy_ingredient, same_factory)
-        values (#{name}, #{company_category}, #{company}, #{main_image}, #{ingredient}, #{allergy_ingredient},
-                #{same_factory})
-    </insert>
 
 </mapper>

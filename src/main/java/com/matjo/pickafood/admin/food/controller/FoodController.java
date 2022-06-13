@@ -5,6 +5,7 @@ import com.matjo.pickafood.admin.common.dto.ListResponseDTO;
 import com.matjo.pickafood.admin.common.dto.PageMaker;
 import com.matjo.pickafood.admin.food.dto.CompanyDTO;
 import com.matjo.pickafood.admin.food.dto.FoodDTO;
+import com.matjo.pickafood.admin.food.dto.FoodSearchDTO;
 import com.matjo.pickafood.admin.food.service.FoodService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -29,62 +30,53 @@ public class FoodController {
 
     //list
     @GetMapping("/")
-    public String basic(){
+    public String basic() {
         return "redirect:/food/list";
     }
 
     //main
     @GetMapping("/main")
-    public void  main(ListDTO listDTO, Model model){
+    public void main(ListDTO listDTO, Model model) {
+        log.info(listDTO);
         ListResponseDTO<CompanyDTO> responseDTO = foodService.getMain(listDTO);
         model.addAttribute("companyList", responseDTO.getDtoList());
         model.addAttribute("total", responseDTO.getTotal());
         int total = responseDTO.getTotal();
         model.addAttribute("pageMaker", new PageMaker(listDTO.getPage(), total));
 
+        // 알레르기 옵션 뿌려주기
         List<String> allergyOptions = foodService.getAllergyOptions();
         model.addAttribute("allergyOptions", allergyOptions);
     }
 
     //list 페이지
     @GetMapping("/list")
-    public void list(ListDTO listDTO, Model model){
-
+    public void list(ListDTO listDTO, Model model) {
+        log.info(listDTO);
         // log.info("food list.........");
         // log.info("page : "+page);
 
-        ListResponseDTO<FoodDTO> responseDTO = foodService.getList(listDTO);
-        model.addAttribute("dtoList", responseDTO.getDtoList());
-        model.addAttribute("total", responseDTO.getTotal());
-        int total = responseDTO.getTotal();
-        model.addAttribute("pageMaker", new PageMaker(listDTO.getPage(), total));
+        // 알레르기 체크 X, 재료명 입력 O -> 이거 줄여도 될듯??
+        if ((listDTO.getAllergy() == null) && (listDTO.getIngredient() != null)) {
+            log.info("=======");
+            log.info("allergy is null & ingredient is " + listDTO.getIngredient());
+            log.info("=======");
+            ListResponseDTO<FoodDTO> responseDTO = foodService.getList(listDTO);
+            model.addAttribute("dtoList", responseDTO.getDtoList());
+//            model.addAttribute("sameFactoryList", responseDTO.get)
+            model.addAttribute("total", responseDTO.getTotal());
+            int total = responseDTO.getTotal();
+            model.addAttribute("pageMaker", new PageMaker(listDTO.getPage(), total));
 
-    }
-
-//    // 알레르기 체크박스 검색 - 수정필요!!!
-//    @PostMapping // mapping을 어떻게 해주지?
-//    public String Test(Model model, HttpServletRequest request ) throws Exception{
-//        try{
-//            String[] value = request.getParameterValues("${allergy}");
-//
-//            for(int j = 1; j <= value.length ; j++ ){
-//                for(int i = 0; i < request.getParameterValues("ch" + String.valueOf(j)).length ; i++){
-//                    System.out.println(request.getParameterValues("ch" + String.valueOf(j))[i]);
-//                }
-//            }
-//        } catch(Exception e){
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
-
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public List<String> allergyCheckPOST(ListDTO listDTO, HttpServletRequest request) {
-
-        foodService.getAllergyCheckList()
-
-        List<String> allergyChecks;
-            allergyChecks = List.of(request.getParameterValues("allergyCode"));
-        return allergyChecks;
+        } else { // 알레르기 체크했을 경우
+            log.info("=======");
+            log.info("allergy!!!!");
+            log.info("=======");
+            ListResponseDTO<FoodDTO> responseDTO = foodService.getAllergySearchList(listDTO);
+            model.addAttribute("dtoList", responseDTO.getDtoList());
+            model.addAttribute("total", responseDTO.getTotal());
+            int total = responseDTO.getTotal();
+            model.addAttribute("pageMaker", new PageMaker(listDTO.getPage(), total));
+        }
     }
 }

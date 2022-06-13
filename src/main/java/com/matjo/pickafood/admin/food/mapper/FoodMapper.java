@@ -12,6 +12,7 @@ public interface FoodMapper extends GenericMapper<FoodVO, Integer> {
     int getCompanyTotal(ListDTO listDTO);
     List<String> allergyOptions();
 
-    List<FoodVO> allergyCheck(ListDTO listDTO);
+    List<FoodVO> allergySearchList(ListDTO listDTO);
+    int getAllergyCheckTotal(ListDTO listDTO);
 
 }

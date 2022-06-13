@@ -67,8 +67,8 @@ public class FoodServiceImpl implements FoodService {
     }
 
     @Override
-    public ListResponseDTO<FoodDTO> getAllergyCheckList(ListDTO listDTO) {
-        List<FoodVO> allergyCheckList = foodMapper.allergyCheck(listDTO);
+    public ListResponseDTO<FoodDTO> getAllergySearchList(ListDTO listDTO) {
+        List<FoodVO> allergyCheckList = foodMapper.allergySearchList(listDTO);
 
         List<FoodDTO> dtoList =
                 allergyCheckList.stream()
@@ -77,6 +77,7 @@ public class FoodServiceImpl implements FoodService {
 
         return ListResponseDTO.<FoodDTO>builder()
                 .dtoList(dtoList)
+                .total(foodMapper.getAllergyCheckTotal(listDTO))
                 .build();
     }
 
