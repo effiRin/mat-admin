@@ -27,21 +27,19 @@
         <div class="card-header">
           <div class="row float-left">
             <div class="col-sm-5">
-              <div class="form-group">
-                <select class="form-control">
-                  <option>option 1</option>
-                  <option>option 2</option>
-                  <option>option 3</option>
-                  <option>option 4</option>
-                  <option>option 5</option>
+              <div class="form-group searchDiv">
+                <select class="type">
+                  <option value="t" ${listDTO.type =="t"?"selected":""}>제목</option>
+                  <option value="c" ${listDTO.type =="c"?"selected":""}>내용</option>
+                  <option value="w" ${listDTO.type =="w"?"selected":""}>작성자</option>
                 </select>
               </div>
             </div>
             <div class="col-sm-7">
               <div class="input-group" style="width: 150px;">
-                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                <input type="text" name="keyword" class="form-control float-right" placeholder="Search">
                 <div class="input-group-append">
-                  <button type="submit" class="btn btn-default">
+                  <button type="submit" class="btn btn-default searchBtn">
                     <i class="fas fa-search"></i>
                   </button>
                 </div>
@@ -59,22 +57,42 @@
           <table class="table table-hover text-nowrap">
             <thead>
             <tr>
-              <th>Num</th>
-              <th>Title</th>
-              <th>NickName</th>
-              <th>regDate</th>
-              <th>Views</th>
-              <th>Like</th>
+              <th> </th>
+              <th>제목</th>
+              <th>닉네임</th>
+              <th>등록일</th>
+              <th>조회수</th>
+              <th>좋아요</th>
             </tr>
             </thead>
             <tbody> <%-- 내용 forEach로 감싸기 --%>
 
             <c:forEach items="${boardList}" var="board">
             <tr>
-              <td><c:out value="${board.board_seq}"/></td>
-              <td><a href="/board/read/${board.board_seq}"><c:out value="${board.title}"/></a></td>
-              <td><c:out value="${board.nickName}"/></td>
-              <td><c:out value="${board.regDate}"/></td>
+              <td><c:out value="${board.boardSeq}"/></td>
+              <td><a href="/board/read/${board.boardSeq}" style="color:darkblue"><c:out value="${board.title}"/>
+              <c:if test="${board.replyCount != 0}">
+                <span style="color:black"><c:out value=" [${board.replyCount}]"/></span></c:if></a></td>
+              <td><c:out value="${board.nickname}"/></td>
+
+              <c:choose>
+                <c:when test="${board.date < 1}">
+                  <td class="dateType">방금전</td>
+                </c:when>
+                <c:when test="${board.date < 60}">
+                  <td class="dateType">${board.date}분전</td>
+                </c:when>
+                <c:when test="${board.date <= 60*24}">
+                  <td class="dateType">${Integer.valueOf(Math.floor(board.date/60))}시간 전</td>
+                </c:when>
+                <c:when test="${board.date <= 60*24*7}">
+                  <td class="dateType">${Integer.valueOf(Math.floor(board.date/1440))}일 전</td>
+                </c:when>
+                <c:when test="${board.date > 60*24}">
+                  <td class="dateType">${board.regDate}</td>
+                </c:when>
+              </c:choose>
+
               <td><c:out value="${board.viewsCount}"/></td>
               <td><c:out value="${board.likeCount}"/></td>
             </tr>
@@ -82,21 +100,78 @@
             </tbody>
           </table>
         </div>
-        <div class="card-footer clearfix">
-          <ul class="pagination pagination-sm m-0 float-right">
-            <li class="page-item"><a class="page-link" href="#">«</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">»</a></li>
-          </ul>
-        </div>
+        <div class="pagingArea">
+          <nav aria-label="Page navigation example">
+            <ul class="pagination" style="margin-top: 10px">
+              <c:if test="${pageMaker.start > 1}">
+                <li class="page-item"><a class="page-link" href="${pageMaker.start-1}">이전</a></li>
+              </c:if>
+              <c:forEach begin="${pageMaker.start}" end ="${pageMaker.end}" var="num">
 
-      </div>
+                <c:choose>
+                  <c:when test="${num eq listDTO.page}">
+                    <li class="page-item active" aria-current="page"><a class="page-link" href="${num}">${num}</a></li>
+                  </c:when>
+                  <c:otherwise>
+                    <li class="page-item"><a class="page-link" href="${num}">${num}</a></li>
+                  </c:otherwise>
+                </c:choose>
+
+              </c:forEach>
+
+              <c:if test="${pageMaker.end < total/listDTO.size}">
+                <li class="page-item"><a class="page-link" href="${pageMaker.end+1}">다음</a></li>
+              </c:if>
+            </ul>
+          </nav>
+        </div>
     </div>
   </div>
 </div>
+</div>
+
+<form class="actionForm" action="/board/list" method="get">
+  <input type="hidden" name="page" value="${listDTO.page}">
+  <input type="hidden" name="size" value="${listDTO.size}">
+  <input type="hidden" name="type" value="${listDTO.type == null?'':listDTO.type}">
+  <input type="hidden" name="keyword" value="${listDTO.keyword == null? '':listDTO.keyword}">
+</form>
+
 <script>
+
+    const linkDiv = document.querySelector(".pagination")
+    const actionForm = document.querySelector(".actionForm")
+
+    linkDiv.addEventListener("click", (e) => {
+        e.stopPropagation()
+        e.preventDefault()
+
+        const target = e.target
+
+        if(target.getAttribute("class") !== 'page-link'){
+            return
+        }
+
+        const pageNum = target.getAttribute("href")
+        actionForm.querySelector("input[name='page']").value = pageNum
+        actionForm.setAttribute("action","/board/list")
+        actionForm.submit()
+
+    },false)
+
+    document.querySelector(".searchBtn").addEventListener("click",(e)=> {
+        const type = document.querySelector('.searchDiv .type').value
+        const keyword = document.querySelector("input[name='keyword']").value
+
+        console.log(type, keyword)
+
+        actionForm.setAttribute("action","/board/list")
+        actionForm.querySelector("input[name='page']").value = 1
+        actionForm.querySelector("input[name='type']").value = type
+        actionForm.querySelector("input[name='keyword']").value = keyword
+        actionForm.submit()
+
+    },false)
 
 </script>
 

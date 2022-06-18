@@ -8,7 +8,7 @@
     <sql id="search">
         <where>
             <if test="keyword != null">
-                <foreach collection="types" item="item" separator=" OR " open="(" close=")">
+                <foreach collection="types" item="item" open="(" close=")">
                     <if test='item == "t"'>
                         title like concat('%', #{keyword}, '%')
                     </if>
@@ -16,23 +16,30 @@
                         content like concat('%', #{keyword}, '%')
                     </if>
                     <if test='item == "w"'>
-                        writer like concat('%', #{keyword}, '%')
+                        nickName like concat('%', #{keyword}, '%')
                     </if>
                 </foreach>
             </if>
+            and board_category=30001 and del_flag=0
         </where>
     </sql>
 
     <select id = "selectList" resultType="com.matjo.pickafood.admin.board.vo.BoardVO">
-        select board_seq, boardCategory, mainImage, title, content, id, nickName, regdate, updatedate, replyCount, delFlag, likeCount, viewsCount
+        select board_seq, board_category, main_image, title, content, id, nickname,
+        (TIMESTAMPDIFF(second , reg_date, now()) / 60) DATE,
+               date_format(reg_date, '%Y년 %m월 %d일 %h시 %m분') reg_date,
+                       date_format(update_date, '%Y년 %m월 %d일') update_date,
+                       reply_count, del_flag, like_count, views_count
         from board
+
         <include refid="search"></include>
+
         order by board_seq desc
         limit #{skip}, #{size}
     </select>
 
     <select id = "selectOne" resultType="com.matjo.pickafood.admin.board.vo.BoardVO">
-        select * from board where board_seq = #{board_seq}
+        select * from board where board_seq = #{boardSeq}
     </select>
 
     <select id="getBoardTotal" resultType="int">
@@ -41,29 +48,29 @@
     </select>
 
     <insert id="insert">
-        <selectKey resultType="int" keyProperty="board_seq" order="AFTER">
+        <selectKey resultType="int" keyProperty="boardSeq" order="AFTER">
             select last_insert_id()
         </selectKey>
-        insert into board(title, content, id, nickName, mainImage)
-        values (#{title}, #{content},#{id}, #{nickName}, #{mainImage})
+        insert into board(title, content, id, nickname, main_image)
+        values (#{title}, #{content},#{id}, #{nickname}, #{mainImage})
     </insert>
 
     <update id = "delete">
-        update board set delFlag = 1 where board_seq = #{board_seq}
+        update board set del_flag = 1 where board_seq = #{boardSeq}
     </update>
 
-<!-- 아마도 변경 가능성 있음  -->
+    <!-- 아마도 변경 가능성 있음  -->
 
     <update id="update">
-        update board set title = #{title}, content= #{content}, updateDate = now() where board_seq = #{board_seq}
+        update board set title = #{title}, content= #{content}, update_date = now() where board_seq = #{boardSeq}
     </update>
 
     <update id="updateReplyCount">
-        update board set replyCount = replyCount + #{amount} where board_seq = #{board_seq}
+        update board set reply_count = reply_count + #{amount} where board_seq = #{boardSeq}
     </update>
 
     <select id="selectFiles" resultType="com.matjo.pickafood.admin.board.vo.BoardVO">
-        select * from tbl_attach where bno = #{bno}
+        select * from file_attach where bno = #{bno}
     </select>
 
 </mapper>

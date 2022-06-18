@@ -1,6 +1,8 @@
 package board;
 
 
+import com.matjo.pickafood.admin.file.dto.FileDTO;
+import com.matjo.pickafood.admin.file.mapper.FileMapper;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Before;
 import org.junit.jupiter.api.BeforeAll;
@@ -18,6 +20,9 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.util.List;
+import java.util.Map;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @Log4j2
@@ -28,6 +33,9 @@ public class BoardControllerTests {
 
     @Autowired(required = false)
     private WebApplicationContext ctx;
+
+    @Autowired(required = false)
+    private FileMapper fileMapper;
 
     private MockMvc mockMvc;
 
@@ -55,7 +63,7 @@ public class BoardControllerTests {
     public void testModify() throws Exception {
         String resultPage = mockMvc
                 .perform(MockMvcRequestBuilders.post("/board/modify")
-                        .param("bno", "1")
+                        .param("boardSeq", "40")
                         .param("title", "수정된 테스트 새글 제목")
                         .param("content", "수정된 테스트 새글 내용"))
                 .andReturn().getModelAndView().getViewName();
@@ -70,4 +78,16 @@ public class BoardControllerTests {
                 .andReturn().getModelAndView().getViewName();
         log.info(resultPage);
     }
+
+
+    @Test
+    public void testGetReadFileList() {
+
+        List<FileDTO> fileList = fileMapper.getReadFiles(87);
+        fileList.forEach(fileVO -> log.info(fileVO));
+
+    }
+
+
+
 }

@@ -10,7 +10,23 @@
     </Appenders>
 
     <loggers>
-        <logger name="com.springframework" level="INFO" additivity="false">
+        <logger name="org.springframework" level="INFO" additivity="false">
+            <appender-ref ref="console" />
+        </logger>
+
+        <logger name="org.springframework.web" level="INFO" additivity="false">
+            <appender-ref ref="console" />
+        </logger>
+
+        <logger name="org.springframework.security" level="TRACE" additivity="false">
+            <appender-ref ref="console" />
+        </logger>
+
+        <logger name="org.springframework.web" level="INFO" additivity="false">
+            <appender-ref ref="console" />
+        </logger>
+
+        <logger name="org.springframework.security" level="TRACE" additivity="false">
             <appender-ref ref="console" />
         </logger>
 
@@ -21,11 +37,23 @@
             <appender-ref ref="console" />
         </logger>
 
+        <logger name="com.matjo.pickafood.admin.notice" level="TRACE" additivity="false">
+            <appender-ref ref="console" />
+        </logger>
+
         <logger name="com.matjo.pickafood.admin.inquiry" level="TRACE" additivity="false">
             <appender-ref ref="console" />
         </logger>
 
-        <logger name="com.matjo.pickafood.admin.board" level="TRACE" additivity="false">
+        <logger name="com.matjo.pickafood.admin.board" level="INFO" additivity="false">
+            <appender-ref ref="console" />
+        </logger>
+
+        <logger name="com.matjo.pickafood.admin.meal" level="INFO" additivity="false">
+            <appender-ref ref="console" />
+        </logger>
+
+        <logger name="com.matjo.pickafood.admin.food" level="TRACE" additivity="false">
             <appender-ref ref="console" />
         </logger>
 

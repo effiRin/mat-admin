@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class FileDTO {
-    private int fileSeq; //seq(pk 역할)
+    private int fileSeq; //seq(pk 역할)o
     private String uuid; //uuid
 
     private String boardType; //게시판 종류

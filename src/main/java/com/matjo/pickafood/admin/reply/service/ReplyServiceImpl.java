@@ -24,8 +24,8 @@ public class ReplyServiceImpl implements ReplyService{
 
     //댓글 목록
     @Override
-    public List<ReplyDTO> getListOfBoard(Integer board_seq, ListDTO listDTO) {
-        List<ReplyVO> replyList = replyMapper.selectListOfBoard(board_seq, listDTO);
+    public List<ReplyDTO> getListOfBoard(Integer boardSeq, ListDTO listDTO) {
+        List<ReplyVO> replyList = replyMapper.selectListOfBoard(boardSeq, listDTO);
 
         List<ReplyDTO> dtoList = replyList.stream().map(reply -> modelMapper.map(reply, ReplyDTO.class))
                 .collect(Collectors.toList());
@@ -38,8 +38,18 @@ public class ReplyServiceImpl implements ReplyService{
         ReplyVO replyVO = modelMapper.map(replyDTO, ReplyVO.class);
 
         replyMapper.insert(replyVO);
-        noticeMapper.updateReplyCount(replyDTO.getBoard_seq(), 1);
+        noticeMapper.updateReplyCount(replyDTO.getBoardSeq(), 1);
 
-        return replyMapper.selectTotalOfBoard(replyDTO.getBoard_seq());
+        return replyMapper.selectTotalOfBoard(replyDTO.getBoardSeq());
+    }
+
+    @Override
+    public int boardRegister(ReplyDTO replyDTO) {
+        ReplyVO replyVO = modelMapper.map(replyDTO, ReplyVO.class);
+
+        replyMapper.insert(replyVO);
+        noticeMapper.updateReplyCount(replyDTO.getBoardSeq(), 1);
+
+        return replyMapper.selectTotalOfBoard(replyDTO.getBoardSeq());
     }
 }

@@ -11,15 +11,18 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class BoardVO {
 
-    private Integer board_seq;
+    private Integer boardSeq;
     private Integer boardCategory;
     private String mainImage;
     private String title;
     private String content;
     private String id;
-    private String nickName;
-    private LocalDateTime regDate;
-    private LocalDateTime updateDate;
+    private String nickname;
+
+    private int date;
+    private String regDate;
+    private String updateDate;
+
     private int delFlag;
     private int replyCount;
     private int likeCount;

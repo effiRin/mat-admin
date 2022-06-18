@@ -5,7 +5,7 @@
 <%--<link href="/resources/css/inquiry.css" rel="stylesheet" type="text/css">--%>
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-  <h1 class="h3 mb-0 text-gray-800">회원 정보1234</h1>
+  <h1 class="h3 mb-0 text-gray-800">회원 정보</h1>
 </div>
 <div class="row">
   <table class="table table-hover">
@@ -21,7 +21,7 @@
       <tr>
         <th scope="row">${member.id}</th>
         <td class="dateType">${member.pw}</td>
-        <td style="text-align: left; background-color:#f2f7f4;">${member.nickName}</td>
+        <td style="text-align: left; background-color:#f2f7f4;">${member.nickname}</td>
       </tr>
     </c:forEach>
     </tbody>

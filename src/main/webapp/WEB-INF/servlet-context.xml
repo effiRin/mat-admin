@@ -1,26 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns:mvc="http://www.springframework.org/schema/mvc"
-      xmlns:context="http://www.springframework.org/schema/context"
-      xsi:schemaLocation="http://www.springframework.org/schema/beans
-      http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc
-      https://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context
-      https://www.springframework.org/schema/context/spring-context.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/mvc
+       https://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd">
 
-  <mvc:annotation-driven/>
+  <mvc:annotation-driven></mvc:annotation-driven>
 
-  <mvc:resources mapping="/resources/**" location="/resources/"/>
+  <mvc:resources mapping="/resources/**" location="/resources/"></mvc:resources>
 
-  <context:component-scan base-package="com.matjo.pickafood.admin.board"></context:component-scan>
-  <context:component-scan base-package="com.matjo.pickafood.admin.**.controller"/>
-  <context:component-scan base-package="com.matjo.pickafood.admin.inquiry"></context:component-scan>
-  <context:component-scan base-package="com.matjo.pickafood.admin.report"></context:component-scan>
-  <context:component-scan base-package="com.matjo.pickafood.admin.member"></context:component-scan>
-  <context:component-scan base-package="com.matjo.pickafood.admin.notice"></context:component-scan>
-  <context:component-scan base-package="com.matjo.pickafood.admin.file"></context:component-scan>
-  <context:component-scan base-package="com.matjo.pickafood.admin.reply"></context:component-scan>
-
+  <context:component-scan base-package="com.matjo.pickafood.admin.main.controller"/>
+  <context:component-scan base-package="com.matjo.pickafood.admin.board.controller"/>
+  <context:component-scan base-package="com.matjo.pickafood.admin.inquiry.controller"/>
+  <context:component-scan base-package="com.matjo.pickafood.admin.report.controller"/>
+  <context:component-scan base-package="com.matjo.pickafood.admin.member.controller"/>
+  <context:component-scan base-package="com.matjo.pickafood.admin.notice.controller"/>
+  <context:component-scan base-package="com.matjo.pickafood.admin.file.controller"/>
+  <context:component-scan base-package="com.matjo.pickafood.admin.reply.controller"/>
+  <context:component-scan base-package="com.matjo.pickafood.admin.food.controller"/>
+  <context:component-scan base-package="com.matjo.pickafood.admin.meal.controller"/>
 
   <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
     <property name="prefix" value="/WEB-INF/views/"/>
@@ -28,4 +33,19 @@
   </bean>
 
   <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>
+
+  <!-- Configure to plugin JSON as request and response in method handler -->
+  <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+    <property name="messageConverters">
+      <list>
+        <ref bean="jsonMessageConverter"/>
+      </list>
+    </property>
+  </bean>
+  <!-- Configure bean to convert JSON to POJO and vice versa -->
+  <bean id="jsonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+
+  <security:global-method-security
+          pre-post-annotations="enabled" secured-annotations="enabled" />
+
 </beans>

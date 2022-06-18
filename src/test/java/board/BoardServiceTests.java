@@ -52,7 +52,7 @@ public class BoardServiceTests {
         boardDTO.setTitle("등록한다");
         boardDTO.setContent("등록한다~");
         boardDTO.setId("kim");
-        boardDTO.setNickName("연느짱");
+        boardDTO.setNickname("연느짱");
 
 //        BoardDTO boardDTO = BoardDTO.builder()
 //                .title("들어가라~23")
@@ -61,20 +61,20 @@ public class BoardServiceTests {
 //                .build();
 
         boardService.register(boardDTO);
-        log.info(boardDTO.getBoard_seq());
+        log.info(boardDTO.getBoardSeq());
 
     }
 
     @Test
     public void testGetOne(){
-        Integer board_seq = 1;
-        BoardDTO boardDTO = boardService.getOne(board_seq);
+        Integer boardSeq = 40;
+        BoardDTO boardDTO = boardService.getOne(boardSeq);
         log.info(boardDTO);
     }
 
     @Test
     public void testUpdate(){
-        Integer bno = 21;
+        Integer bno = 40;
         BoardDTO boardDTO = boardService.getOne(bno);
 
         if(boardDTO == null){return;}
@@ -86,7 +86,8 @@ public class BoardServiceTests {
 
     @Test
     public void testRemove(){
-        Integer board_seq = 20;
-        boardService.remove(board_seq);
+        Integer boardSeq = 20;
+        boardService.remove(
+                boardSeq);
     }
 }

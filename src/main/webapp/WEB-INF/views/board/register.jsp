@@ -18,7 +18,12 @@
         </div>
       </div>
     </section>
-    
+
+<sec:authorize access="isAuthenticated()">
+  <sec:authentication property="principal.profile" var="profile" />
+  <sec:authentication property="principal.nickname" var="nickname" />
+  <sec:authentication property="principal.id" var="id" />
+
     <section class="content">
       <div class="row">
         <div class="col-12">
@@ -49,7 +54,7 @@
                 <label for="inputName" style="width: 10vw; ">제목</label>
                 <input type="text" id="inputName" name="title" class="for m-control" style="margin-right: 2vw; width: 1800px;">
                 <label for="inputName" style="width: 10vw;">닉네임</label>
-                <input type="text" value="연느짱" name="nickName" class="form-control">
+                <input type="text" value="${nickname}" name="nickname" class="form-control">
               </div>
                 <input type="hidden" value="kim" name="id">
               <div class="form-group board">
@@ -81,9 +86,9 @@
           </div>
         </div>
       </div>
-      
-    </section>
-    
+  </section>
+</sec:authorize>
+
 <style>
   .file-list {
     list-style: none;
@@ -93,17 +98,20 @@
 <script type="text/javascript">
   document.querySelector(".file-add").addEventListener("click",(e) =>{
     console.log("123")
+   // const filePath = document.querySelector("input[type=file]").value;
+   //  console.log("filePaht", filePath);
      const fileInput = document.querySelector(".file-list");
-    //
     fileInput.innerHTML += "<li><input type='file'></li>";
   },false);
 
   document.querySelector(".sendBtn").addEventListener("click", (e) => {
+   
       e.preventDefault()
       document.querySelector(".modal-content").innerHTML = modalText();
       addModalSubmit(".board");
   },false)
 
 </script>
+
 
 <%@ include file="/WEB-INF/views/includes/footer.jsp"%>

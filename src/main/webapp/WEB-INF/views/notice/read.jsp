@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <%@ include file="/WEB-INF/views/includes/header.jsp"%>
 
@@ -30,13 +31,24 @@
                     <label style="width: 7vw;">제 목</label>
                     <c:out value="${dto.title}"></c:out>
                     <label style="width: 10vw;  margin-left: 5vw;">닉네임</label>
-                    <c:out value="${dto.nickName}"></c:out>
+                    <c:out value="${dto.nickname}"></c:out>
                     <label style="width: 10vw; margin-left: 5vw;">등록일</label>
                     <c:out value="${dto.regDate}"></c:out>
                 </div>
                 <div class="form-group">
-                    <label for="inputDescription">내용</label>
-                    <textarea id="inputDescription" class="form-control inputContent" rows="5" readonly><c:out value="${dto.content}"></c:out></textarea>
+                    <label>내용</label>
+                    <div style="padding-bottom: 10px; padding-top: 10px ">
+                       <pre><c:out value="${dto.content}"></c:out></pre>
+                    </div>
+                    <div class="imageDiv" >
+                        <c:forEach items="${files}" step="1" var="file">
+                            <img src="/view?fileName=${file.savePath}/${file.uuid}_${file.fileName}" style="max-width: 400px; cursor:pointer;" onclick="window.open('/view?fileName=${file.savePath}/${file.uuid}_${file.fileName}')"/>
+                        </c:forEach>
+                    </div>
+                    <div class="likeDiv" style="margin-left: 37vw; cursor: pointer; margin-right: 50vw;margin-top: 30px;">
+                        <span class=likeCount><i class="far fas fa-heart">&nbsp;${dto.likeCount}</i></span>
+                        <input type="hidden" class="myLike" value="0">
+                    </div>
                 </div>
             </div>
         </div>
@@ -51,90 +63,85 @@
             </div>
             <ul class="pageUL"></ul>
 
-            <form class="mb-4">
-                <div>
-                    <div style="display: flex">
-                        <textarea class="form-control" type="text" name="content" placeholder="댓글 작성 시 타인에 대한 배려와 책임을 담아주세요" style="width: 85vw; "></textarea>
-                        <button class="btn btn-default float-right addReplyBtn" href="#!" style="width: 10vw; margin-left: 10px; border-style: none">등록</button></div>
-                    <div><input type="hidden" name="nickName" value="아바라한잔"></div>
-                    <div><input type="hidden" name="id" value="aaa14"></div>
+<sec:authorize access="isAuthenticated()">
+    <sec:authentication property="principal.profile" var="profile" />
+    <sec:authentication property="principal.nickname" var="nickname" />
+    <sec:authentication property="principal.id" var="id" />
+
+        <div>
+            <div style="display: flex">
+                <textarea class="form-control" type="text" name="content" placeholder="댓글 작성 시 타인에 대한 배려와 책임을 담아주세요" style="width: 85vw; "></textarea>
+                <button class="addReplyBtn" href="#!" style="width: 10vw; margin-left: 10px; border-style: none">등록</button></div>
+            <div><input type="hidden" name="id" value="${id}"></div>
+            <div><input type="hidden" name="nickname" value="${nickname}"></div>
+            <div><input type="hidden" name="profile" value="${profile}"></div>
+            <div class="image-upload">
+                <i class="fas fa-solid fa-image"></i>
+                <input id="file-input" type="file" name="upload" onchange="readURL(this)" class="uploadFile" style="display: none;"/>
+                <img class="viewImage" style="display: inline-table"> 여기</img>
+            </div>
+
+            <div class="card-body" style="display: block;">
+                <div class="uploadInputDiv">
+                    <input type="file" name="upload" multiple class="uploadFile">
+                    <button class="btn bg-gradient-info float-right file-add uploadBtn">업로드</button>
                 </div>
-            </form>
-            <a class="badge bg-secondary text-decoration-none link-light removeReplyBtn" href="#!">삭제</a>
+            </div>
+            <div class="uploadResult">
+            </div>
+
+        </div>
+
+</sec:authorize>
+  <a class="badge bg-secondary text-decoration-none link-light removeReplyBtn" href="#!">삭제</a>
 
         </div>
     </div>
 </div>
-
-
 
 <%@ include file="/WEB-INF/views/includes/footer.jsp"%>
 
 <%-- Axios --%>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-    <%-- 댓글 --%>
+
+
+
+    /* 댓글 */
     let initState = {
-        board_seq :${dto.board_seq},
+        boardSeq :${dto.boardSeq},
         replyArr : [],
         replyCount : 0,
-        size : 10,
+        size : 50,
         pageNum : 1
     }
 
+    const imageDiv = document.querySelector(".imageDiv")
     const replyDIV = document.querySelector(".replyDIV")
     const pageUL = document.querySelector(".pageUL")
-
-    pageUL.addEventListener("click", (e) => {
-        if(e.target.tagName != 'LI'){
-            return
-        }
-        const dataNum = parseInt(e.target.getAttribute("data-num"))
-        replyService.setState({pageNum:dataNum})
-    }, false)
+    const secondReplyDIV  = document.querySelector(".secondReplyDIV")
 
     document.querySelector(".addReplyBtn").addEventListener("click", (e) => {
+
+        e.preventDefault()
+        e.stopPropagation()
+
         const replyObj = {
-            board_seq:${dto.board_seq},
+            boardSeq:${dto.boardSeq},
             content: document.querySelector("textarea[name='content']").value,
             id:document.querySelector("input[name='id']").value,
-            nickName:document.querySelector("input[name='nickName']").value
+            nickname:document.querySelector("input[name='nickname']").value,
+            profile:document.querySelector("input[name='profile']").value
         }
+
+        console.log(replyObj)
 
         replyService.addServerReply(replyObj)
 
-    },false)
-
-    const modReplyContent = document.querySelector("input[name='modReplyContent']")
-    const modNickNameInput = document.querySelector("input[name='modNickName']")
-    const modNickId = document.querySelector("input[name='modId']")
-    const removeReplyBtn = document.querySelector(".removeReplyBtn")
-
-    let targetLi;
-
-    replyDIV.addEventListener("click", (e) => {
-        if(!e.target.getAttribute("data-reply_seq")){
-            return;
-        }
-
-        targetLi = e.target.closest("li")
-        const reply_seq = parseInt(e.target.getAttribute("data-reply_seq"))
-
-        const replyObj = replyService.findReply(reply_seq)
-        modReplyContent.value = replyObj.content
-        modNickNameInput.value = replyObj.nickName
-        modNickId.value = replyObj.id
-        removeReplyBtn.setAttribute("data-reply_seq", reply_seq)
+        document.querySelector("textarea[name='content']").value="";
 
     },false)
 
-    removeReplyBtn.addEventListener("click", (e) => {
-        const reply_seq = parseInt(e.target.getAttribute("data-reply_seq"))
-
-        replyService.removeServer(reply_seq).then(result => {
-            targetLi.innerHTML = "삭제된 댓글입니다."
-        })
-    }, false)
 
 
     function render(obj){
@@ -144,20 +151,22 @@
         function printList(){
             const arr = obj.replyArr
 
-
             replyDIV.innerHTML = arr.map(reply =>
-                 `<div class="d-flex replyRead" style="padding-bottom: 7px; padding-top:7px">
+                `<div class="d-flex replyRead" style="\${reply.root}; padding-bottom: 7px; padding-top:7px">
                 <div class="flex-shrink-0" style="display: table-cell">
-                    <img class="rounded-circle" style="width: 50px; height: 50px; display: table-cell" src="/resources/image/person.png" alt="..." /></div>
+                    <img class="rounded-circle" style="width: 50px; height: 50px; display: table-cell" src=\${reply.profile} alt="..." /></div>
                 <div class="ms-3 replyContent" style="margin-left: 10px">
-                    <div class="fw-bold" style="font-weight: bolder">\${reply.nickName}</div>
-                    <div class="replyUL" style="padding-left:1px; display: table-cell">\${reply.content}</div>
+                    <div class="fw-bold" style="font-weight: bolder">\${reply.nickname}</div>
+                    <div class="replyUL" style="padding-left:1px; display: table-cell">\${reply.content}\${reply.image}</div>
+                    \${reply.buttonIcon}
                 </div>
-                <ul class="regDate" style="position:absolute; right: 5%;font-size: 13px">\${reply.regDate}
-                    <i class="fas fa-solid fa-bars modBtn" data-reply_seq=\${reply.reply_seq} style="margin-left: 10px"></i></ul><br><br>
-            </div>`).join(" ")
-        }
+                <ul class="regDate" style="position:absolute; right: 5%;font-size: 13px">\${reply.dateStr}
+                    <i class="fas fa-solid fa-bars modBtn" data-replySeq=\${reply.replySeq} style="margin-left: 10px"></i></ul><br><br>
+            </div>
+        `).join(" ")
 
+
+        }
 
         function printPage(){
             const currentPage = obj.pageNum
@@ -179,13 +188,13 @@
             if(prev){
                 str += `<li data-num=\${startPage-1}>이전</li>`
             }
+
             for(let i = startPage; i <= endPage; i++){
                 if(i===currentPage){
                     str += `<li data-num=\${i} style="color:#e54545; cursor:default">\${i}</li>`
                 }else{
                     str += `<li data-num=\${i}>\${i}</li>`
                 }
-
             }
             if(next){
                 str += `<li data-num=\${endPage+1}>다음</li>`
@@ -200,12 +209,6 @@
     }
 
 
-
-
-
-    /* ---Aios 통신 부분-----------------------------------------------------------------*/
-
-    //오늘은 그냥 객체로
     const replyService = (function (initState, callbackFn){
         let state = initState
         const callback = callbackFn
@@ -214,14 +217,13 @@
             state = {...state, ...newState} //전개연산자를 이용하여 스테이트 상태값을 변경시키기
 
             //여기서 비동기를 들어가서 자동으로 바뀌도록 하자!
-            //console.log(state)
+            console.log(state)
 
             //newState 안에 replyCount 값 속성이나 pageNum 속성이 있다면!
             if(newState.replyCount || newState.pageNum ){
                 //서버의 데이터를 가져와야만 한다
                 getServerList(newState)
             }
-
             callback(state)
         }
 
@@ -238,7 +240,7 @@
             }
 
             const paramObj = {page:pageNum, size:state.size}
-            const res = await axios.get(`/replies/list/\${state.board_seq}`, {params: paramObj})
+            const res = await axios.get(`/replies/list/\${state.boardSeq}`, {params: paramObj})
             console.log(res.data)
 
             //pageNum setState의 넘기면 안돼...
@@ -247,32 +249,36 @@
             // 일단 수동으로 수정
 
             setState({replyArr:res.data})
-            //호출이 되는 지 확인
-
         }
 
-        //View 를 하는데 있어서 model 데이터 ViewModel
 
         async function addServerReply(replyObj){
-            const res = await axios.post(`/replies/`, replyObj)
-            const data = res.data
-            //console.log("addReplyResult:",data)
+            // console.log('async')
+            // console.log(replyObj)
+            try {
+                const res = await axios.post(`/replies/`, replyObj)
+                const data = res.data
+                console.log("addReplyResult:", data)
 
-            setState({replyCount: data.result})
+                setState({replyCount: data.result})
+            }catch(error) {
+
+                //console.log("--------------------------")
+                //console.log(error.response.data)
+            }
         }
 
-        function findReply(reply_seq){
-            return state.replyArr.find(reply => reply.reply_seq === reply_seq)
+        function findReply(replySeq){
+            return state.replyArr.find(reply => reply.replySeq === replySeq)
         }
 
-        async function removeServer(reply_seq){
-            const res = await axios.delete(`/replies/\${reply_seq}`);
+        async function removeServer(replySeq){
+            const res = await axios.delete(`/replies/\${replySeq}`);
 
             //success
             const result = res.data.result
             return result
         }
-
         return {setState, addServerReply, findReply ,removeServer}
 
     })(initState, render)
@@ -289,14 +295,23 @@
 
         .pageUL{
             list-style: none;
-            display:flex;
+            display: flex;
+            margin-left: auto;
+            margin-right: auto
         }
 
         .pageUL li{
             list-style: none;
-            margin : 0.2em;
-            border: 1px solid;
+            margin: 0.2em;
             cursor: pointer;
+            font-size: 20px;
+        }
+
+        .secondReply{
+            font-size: 10px;
+            background-color: unset;
+            color: darkcyan;
+            border-color: white;
         }
 
     </style>

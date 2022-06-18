@@ -23,7 +23,7 @@
   <div class="row">
     <div class="col-12">
       <div class="form-group">
-        <a href="/board/read/{board_seq}" class="btn btn-secondary">수정 취소</a>
+        <a href="/board/read/${board.boardSeq}" class="btn btn-secondary">수정 취소</a>
         <button class="btn btn-success float-right modBtn"><i class="fa fa-plus"></i>수정 완료</button>
       </div>
     </div>
@@ -34,7 +34,7 @@
       <div class="card card-primary card-outline">
         <div class="card-body" style="display: block;">
 
-          <form class="board" action="/board/modify/${board.board_seq}" method="post">
+          <form class="board" action="/board/modify/${board.boardSeq}" method="post">
             <input type="hidden" name="page" value="${listDTO.page}">
             <input type="hidden" name="size" value="${listDTO.size}">
             <input type="hidden" name="type" value="${listDTO.type}">
@@ -44,7 +44,7 @@
               <input type="text" id="inputName" name="title" class="for m-control" style="margin-right: 2vw; width: 1800px;"
               value="<c:out value="${board.title}"/>">
               <label for="inputName" style="width: 10vw;">닉네임</label>
-              <input type="text" value="연느짱" name="nickName" class="form-control">
+              <input type="text" value="연느짱" name="nickname" class="form-control">
             </div>
             <input type="hidden" value="kim" name="id">
             <div class="form-group board">
@@ -55,12 +55,19 @@
         </div>
       </div>
     </div>
-    <form class="removeForm card-body" action="/board/remove/${board_seq}" method="post">
+    <form class="removeForm card-body" action="/board/remove/${boardSeq}" method="post">
     <div class="form-group">
-      <button class="btn bg-gradient-info float-right removeBtn">
+      <button data-toggle="modal" data-target="#modal-remove" class="btn bg-gradient-info float-right removeBtn">
         <i class="fa-file-image-o"></i>삭제</button>
     </div>
     </form>
+    <div id="modal-remove" class="modal" tabindex="-1" role="dialog" aria-labelledby="테스트정보 등록" aria-describedby="테스트 모달">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+        </div>
+      </div>
+    </div>
     <div class="col-md-12">
       <div class="card card-primary card-outline">
         <div class="card-header">
@@ -91,6 +98,7 @@
     }
 </style>
 
+<script src="/resources/js/removeModal.js"></script>
 <script type="text/javascript">
     document.querySelector(".file-add").addEventListener("click",(e) =>{
         console.log("123")
@@ -114,10 +122,12 @@
 
     document.querySelector(".removeBtn").addEventListener("click", (e) => {
         e.preventDefault()
+        document.querySelector(".modal-content").innerHTML = modalText();
+        removeModalSubmit(".removeForm");
         e.stopPropagation()
 
         const removeForm = document.querySelector(".removeForm")
-        removeForm.setAttribute("action", `/board/remove/${board.board_seq}`)
+        removeForm.setAttribute("action", `/board/remove/${board.boardSeq}`)
         removeForm.submit()
 
     },false)

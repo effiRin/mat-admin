@@ -29,4 +29,14 @@ public class FileServiceImpl implements FileService{
         fileMapper.insert(fileDTO);
         return fileDTO;
     }
+
+    
+    //첨부파일 보이기
+    @Override
+    public List<FileDTO> getReadFiles(Integer bno) {
+        List<FileDTO> list;
+        list = fileMapper.getReadFiles(bno);
+
+        return list;
+    }
 }

@@ -7,7 +7,6 @@ import com.matjo.pickafood.admin.common.dto.ListResponseDTO;
 import com.matjo.pickafood.admin.common.dto.ListDTO;
 import com.matjo.pickafood.admin.common.dto.ListResponseDTO;
 
-
 import java.util.List;
 
 public interface BoardService {

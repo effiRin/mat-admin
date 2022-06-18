@@ -10,7 +10,7 @@
         <selectKey keyProperty="fileSeq" resultType="int" order="AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into file (boardType, uuid, fileName, savepath, img)
+        insert into file (board_type, uuid, file_name, save_path, img)
         values ('notice', #{uuid}, #{fileName}, #{savePath}, #{img})
 
     </insert>
@@ -20,13 +20,16 @@
     </delete>
 
     <insert id="insertBoardFile" parameterType="fileDTO">
-        INSERT INTO fileattach
+        INSERT INTO file_attach
         ( file_seq
         , board_seq)
-            value
-            ( #{fileSeq}
-            , #{boardSeq})
+          value
+          ( #{fileSeq}
+        , #{boardSeq})
     </insert>
 
+    <select id="getReadFiles" resultType="com.matjo.pickafood.admin.file.domain.FileVO">
+        select * from file where file_seq in ( select file_seq from file_attach where board_seq = #{boardSeq} );
+    </select>
 
 </mapper>
