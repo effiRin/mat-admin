@@ -1,11 +1,11 @@
 package com.matjo.pickafood.admin.food.service;
 
-import com.matjo.pickafood.admin.common.dto.ListDTO;
 import com.matjo.pickafood.admin.common.dto.ListResponseDTO;
 import com.matjo.pickafood.admin.food.domain.CompanyVO;
 import com.matjo.pickafood.admin.food.domain.FoodVO;
 import com.matjo.pickafood.admin.food.dto.CompanyDTO;
 import com.matjo.pickafood.admin.food.dto.FoodDTO;
+import com.matjo.pickafood.admin.food.dto.FoodSearchDTO;
 import com.matjo.pickafood.admin.food.mapper.FoodMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -24,8 +24,8 @@ public class FoodServiceImpl implements FoodService {
     private final ModelMapper modelMapper;
 
     @Override
-    public ListResponseDTO<FoodDTO> getList(ListDTO listDTO) {
-        List<FoodVO> foodVOList = foodMapper.selectList(listDTO);
+    public ListResponseDTO<FoodDTO> getList(FoodSearchDTO foodSearchDTO) {
+        List<FoodVO> foodVOList = foodMapper.selectList(foodSearchDTO);
 
         List<FoodDTO> dtoList =
                 foodVOList.stream()
@@ -34,7 +34,7 @@ public class FoodServiceImpl implements FoodService {
 
         return ListResponseDTO.<FoodDTO>builder()
                 .dtoList(dtoList)
-                .total(foodMapper.getTotal(listDTO))
+                .total(foodMapper.getTotal(foodSearchDTO))
                 .build();
     }
 
@@ -46,8 +46,8 @@ public class FoodServiceImpl implements FoodService {
 
 
     @Override
-    public ListResponseDTO<CompanyDTO> getMain(ListDTO listDTO) {
-        List<CompanyVO> companyList = foodMapper.companyList(listDTO);
+    public ListResponseDTO<CompanyDTO> getMain(FoodSearchDTO foodSearchDTO) {
+        List<CompanyVO> companyList = foodMapper.companyList(foodSearchDTO);
 
         List<CompanyDTO> dtoList =
                 companyList.stream()
@@ -56,7 +56,7 @@ public class FoodServiceImpl implements FoodService {
 
         return ListResponseDTO.<CompanyDTO>builder()
                 .dtoList(dtoList)
-                .total(foodMapper.getCompanyTotal(listDTO))
+                .total(foodMapper.getCompanyTotal(foodSearchDTO))
                 .build();
     }
 
@@ -67,8 +67,8 @@ public class FoodServiceImpl implements FoodService {
     }
 
     @Override
-    public ListResponseDTO<FoodDTO> getAllergySearchList(ListDTO listDTO) {
-        List<FoodVO> allergyCheckList = foodMapper.allergySearchList(listDTO);
+    public ListResponseDTO<FoodDTO> getAllergySearchList(FoodSearchDTO foodSearchDTO) {
+        List<FoodVO> allergyCheckList = foodMapper.allergySearchList(foodSearchDTO);
 
         List<FoodDTO> dtoList =
                 allergyCheckList.stream()
@@ -77,7 +77,7 @@ public class FoodServiceImpl implements FoodService {
 
         return ListResponseDTO.<FoodDTO>builder()
                 .dtoList(dtoList)
-                .total(foodMapper.getAllergyCheckTotal(listDTO))
+                .total(foodMapper.getAllergyCheckTotal(foodSearchDTO))
                 .build();
     }
 

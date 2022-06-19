@@ -112,7 +112,7 @@
               <c:forEach begin="${pageMaker.start}" end="${pageMaker.end}" var="num">
 
                 <c:choose>
-                  <c:when test="${num eq listDTO.page}">
+                  <c:when test="${num eq foodSearchDTO.page}">
                     <li class="page-item active" aria-current="page"><a class="page-link" href="${num}">${num}</a>
                     </li>
                   </c:when>
@@ -123,7 +123,7 @@
 
               </c:forEach>
 
-              <c:if test="${pageMaker.end < total/listDTO.size}">
+              <c:if test="${pageMaker.end < total/foodSearchDTO.size}">
                 <li class="page-item"><a class="page-link" href="${pageMaker.end+1}">다음</a></li>
               </c:if>
             </ul>
@@ -140,14 +140,14 @@
   </div>
 </div>
 <form class="allergyForm" action="/food/list" method="get">
-  <input type="hidden" name="page" value="${listDTO.page}">
-  <input type="hidden" name="size" value="${listDTO.size}">
-  <input type="hidden" name="type" value="${listDTO.type == null?'':listDTO.type}">
-  <input type="hidden" name="allergy" value = "${listDTO.allergy == null ? '' : listDTO.allergy}">
-  <input type="hidden" name="ingredient" value = "${listDTO.ingredient == null ? '' : listDTO.ingredient}">
-  <input type="hidden" name="name" value = "${listDTO.name == null ? '' : listDTO.name}">
-  <input type="hidden" name="brand" value = "${listDTO.brand == null ? '' : listDTO.brand}">
-  <input type="hidden" name="sort" value="${listDTO.sort == null ? 'allergySort':listDTO.sort}">
+  <input type="hidden" name="page" value="${foodSearchDTO.page}">
+  <input type="hidden" name="size" value="${foodSearchDTO.size}">
+  <input type="hidden" name="type" value="${foodSearchDTO.type == null?'':foodSearchDTO.type}">
+  <input type="hidden" name="allergy" value = "${foodSearchDTO.allergy == null ? '' : foodSearchDTO.allergy}">
+  <input type="hidden" name="ingredient" value = "${foodSearchDTO.ingredient == null ? '' : foodSearchDTO.ingredient}">
+  <input type="hidden" name="name" value = "${foodSearchDTO.name == null ? '' : foodSearchDTO.name}">
+  <input type="hidden" name="brand" value = "${foodSearchDTO.brand == null ? '' : foodSearchDTO.brand}">
+  <input type="hidden" name="sort" value="${foodSearchDTO.sort == null ? 'allergySort':foodSearchDTO.sort}">
 </form>
 
 <script>
