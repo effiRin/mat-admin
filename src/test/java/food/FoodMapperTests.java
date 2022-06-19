@@ -1,7 +1,7 @@
 package food;
 
-import com.matjo.pickafood.admin.common.dto.ListDTO;
 import com.matjo.pickafood.admin.food.domain.FoodVO;
+import com.matjo.pickafood.admin.food.dto.FoodSearchDTO;
 import com.matjo.pickafood.admin.food.mapper.FoodMapper;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
@@ -20,37 +20,38 @@ public class FoodMapperTests {
     @Autowired(required = false)
     private FoodMapper foodMapper;
 
+
+
     @Test
     public void testSelectList() {
-        ListDTO listDTO = new ListDTO();
-        listDTO.setType("dn");
-        listDTO.setKeyword("비비고");
-        listDTO.setSize(100);
+        FoodSearchDTO foodSearchDTO = new FoodSearchDTO();
+        foodSearchDTO.setType("dn");
+        foodSearchDTO.setKeyword("비비고");
+        foodSearchDTO.setSize(100);
 
-        List<FoodVO> foodList = foodMapper.selectList(listDTO);
+        List<FoodVO> foodList = foodMapper.selectList(foodSearchDTO);
         foodList.forEach(food -> log.info(food));
     }
 
     @Test
     public void testAllergySelectList(){
-
-        ListDTO listDTO = new ListDTO();
-
-        listDTO.setAllergy("조개류,난류");
-        log.info("getAllergy() : " + listDTO.getAllergy());
-        log.info("getAllergies() : " + listDTO.getAllergies().toString());
+        FoodSearchDTO foodSearchDTO = new FoodSearchDTO();
+        foodSearchDTO.setAllergy("조개류,난류");
+        log.info("getAllergy() : " + foodSearchDTO.getAllergy());
+        log.info("getAllergies() : " + foodSearchDTO.getAllergies().toString());
 
         String ingredient = "조개";
-        listDTO.setIngredient(ingredient);
+        foodSearchDTO.setIngredient(ingredient);
 
-        listDTO.setName("만두");
-        listDTO.setBrand("CJ");
+        foodSearchDTO.setName("만두");
+        foodSearchDTO.setBrand("CJ");
 
-        listDTO.setType("ainbc");
-        listDTO.setSize(1000);
-        listDTO.setSort("allergy");
+        foodSearchDTO.setType("ainbc");
+        foodSearchDTO.setSize(1000);
+        foodSearchDTO.setSort("allergySort");
 
-        List<FoodVO> allergyCheckResult = foodMapper.allergySearchList(listDTO);
+        List<FoodVO> allergyCheckResult = foodMapper.allergySearchList(foodSearchDTO);
+        log.info(foodSearchDTO);
         allergyCheckResult.forEach(food -> log.info(food));
         log.info("======================"+allergyCheckResult.size()+"====================");
     }

@@ -34,31 +34,31 @@
     <h5><strong>[정렬]</strong></h5>
     검색 조건별 <strong>'우선순'</strong> 보기
     <div class="row" style="margin-top: 1vw;">
-      <c:if test="${listDTO.allergy ne ''}">
+      <c:if test="${foodSearchDTO.allergy ne ''}">
         <div class="col-md-3">
-          <input type="radio" name="sort" value="allergySort" checked  ${listDTO.sort =='allergySort' ? 'checked' : ''}> <strong>알레르기 19종</strong><br>'${listDTO.allergy}'
-          <c:if test="${fn:contains(listDTO.type, 'c')}"><br> (포함) </c:if>
-          <c:if test="${fn:contains(listDTO.type, 'e')}"><br> (제외) </c:if>
+          <input type="radio" name="sort" value="allergySort" checked  ${foodSearchDTO.sort =='allergySort' ? 'checked' : ''}> <strong>알레르기 19종</strong><br>'${foodSearchDTO.allergy}'
+          <c:if test="${fn:contains(foodSearchDTO.type, 'c')}"><br> (포함) </c:if>
+          <c:if test="${fn:contains(foodSearchDTO.type, 'e')}"><br> (제외) </c:if>
         </div>
       </c:if>
 
-      <c:if test="${listDTO.ingredient ne null}">
+      <c:if test="${foodSearchDTO.ingredient ne null}">
         <div class="col-md-3">
-          <input type="radio" name="sort" value="ingredientSort" ${listDTO.sort =='ingredientSort' ? 'checked' : ''}> <strong>재료명</strong><br>'${listDTO.ingredient}'
-          <c:if test="${fn:contains(listDTO.type, 'c')}"><br> (포함) </c:if>
-          <c:if test="${fn:contains(listDTO.type, 'e')}"><br> (제외) </c:if>
+          <input type="radio" name="sort" value="ingredientSort" ${foodSearchDTO.sort =='ingredientSort' ? 'checked' : ''}> <strong>재료명</strong><br>'${foodSearchDTO.ingredient}'
+          <c:if test="${fn:contains(foodSearchDTO.type, 'c')}"><br> (포함) </c:if>
+          <c:if test="${fn:contains(foodSearchDTO.type, 'e')}"><br> (제외) </c:if>
         </div>
       </c:if>
 
-      <c:if test="${listDTO.name ne ''}">
+      <c:if test="${foodSearchDTO.name ne ''}">
         <div class="col-md-3">
-          <input type="radio" name="sort" value="foodNameSort" ${listDTO.sort =='foodNameSort' ? 'checked' : ''}> <strong>제품명</strong><br>'${listDTO.name}'
+          <input type="radio" name="sort" value="foodNameSort" ${foodSearchDTO.sort =='foodNameSort' ? 'checked' : ''}> <strong>제품명</strong><br>'${foodSearchDTO.name}'
         </div>
       </c:if>
 
-      <c:if test="${listDTO.brand ne ''}">
+      <c:if test="${foodSearchDTO.brand ne ''}">
         <div class="col-md-3">
-          <input type="radio" name="sort" value="brandSort" ${listDTO.sort=='brandSort' ? 'checked' : ''}> <strong>브랜드</strong><br>'${listDTO.brand}'
+          <input type="radio" name="sort" value="brandSort" ${foodSearchDTO.sort=='brandSort' ? 'checked' : ''}> <strong>브랜드</strong><br>'${foodSearchDTO.brand}'
         </div>
       </c:if>
     </div>
@@ -123,7 +123,7 @@
           <c:forEach begin="${pageMaker.start}" end="${pageMaker.end}" var="num">
 
             <c:choose>
-              <c:when test="${num eq listDTO.page}">
+              <c:when test="${num eq foodSearchDTO.page}">
                 <li class="page-item active" aria-current="page"><a class="page-link" href="${num}">${num}</a></li>
               </c:when>
               <c:otherwise>
@@ -133,7 +133,7 @@
 
           </c:forEach>
 
-          <c:if test="${pageMaker.end < total/listDTO.size}">
+          <c:if test="${pageMaker.end < total/foodSearchDTO.size}">
             <li class="page-item"><a class="page-link" href="${pageMaker.end+1}">다음</a></li>
           </c:if>
         </ul>
@@ -145,14 +145,14 @@
 
 
 <form class="actionForm" action="/food/list" method="get">
-  <input type="hidden" name="page" value="${listDTO.page}">
-  <input type="hidden" name="size" value="${listDTO.size}">
-  <input type="hidden" name="type" value="${listDTO.type == null ? '':listDTO.type}">
-  <input type="hidden" name="allergy" value="${listDTO.allergy == null ? '' : listDTO.allergy}">
-  <input type="hidden" name="ingredient" value="${listDTO.ingredient == null ? '' : listDTO.ingredient}">
-  <input type="hidden" name="name" value="${listDTO.name == null ? '':listDTO.name}">
-  <input type="hidden" name="brand" value="${listDTO.brand == null ? '':listDTO.brand}">
-  <input type="hidden" name="sort" value="${listDTO.sort == null ? '':listDTO.sort}">
+  <input type="hidden" name="page" value="${foodSearchDTO.page}">
+  <input type="hidden" name="size" value="${foodSearchDTO.size}">
+  <input type="hidden" name="type" value="${foodSearchDTO.type == null ? '':foodSearchDTO.type}">
+  <input type="hidden" name="allergy" value="${foodSearchDTO.allergy == null ? '' : foodSearchDTO.allergy}">
+  <input type="hidden" name="ingredient" value="${foodSearchDTO.ingredient == null ? '' : foodSearchDTO.ingredient}">
+  <input type="hidden" name="name" value="${foodSearchDTO.name == null ? '':foodSearchDTO.name}">
+  <input type="hidden" name="brand" value="${foodSearchDTO.brand == null ? '':foodSearchDTO.brand}">
+  <input type="hidden" name="sort" value="${foodSearchDTO.sort == null ? '':foodSearchDTO.sort}">
 </form>
 
 <script>
@@ -183,7 +183,7 @@
 
     switch (sort) {
         case "allergySort" :
-            highLightList = `${listDTO.allergy}`.split(",");
+            highLightList = `${foodSearchDTO.allergy}`.split(",");
             // console.log(highLightList);
 
             highLightList.forEach(item => {
@@ -192,7 +192,7 @@
             break;
 
         <%--case "brandSort" :--%>
-        <%--    highLightList = `${listDTO.brand}`.split(",");--%>
+        <%--    highLightList = `${foodSearchDTO.brand}`.split(",");--%>
         <%--    // console.log(highLightList);--%>
 
         <%--    highLightList.forEach(item => {--%>
@@ -201,12 +201,12 @@
         <%--    break;--%>
 
         case "ingredientSort" :
-            highLightList = `${listDTO.ingredient}`;
+            highLightList = `${foodSearchDTO.ingredient}`;
             text = text.replaceAll(highLightList, `<strong>\${highLightList}</strong>`);
             break;
 
         case "foodNameSort" :
-            highLightList = `${listDTO.name}`;
+            highLightList = `${foodSearchDTO.name}`;
             text = text.replaceAll(highLightList, `<strong>\${highLightList}</strong>`);
             break;
     } // switch
